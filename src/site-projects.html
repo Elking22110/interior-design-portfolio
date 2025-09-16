@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>02-Site - تصميمات للمواقع والمشاريع | معتز جبر للتصميم الداخلي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-details.css">
+    <link rel="stylesheet" href="project_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Favicon removed to prevent 404 error -->
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar" id="navbar" role="navigation" aria-label="التنقل الرئيسي">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <div class="logo-placeholder">MG</div>
+                    <span data-ar="معتز جبر" data-en="Moataz Gabr">معتز جبر</span>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu" role="menubar">
+                    <li role="none"><a href="index.html" class="nav-link" data-ar="الرئيسية" data-en="Home" role="menuitem">الرئيسية</a></li>
+                    <li role="none"><a href="index.html#about" class="nav-link" data-ar="من نحن" data-en="About Us" role="menuitem">من نحن</a></li>
+                    <li role="none"><a href="index.html#services" class="nav-link" data-ar="خدماتنا" data-en="Our Services" role="menuitem">خدماتنا</a></li>
+                    <li role="none"><a href="index.html#portfolio" class="nav-link active" data-ar="معرض الأعمال" data-en="Portfolio" role="menuitem">معرض الأعمال</a></li>
+                    <li role="none"><a href="index.html#contact" class="nav-link" data-ar="اتصل بنا" data-en="Contact Us" role="menuitem">اتصل بنا</a></li>
+                </ul>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="ar" aria-label="تغيير اللغة إلى العربية">العربية</button>
+                    <button class="lang-btn" data-lang="en" aria-label="Change language to English">English</button>
+                </div>
+                
+                <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content" data-aos="fade-up">
+                <div class="breadcrumb">
+                    <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+                    <span>/</span>
+                    <a href="index.html#portfolio" data-ar="معرض الأعمال" data-en="Portfolio">معرض الأعمال</a>
+                    <span>/</span>
+                    <span data-ar="تصميم داخلي" data-en="Interior Design">تصميم داخلي</span>
+                </div>
+                <h1 class="page-title" data-ar="02-Site - تصميمات للمواقع والمشاريع" data-en="02-Site - Site and Project Designs">02-Site - تصميمات للمواقع والمشاريع</h1>
+                <p class="page-subtitle" data-ar="تصميمات شاملة للمواقع والمشاريع الكبيرة مع التركيز على التخطيط المعماري والتصميم الخارجي" data-en="Comprehensive designs for sites and large projects focusing on architectural planning and exterior design">تصميمات شاملة للمواقع والمشاريع الكبيرة مع التركيز على التخطيط المعماري والتصميم الخارجي</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be loaded here by JavaScript -->
+                <div class="projects-loading">
+                    <div class="loading-spinner"></div>
+                    <p>جاري تحميل المشاريع...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Portfolio -->
+    <section class="back-to-portfolio">
+        <div class="container">
+            <div class="back-content" data-aos="fade-up">
+                <a href="index.html#portfolio" class="back-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    <span data-ar="العودة إلى معرض الأعمال" data-en="Back to Portfolio">العودة إلى معرض الأعمال</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProjectModal()">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Zoom Modal -->
+    <div id="imageZoomModal" class="modal">
+        <div class="modal-content image-modal">
+            <span class="close" onclick="closeImageZoom()">&times;</span>
+            <img id="zoomedImage" src="" alt="صورة مكبرة">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-placeholder">MG</div>
+                        <span>معتز جبر للتصميم الداخلي</span>
+                    </div>
+                    <p data-ar="نحول مساحاتك إلى أعمال فنية تعكس شخصيتك وتلبي تطلعاتك" data-en="We transform your spaces into artistic masterpieces that reflect your personality">نحول مساحاتك إلى أعمال فنية تعكس شخصيتك وتلبي تطلعاتك</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="index.html#about" data-ar="من نحن" data-en="About">من نحن</a></li>
+                        <li><a href="index.html#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+                        <li><a href="index.html#portfolio" data-ar="معرض الأعمال" data-en="Portfolio">معرض الأعمال</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>01270005969</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>moataz.rabei.gabr2006@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-ar="© 2024 معتز جبر للتصميم الداخلي. جميع الحقوق محفوظة." data-en="© 2024 Moataz Gabr Interior Design. All rights reserved.">&copy; 2024 معتز جبر للتصميم الداخلي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="project_loader.js"></script>
+    <script>
+        // Wait for projectLoader to be available, then load enhanced_project_details.js
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded fired');
+            
+                    // Initialize AOS with faster settings
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 400, // Faster animation
+                easing: 'ease-out',
+                once: true,
+                offset: 50, // Start animation earlier
+                delay: 0 // No delay
+            });
+        }
+            
+            // Wait for projectLoader to be ready
+            function loadEnhancedScripts() {
+                console.log('Checking projectLoader availability...');
+                console.log('window.projectLoader:', window.projectLoader);
+                console.log('window.projectLoader.initialized:', window.projectLoader?.initialized);
+                
+                if (typeof window.projectLoader !== 'undefined' && window.projectLoader.initialized) {
+                    console.log('projectLoader is ready, loading enhanced scripts...');
+                    
+                    // Load enhanced_project_details.js
+                    const script = document.createElement('script');
+                    script.src = 'enhanced_project_details.js';
+                    document.body.appendChild(script);
+                    
+                    // Load project-details.js after enhanced_project_details.js
+                    script.onload = function() {
+                        console.log('enhanced_project_details.js loaded successfully');
+                        const script2 = document.createElement('script');
+                        script2.src = 'project-details.js';
+                        document.body.appendChild(script2);
+                        
+                        script2.onload = function() {
+                            console.log('project-details.js loaded successfully');
+                        };
+                    };
+                } else {
+                    console.log('projectLoader not ready yet, retrying...');
+                    setTimeout(loadEnhancedScripts, 100);
+                }
+            }
+            
+            // Start loading enhanced scripts
+            loadEnhancedScripts();
+        });
+    </script>
+</body>
+</html>
+

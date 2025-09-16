@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>تفاصيل المشروع - معتز جبر للتصميم الداخلي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-details.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <img src="logo.jpg" alt="MG Studio">
+            </div>
+            <div class="loading-text">
+                <span class="mg-logo">MG STUDIO</span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.jpg" alt="MG Studio">
+                <span data-ar="معتز جبر" data-en="Moataz Gabr">معتز جبر</span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                <li><a href="index.html#about" class="nav-link" data-ar="من نحن" data-en="About Us">من نحن</a></li>
+                <li><a href="index.html#services" class="nav-link" data-ar="خدماتنا" data-en="Our Services">خدماتنا</a></li>
+                <li><a href="index.html#portfolio" class="nav-link active" data-ar="معرض الأعمال" data-en="Portfolio">معرض الأعمال</a></li>
+                <li><a href="index.html#contact" class="nav-link" data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</a></li>
+            </ul>
+            
+            <!-- Language Toggle -->
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="ar">العربية</button>
+                <button class="lang-btn" data-lang="en">English</button>
+            </div>
+            
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Details Section -->
+    <section class="project-details">
+        <div class="container">
+            <!-- Back Button -->
+            <div class="back-navigation" data-aos="fade-up">
+                <button onclick="goBack()" class="back-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    <span data-ar="العودة إلى معرض الأعمال" data-en="Back to Portfolio">العودة إلى معرض الأعمال</span>
+                </button>
+            </div>
+
+            <!-- Project Header -->
+            <div class="project-header" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-meta">
+                    <span class="project-category" id="projectCategory">مشاريع سكنيه</span>
+                    <span class="project-date" id="projectDate">2024</span>
+                </div>
+                <h1 class="project-title" id="projectTitle">عنوان المشروع</h1>
+                <p class="project-subtitle" id="projectSubtitle">وصف مختصر للمشروع</p>
+            </div>
+
+            <!-- Project Gallery -->
+            <div class="project-gallery" data-aos="fade-up" data-aos-delay="200">
+                <div class="main-image">
+                    <img id="mainProjectImage" src="" alt="صورة المشروع الرئيسية" class="main-img">
+                    <div class="image-overlay">
+                        <button class="fullscreen-btn" onclick="openFullscreen()">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="thumbnail-gallery" id="thumbnailGallery">
+                    <!-- Thumbnails will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Project Info -->
+            <div class="project-info" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-description">
+                    <h2 data-ar="وصف المشروع" data-en="Project Description">وصف المشروع</h2>
+                    <div class="description-content" id="projectDescription">
+                        <p>وصف تفصيلي للمشروع سيتم تحميله من قاعدة البيانات...</p>
+                    </div>
+                </div>
+
+                <div class="project-specs">
+                    <h3 data-ar="مواصفات المشروع" data-en="Project Specifications">مواصفات المشروع</h3>
+                    <div class="specs-grid" id="projectSpecs">
+                        <!-- Specifications will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Projects -->
+            <div class="related-projects" data-aos="fade-up" data-aos-delay="400">
+                <h2 data-ar="مشاريع مشابهة" data-en="Related Projects">مشاريع مشابهة</h2>
+                <div class="related-grid" id="relatedProjects">
+                    <!-- Related projects will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="project-cta" data-aos="fade-up" data-aos-delay="500">
+                <div class="cta-content">
+                    <h3 data-ar="أعجبك هذا المشروع؟" data-en="Like this project?">أعجبك هذا المشروع؟</h3>
+                    <p data-ar="تواصل معنا لتصميم مشروعك الخاص" data-en="Contact us to design your own project">تواصل معنا لتصميم مشروعك الخاص</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary glow-btn" onclick="scrollToContact()">
+                            <i class="fas fa-phone"></i>
+                            <span data-ar="احجز استشارة مجانية" data-en="Book Free Consultation">احجز استشارة مجانية</span>
+                        </button>
+                        <button class="btn btn-secondary glass-btn" onclick="shareProject()">
+                            <i class="fas fa-share"></i>
+                            <span data-ar="شارك المشروع" data-en="Share Project">شارك المشروع</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.jpg" alt="MG Studio">
+                        <span data-ar="معتز جبر للتصميم الداخلي" data-en="Moataz Gabr Interior Design">معتز جبر للتصميم الداخلي</span>
+                    </div>
+                    <p data-ar="نحول مساحاتك إلى أعمال فنية تعكس شخصيتك وتلبي تطلعاتك" data-en="We transform your spaces into artistic masterpieces that reflect your personality and meet your aspirations">نحول مساحاتك إلى أعمال فنية تعكس شخصيتك وتلبي تطلعاتك</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 data-ar="خدماتنا" data-en="Our Services">خدماتنا</h4>
+                    <ul>
+                        <li><a href="#" data-ar="تصميم الشقق" data-en="Apartment Design">تصميم الشقق</a></li>
+                        <li><a href="#" data-ar="تصميم الفيلات" data-en="Villa Design">تصميم الفيلات</a></li>
+                        <li><a href="#" data-ar="تصميم المطابخ" data-en="Kitchen Design">تصميم المطابخ</a></li>
+                        <li><a href="#" data-ar="التصميم التجاري" data-en="Commercial Design">التصميم التجاري</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 data-ar="معلومات الشركة" data-en="Company Information">معلومات الشركة</h4>
+                    <ul>
+                        <li data-ar="السجل التجاري: 157438" data-en="Commercial Register: 157438">السجل التجاري: 157438</li>
+                        <li data-ar="الرقم الضريبي: 007-129-609" data-en="Tax Number: 007-129-609">الرقم الضريبي: 007-129-609</li>
+                        <li data-ar="سنوات الخبرة: 15+ سنة" data-en="Years of Experience: 15+ years">سنوات الخبرة: 15+ سنة</li>
+                        <li data-ar="المشاريع المكتملة: 500+" data-en="Completed Projects: 500+">المشاريع المكتملة: 500+</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 01270005969</li>
+                        <li><i class="fas fa-envelope"></i> moataz.rabei.gabr2006@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-ar="مدينة الشروق، الحي التاسع" data-en="Shorouk City, Ninth District">مدينة الشروق، الحي التاسع</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-ar="&copy; 2025 معتز جبر للتصميم الداخلي. جميع الحقوق محفوظة." data-en="&copy; 2025 Moataz Gabr Interior Design. All rights reserved.">&copy; 2025 معتز جبر للتصميم الداخلي. جميع الحقوق محفوظة.</p>
+                <p><a href="contact.html" class="developer-link">made with HassanElking</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fullscreen Modal -->
+    <div class="fullscreen-modal" id="fullscreenModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeFullscreen()">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="fullscreenImage" src="" alt="صورة بالحجم الكامل">
+            <div class="modal-navigation">
+                <button class="nav-btn prev-btn" onclick="previousImage()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="nav-btn next-btn" onclick="nextImage()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="static-data.js"></script>
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script src="project-details.js"></script>
+</body>
+</html>
+

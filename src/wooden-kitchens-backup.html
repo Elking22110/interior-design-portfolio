@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>تصميمات مطابخ خشبية | معتز جبر للتصميم الداخلي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-details.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Favicon removed to prevent 404 error -->
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar" id="navbar" role="navigation" aria-label="التنقل الرئيسي">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="logo.jpg" alt="شعار MG Studio">
+                    <span data-ar="معتز جبر" data-en="Moataz Gabr">معتز جبر</span>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu" role="menubar">
+                    <li role="none"><a href="index.html" class="nav-link" data-ar="الرئيسية" data-en="Home" role="menuitem">الرئيسية</a></li>
+                    <li role="none"><a href="index.html#about" class="nav-link" data-ar="من نحن" data-en="About Us" role="menuitem">من نحن</a></li>
+                    <li role="none"><a href="index.html#services" class="nav-link" data-ar="خدماتنا" data-en="Our Services" role="menuitem">خدماتنا</a></li>
+                    <li role="none"><a href="index.html#portfolio" class="nav-link active" data-ar="معرض الأعمال" data-en="Portfolio" role="menuitem">معرض الأعمال</a></li>
+                    <li role="none"><a href="index.html#contact" class="nav-link" data-ar="اتصل بنا" data-en="Contact Us" role="menuitem">اتصل بنا</a></li>
+                </ul>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="ar" aria-label="تغيير اللغة إلى العربية">العربية</button>
+                    <button class="lang-btn" data-lang="en" aria-label="Change language to English">English</button>
+                </div>
+                
+                <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content" data-aos="fade-up">
+                <div class="breadcrumb">
+                    <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+                    <span>/</span>
+                    <a href="index.html#portfolio" data-ar="معرض الأعمال" data-en="Portfolio">معرض الأعمال</a>
+                    <span>/</span>
+                    <span data-ar="تصميمات خشبية" data-en="Wooden Designs">تصميمات خشبية</span>
+                </div>
+                <h1 class="page-title" data-ar="تصميمات مطابخ خشبية" data-en="Wooden Kitchen Designs">تصميمات مطابخ خشبية</h1>
+                <p class="page-subtitle" data-ar="مطابخ خشبية فاخرة تجمع بين الجمال والوظيفة مع استخدام أجود أنواع الخشب والتصميمات العصرية" data-en="Luxury wooden kitchens combining beauty and functionality using the finest wood types and modern designs">مطابخ خشبية فاخرة تجمع بين الجمال والوظيفة مع استخدام أجود أنواع الخشب والتصميمات العصرية</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="search-filter-section">
+        <div class="container">
+            <div class="search-filter-content" data-aos="fade-up">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="البحث في المشاريع..." data-ar="البحث في المشاريع..." data-en="Search projects...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all" data-ar="الكل" data-en="All">الكل</button>
+                    <button class="filter-btn" data-filter="كلاسيكي" data-ar="كلاسيكي" data-en="Classic">كلاسيكي</button>
+                    <button class="filter-btn" data-filter="معاصر" data-ar="معاصر" data-en="Modern">معاصر</button>
+                    <button class="filter-btn" data-filter="فاخر" data-ar="فاخر" data-en="Luxury">فاخر</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be loaded dynamically by project_loader.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Portfolio -->
+    <section class="back-to-portfolio">
+        <div class="container">
+            <div class="back-content" data-aos="fade-up">
+                <a href="index.html#portfolio" class="back-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    <span data-ar="العودة إلى معرض الأعمال" data-en="Back to Portfolio">العودة إلى معرض الأعمال</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProjectModal()">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Zoom Modal -->
+    <div id="imageZoomModal" class="modal">
+        <div class="modal-content image-modal">
+            <span class="close" onclick="closeImageZoom()">&times;</span>
+            <img id="zoomedImage" src="" alt="صورة مكبرة">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+                    <div class="project-image">
+                        <img src="real_projects/التصاميم الخشبيه/01-Kitchens/04-Dr.Khaled Nagaty-Kitchen/1.jpg" alt="Kitchen - Dr.Khaled Nagaty" class="project-img">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="action-btn view-btn" onclick="openProjectGallery('04-Dr.Khaled Nagaty-Kitchen', 4)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn zoom-btn" onclick="zoomImage('real_projects/التصاميم الخشبيه/01-Kitchens/04-Dr.Khaled Nagaty-Kitchen/1.jpg')">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-ar="Kitchen - Dr.Khaled Nagaty" data-en="Kitchen - Dr.Khaled Nagaty">Kitchen - Dr.Khaled Nagaty</h3>
+                        <p class="project-description" data-ar="مشروع Kitchen احترافي للعميل Dr.Khaled Nagaty" data-en="Professional Kitchen project for Dr.Khaled Nagaty">مشروع Kitchen احترافي للعميل Dr.Khaled Nagaty</p>
+                        <div class="project-tags">
+                            <span class="tag" data-ar="Kitchen" data-en="Kitchen">Kitchen</span>
+                            <span class="tag" data-ar="تصميم مخصص" data-en="Custom Design">تصميم مخصص</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Modal -->
+                <div id="gallery-04-Dr.Khaled Nagaty-Kitchen" class="gallery-modal">
+                    <div class="gallery-modal-content">
+                        <span class="close" onclick="closeProjectGallery('04-Dr.Khaled Nagaty-Kitchen')">&times;</span>
+                        <div class="gallery-container">
+                            <img src="real_projects/التصاميم الخشبيه/01-Kitchens/04-Dr.Khaled Nagaty-Kitchen/1.jpg" alt="Kitchen - Dr.Khaled Nagaty - صورة 1" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/04-Dr.Khaled Nagaty-Kitchen/2.jpg" alt="Kitchen - Dr.Khaled Nagaty - صورة 2" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/04-Dr.Khaled Nagaty-Kitchen/3.jpg" alt="Kitchen - Dr.Khaled Nagaty - صورة 3" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/04-Dr.Khaled Nagaty-Kitchen/6.jpg" alt="Kitchen - Dr.Khaled Nagaty - صورة 4" class="gallery-img">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-nav-btn prev" onclick="changeGalleryImage('04-Dr.Khaled Nagaty-Kitchen', -1)">❮</button>
+                            <button class="gallery-nav-btn next" onclick="changeGalleryImage('04-Dr.Khaled Nagaty-Kitchen', 1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 05 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-image">
+                        <img src="real_projects/التصاميم الخشبيه/01-Kitchens/05-Dr.Maha Hussein-Kitchen/1.jpg" alt="Kitchen - Dr.Maha Hussein" class="project-img">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="action-btn view-btn" onclick="openProjectGallery('05-Dr.Maha Hussein-Kitchen', 3)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn zoom-btn" onclick="zoomImage('real_projects/التصاميم الخشبيه/01-Kitchens/05-Dr.Maha Hussein-Kitchen/1.jpg')">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-ar="Kitchen - Dr.Maha Hussein" data-en="Kitchen - Dr.Maha Hussein">Kitchen - Dr.Maha Hussein</h3>
+                        <p class="project-description" data-ar="مشروع Kitchen احترافي للعميل Dr.Maha Hussein" data-en="Professional Kitchen project for Dr.Maha Hussein">مشروع Kitchen احترافي للعميل Dr.Maha Hussein</p>
+                        <div class="project-tags">
+                            <span class="tag" data-ar="Kitchen" data-en="Kitchen">Kitchen</span>
+                            <span class="tag" data-ar="تصميم مخصص" data-en="Custom Design">تصميم مخصص</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Modal -->
+                <div id="gallery-05-Dr.Maha Hussein-Kitchen" class="gallery-modal">
+                    <div class="gallery-modal-content">
+                        <span class="close" onclick="closeProjectGallery('05-Dr.Maha Hussein-Kitchen')">&times;</span>
+                        <div class="gallery-container">
+                            <img src="real_projects/التصاميم الخشبيه/01-Kitchens/05-Dr.Maha Hussein-Kitchen/1.jpg" alt="Kitchen - Dr.Maha Hussein - صورة 1" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/05-Dr.Maha Hussein-Kitchen/2.jpg" alt="Kitchen - Dr.Maha Hussein - صورة 2" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/05-Dr.Maha Hussein-Kitchen/4.jpg" alt="Kitchen - Dr.Maha Hussein - صورة 3" class="gallery-img">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-nav-btn prev" onclick="changeGalleryImage('05-Dr.Maha Hussein-Kitchen', -1)">❮</button>
+                            <button class="gallery-nav-btn next" onclick="changeGalleryImage('05-Dr.Maha Hussein-Kitchen', 1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 08 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="project-image">
+                        <img src="real_projects/التصاميم الخشبيه/01-Kitchens/08-Ms.Shaimaa Salaheldin-Kitchen/1.jpg" alt="Kitchen - Ms.Shaimaa Salaheldin" class="project-img">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="action-btn view-btn" onclick="openProjectGallery('08-Ms.Shaimaa Salaheldin-Kitchen', 4)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn zoom-btn" onclick="zoomImage('real_projects/التصاميم الخشبيه/01-Kitchens/08-Ms.Shaimaa Salaheldin-Kitchen/1.jpg')">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-ar="Kitchen - Ms.Shaimaa Salaheldin" data-en="Kitchen - Ms.Shaimaa Salaheldin">Kitchen - Ms.Shaimaa Salaheldin</h3>
+                        <p class="project-description" data-ar="مشروع Kitchen احترافي للعميل Ms.Shaimaa Salaheldin" data-en="Professional Kitchen project for Ms.Shaimaa Salaheldin">مشروع Kitchen احترافي للعميل Ms.Shaimaa Salaheldin</p>
+                        <div class="project-tags">
+                            <span class="tag" data-ar="Kitchen" data-en="Kitchen">Kitchen</span>
+                            <span class="tag" data-ar="تصميم مخصص" data-en="Custom Design">تصميم مخصص</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Modal -->
+                <div id="gallery-08-Ms.Shaimaa Salaheldin-Kitchen" class="gallery-modal">
+                    <div class="gallery-modal-content">
+                        <span class="close" onclick="closeProjectGallery('08-Ms.Shaimaa Salaheldin-Kitchen')">&times;</span>
+                        <div class="gallery-container">
+                            <img src="real_projects/التصاميم الخشبيه/01-Kitchens/08-Ms.Shaimaa Salaheldin-Kitchen/1.jpg" alt="Kitchen - Ms.Shaimaa Salaheldin - صورة 1" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/08-Ms.Shaimaa Salaheldin-Kitchen/2.jpg" alt="Kitchen - Ms.Shaimaa Salaheldin - صورة 2" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/08-Ms.Shaimaa Salaheldin-Kitchen/3.jpg" alt="Kitchen - Ms.Shaimaa Salaheldin - صورة 3" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/08-Ms.Shaimaa Salaheldin-Kitchen/4.jpg" alt="Kitchen - Ms.Shaimaa Salaheldin - صورة 4" class="gallery-img">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-nav-btn prev" onclick="changeGalleryImage('08-Ms.Shaimaa Salaheldin-Kitchen', -1)">❮</button>
+                            <button class="gallery-nav-btn next" onclick="changeGalleryImage('08-Ms.Shaimaa Salaheldin-Kitchen', 1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 009 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-image">
+                        <img src="real_projects/التصاميم الخشبيه/01-Kitchens/009-MS.Yasmine Elnagar-Kitchen/1.jpg" alt="Kitchen - Ms.Yasmine Elnagar" class="project-img">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="action-btn view-btn" onclick="openProjectGallery('009-MS.Yasmine Elnagar-Kitchen', 3)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn zoom-btn" onclick="zoomImage('real_projects/التصاميم الخشبيه/01-Kitchens/009-MS.Yasmine Elnagar-Kitchen/1.jpg')">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-ar="Kitchen - Ms.Yasmine Elnagar" data-en="Kitchen - Ms.Yasmine Elnagar">Kitchen - Ms.Yasmine Elnagar</h3>
+                        <p class="project-description" data-ar="مشروع Kitchen احترافي للعميل Ms.Yasmine Elnagar" data-en="Professional Kitchen project for Ms.Yasmine Elnagar">مشروع Kitchen احترافي للعميل Ms.Yasmine Elnagar</p>
+                        <div class="project-tags">
+                            <span class="tag" data-ar="Kitchen" data-en="Kitchen">Kitchen</span>
+                            <span class="tag" data-ar="تصميم مخصص" data-en="Custom Design">تصميم مخصص</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Modal -->
+                <div id="gallery-009-MS.Yasmine Elnagar-Kitchen" class="gallery-modal">
+                    <div class="gallery-modal-content">
+                        <span class="close" onclick="closeProjectGallery('009-MS.Yasmine Elnagar-Kitchen')">&times;</span>
+                        <div class="gallery-container">
+                            <img src="real_projects/التصاميم الخشبيه/01-Kitchens/009-MS.Yasmine Elnagar-Kitchen/1.jpg" alt="Kitchen - Ms.Yasmine Elnagar - صورة 1" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/009-MS.Yasmine Elnagar-Kitchen/3.jpg" alt="Kitchen - Ms.Yasmine Elnagar - صورة 2" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/009-MS.Yasmine Elnagar-Kitchen/4.jpg" alt="Kitchen - Ms.Yasmine Elnagar - صورة 3" class="gallery-img">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-nav-btn prev" onclick="changeGalleryImage('009-MS.Yasmine Elnagar-Kitchen', -1)">❮</button>
+                            <button class="gallery-nav-btn next" onclick="changeGalleryImage('009-MS.Yasmine Elnagar-Kitchen', 1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 010 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="project-image">
+                        <img src="real_projects/التصاميم الخشبيه/01-Kitchens/010-MR.Zakaria-Kitchen/1111.jpg" alt="Kitchen - Mr.Zakaria" class="project-img">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="action-btn view-btn" onclick="openProjectGallery('010-MR.Zakaria-Kitchen', 2)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn zoom-btn" onclick="zoomImage('real_projects/التصاميم الخشبيه/01-Kitchens/010-MR.Zakaria-Kitchen/1111.jpg')">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-ar="Kitchen - Mr.Zakaria" data-en="Kitchen - Mr.Zakaria">Kitchen - Mr.Zakaria</h3>
+                        <p class="project-description" data-ar="مشروع Kitchen احترافي للعميل Mr.Zakaria" data-en="Professional Kitchen project for Mr.Zakaria">مشروع Kitchen احترافي للعميل Mr.Zakaria</p>
+                        <div class="project-tags">
+                            <span class="tag" data-ar="Kitchen" data-en="Kitchen">Kitchen</span>
+                            <span class="tag" data-ar="تصميم مخصص" data-en="Custom Design">تصميم مخصص</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Modal -->
+                <div id="gallery-010-MR.Zakaria-Kitchen" class="gallery-modal">
+                    <div class="gallery-modal-content">
+                        <span class="close" onclick="closeProjectGallery('010-MR.Zakaria-Kitchen')">&times;</span>
+                        <div class="gallery-container">
+                            <img src="real_projects/التصاميم الخشبيه/01-Kitchens/010-MR.Zakaria-Kitchen/1111.jpg" alt="Kitchen - Mr.Zakaria - صورة 1" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/010-MR.Zakaria-Kitchen/222.jpg" alt="Kitchen - Mr.Zakaria - صورة 2" class="gallery-img">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-nav-btn prev" onclick="changeGalleryImage('010-MR.Zakaria-Kitchen', -1)">❮</button>
+                            <button class="gallery-nav-btn next" onclick="changeGalleryImage('010-MR.Zakaria-Kitchen', 1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 011 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="project-image">
+                        <img src="real_projects/التصاميم الخشبيه/01-Kitchens/011-MR.Ahmed Ismael-Kitchen/1.jpg" alt="Kitchen - Mr.Ahmed Ismael" class="project-img">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="action-btn view-btn" onclick="openProjectGallery('011-MR.Ahmed Ismael-Kitchen', 2)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn zoom-btn" onclick="zoomImage('real_projects/التصاميم الخشبيه/01-Kitchens/011-MR.Ahmed Ismael-Kitchen/1.jpg')">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-ar="Kitchen - Mr.Ahmed Ismael" data-en="Kitchen - Mr.Ahmed Ismael">Kitchen - Mr.Ahmed Ismael</h3>
+                        <p class="project-description" data-ar="مشروع Kitchen احترافي للعميل Mr.Ahmed Ismael" data-en="Professional Kitchen project for Mr.Ahmed Ismael">مشروع Kitchen احترافي للعميل Mr.Ahmed Ismael</p>
+                        <div class="project-tags">
+                            <span class="tag" data-ar="Kitchen" data-en="Kitchen">Kitchen</span>
+                            <span class="tag" data-ar="تصميم مخصص" data-en="Custom Design">تصميم مخصص</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Modal -->
+                <div id="gallery-011-MR.Ahmed Ismael-Kitchen" class="gallery-modal">
+                    <div class="gallery-modal-content">
+                        <span class="close" onclick="closeProjectGallery('011-MR.Ahmed Ismael-Kitchen')">&times;</span>
+                        <div class="gallery-container">
+                            <img src="real_projects/التصاميم الخشبيه/01-Kitchens/011-MR.Ahmed Ismael-Kitchen/1.jpg" alt="Kitchen - Mr.Ahmed Ismael - صورة 1" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/011-MR.Ahmed Ismael-Kitchen/4.jpg" alt="Kitchen - Mr.Ahmed Ismael - صورة 2" class="gallery-img">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-nav-btn prev" onclick="changeGalleryImage('011-MR.Ahmed Ismael-Kitchen', -1)">❮</button>
+                            <button class="gallery-nav-btn next" onclick="changeGalleryImage('011-MR.Ahmed Ismael-Kitchen', 1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 012 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="900">
+                    <div class="project-image">
+                        <img src="real_projects/التصاميم الخشبيه/01-Kitchens/012-MS.Amal Elsayed-Kitchen/5.jpg" alt="Kitchen - Ms.Amal Elsayed" class="project-img">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="action-btn view-btn" onclick="openProjectGallery('012-MS.Amal Elsayed-Kitchen', 4)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn zoom-btn" onclick="zoomImage('real_projects/التصاميم الخشبيه/01-Kitchens/012-MS.Amal Elsayed-Kitchen/5.jpg')">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-ar="Kitchen - Ms.Amal Elsayed" data-en="Kitchen - Ms.Amal Elsayed">Kitchen - Ms.Amal Elsayed</h3>
+                        <p class="project-description" data-ar="مشروع Kitchen احترافي للعميل Ms.Amal Elsayed" data-en="Professional Kitchen project for Ms.Amal Elsayed">مشروع Kitchen احترافي للعميل Ms.Amal Elsayed</p>
+                        <div class="project-tags">
+                            <span class="tag" data-ar="Kitchen" data-en="Kitchen">Kitchen</span>
+                            <span class="tag" data-ar="تصميم مخصص" data-en="Custom Design">تصميم مخصص</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Modal -->
+                <div id="gallery-012-MS.Amal Elsayed-Kitchen" class="gallery-modal">
+                    <div class="gallery-modal-content">
+                        <span class="close" onclick="closeProjectGallery('012-MS.Amal Elsayed-Kitchen')">&times;</span>
+                        <div class="gallery-container">
+                            <img src="real_projects/التصاميم الخشبيه/01-Kitchens/012-MS.Amal Elsayed-Kitchen/5.jpg" alt="Kitchen - Ms.Amal Elsayed - صورة 1" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/012-MS.Amal Elsayed-Kitchen/6.jpg" alt="Kitchen - Ms.Amal Elsayed - صورة 2" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/012-MS.Amal Elsayed-Kitchen/7.jpg" alt="Kitchen - Ms.Amal Elsayed - صورة 3" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/012-MS.Amal Elsayed-Kitchen/8.jpg" alt="Kitchen - Ms.Amal Elsayed - صورة 4" class="gallery-img">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-nav-btn prev" onclick="changeGalleryImage('012-MS.Amal Elsayed-Kitchen', -1)">❮</button>
+                            <button class="gallery-nav-btn next" onclick="changeGalleryImage('012-MS.Amal Elsayed-Kitchen', 1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 013 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="project-image">
+                        <img src="real_projects/التصاميم الخشبيه/01-Kitchens/013-MR.Atef Rahmy-Kitchen/1.jpg" alt="Kitchen - Mr.Atef Rahmy" class="project-img">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="action-btn view-btn" onclick="openProjectGallery('013-MR.Atef Rahmy-Kitchen', 4)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn zoom-btn" onclick="zoomImage('real_projects/التصاميم الخشبيه/01-Kitchens/013-MR.Atef Rahmy-Kitchen/1.jpg')">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-ar="Kitchen - Mr.Atef Rahmy" data-en="Kitchen - Mr.Atef Rahmy">Kitchen - Mr.Atef Rahmy</h3>
+                        <p class="project-description" data-ar="مشروع Kitchen احترافي للعميل Mr.Atef Rahmy" data-en="Professional Kitchen project for Mr.Atef Rahmy">مشروع Kitchen احترافي للعميل Mr.Atef Rahmy</p>
+                        <div class="project-tags">
+                            <span class="tag" data-ar="Kitchen" data-en="Kitchen">Kitchen</span>
+                            <span class="tag" data-ar="تصميم مخصص" data-en="Custom Design">تصميم مخصص</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Modal -->
+                <div id="gallery-013-MR.Atef Rahmy-Kitchen" class="gallery-modal">
+                    <div class="gallery-modal-content">
+                        <span class="close" onclick="closeProjectGallery('013-MR.Atef Rahmy-Kitchen')">&times;</span>
+                        <div class="gallery-container">
+                            <img src="real_projects/التصاميم الخشبيه/01-Kitchens/013-MR.Atef Rahmy-Kitchen/1.jpg" alt="Kitchen - Mr.Atef Rahmy - صورة 1" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/013-MR.Atef Rahmy-Kitchen/2.jpg" alt="Kitchen - Mr.Atef Rahmy - صورة 2" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/013-MR.Atef Rahmy-Kitchen/3.jpg" alt="Kitchen - Mr.Atef Rahmy - صورة 3" class="gallery-img"><img src="real_projects/التصاميم الخشبيه/01-Kitchens/013-MR.Atef Rahmy-Kitchen/4.jpg" alt="Kitchen - Mr.Atef Rahmy - صورة 4" class="gallery-img">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-nav-btn prev" onclick="changeGalleryImage('013-MR.Atef Rahmy-Kitchen', -1)">❮</button>
+                            <button class="gallery-nav-btn next" onclick="changeGalleryImage('013-MR.Atef Rahmy-Kitchen', 1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Portfolio -->
+    <section class="back-to-portfolio">
+        <div class="container">
+            <div class="back-content" data-aos="fade-up">
+                <a href="index.html#portfolio" class="back-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    <span data-ar="العودة إلى معرض الأعمال" data-en="Back to Portfolio">العودة إلى معرض الأعمال</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="static-data.js"></script>
+    <script src="script.js"></script>
+    <script src="project-details.js"></script>
+    <script src="project_loader.js"></script>
+    <script src="enhanced_project_details.js"></script>
+    <script src="gallery-functions.js"></script>
+    
+    <script>
+        // تهيئة AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // تهيئة نظام اللغة
+        document.addEventListener('DOMContentLoaded', function() {
+            // إعداد أزرار تغيير اللغة
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    switchLanguage(lang);
+                });
+            });
+
+            // إعداد القائمة المتحركة
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        });
+
+        // دالة تغيير اللغة
+        function switchLanguage(lang) {
+            const currentLang = document.documentElement.lang;
+            if (lang === currentLang) return;
+            
+            document.documentElement.setAttribute('lang', lang);
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            
+            // تحديث جميع العناصر القابلة للترجمة
+            const translatableElements = document.querySelectorAll('[data-ar][data-en]');
+            translatableElements.forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (element.tagName === 'INPUT' && element.type === 'text') {
+                        element.placeholder = text;
+                    } else if (element.tagName === 'OPTION') {
+                        element.textContent = text;
+                    } else {
+                        element.innerHTML = text;
+                    }
+                }
+            });
+            
+            // تحديث أزرار اللغة النشطة
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // تحديث الخط
+            document.body.style.fontFamily = lang === 'ar' ? 'Cairo, sans-serif' : 'Inter, sans-serif';
+        }
+    </script>
+</body>
+</html>
+

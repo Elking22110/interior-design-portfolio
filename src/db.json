@@ -1,0 +1,2361 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Hassan Elking",
+      "username": "Hassan Elking",
+      "password": "HassanElking221100",
+      "role": "superadmin",
+      "permissions": [
+        "add_category",
+        "edit_category",
+        "delete_category",
+        "add_project",
+        "edit_project",
+        "delete_project",
+        "add_image",
+        "edit_image",
+        "delete_image",
+        "projects",
+        "consultations",
+        "settings",
+        "users"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name_ar": "01-Kitchens - تصميمات مطابخ خشبية فاخرة",
+      "name_en": "01-Kitchens - Luxury Wooden Kitchen Designs",
+      "slug": "wooden-kitchens",
+      "description_ar": "مطابخ خشبية فاخرة تجمع بين الجمال والوظيفة",
+      "description_en": "Luxury wooden kitchens combining beauty and functionality",
+      "image": "images/new-kitchen-1.jpg",
+      "order": 3,
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name_ar": "02-Dressing - تصميمات غرف ملابس خشبية",
+      "name_en": "02-Dressing - Wooden Dressing Room Designs",
+      "slug": "wooden-dressing",
+      "description_ar": "غرف ملابس خشبية أنيقة ومنظمة",
+      "description_en": "Elegant and organized wooden dressing rooms",
+      "image": "images/office-design.jpg",
+      "order": 4,
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name_ar": "03-Toilet Units - تصميمات وحدات حمام خشبية",
+      "name_en": "03-Toilet Units - Wooden Bathroom Unit Designs",
+      "slug": "wooden-toilet-units",
+      "description_ar": "وحدات حمام خشبية عملية وجميلة",
+      "description_en": "Practical and beautiful wooden bathroom units",
+      "image": "images/new-apartment-2.jpg",
+      "order": 5,
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name_ar": "04-Laundry - تصميمات غرف غسيل خشبية",
+      "name_en": "04-Laundry - Wooden Laundry Room Designs",
+      "slug": "wooden-laundry",
+      "description_ar": "غرف غسيل خشبية منظمة وعملية",
+      "description_en": "Organized and practical wooden laundry rooms",
+      "image": "images/new-villa-2.jpg",
+      "order": 6,
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "name_ar": "05-Kitchenette - تصميمات مطابخ صغيرة خشبية",
+      "name_en": "05-Kitchenette - Small Wooden Kitchen Designs",
+      "slug": "wooden-kitchenette",
+      "description_ar": "مطابخ صغيرة خشبية مثالية للمساحات المحدودة",
+      "description_en": "Small wooden kitchens perfect for limited spaces",
+      "image": "images/new-apartment-1.webp",
+      "order": 7,
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "6",
+      "name_ar": "06-Others - تصميمات خشبية أخرى",
+      "name_en": "06-Others - Other Wooden Designs",
+      "slug": "wooden-others",
+      "description_ar": "تصميمات خشبية متنوعة حسب الطلب",
+      "description_en": "Various wooden designs according to request",
+      "image": "images/new-kitchen-1.jpg",
+      "order": 8,
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "7",
+      "name_ar": "01-Design - تصميمات داخلية عصرية وكلاسيكية",
+      "name_en": "01-Design - Modern and Classic Interior Designs",
+      "slug": "interior-design",
+      "description_ar": "تصميمات داخلية متنوعة تجمع بين الطراز العصري والكلاسيكي",
+      "description_en": "Diverse interior designs combining modern and classic styles",
+      "image": "images/new-apartment-1.webp",
+      "order": 1,
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "8",
+      "name_ar": "02-Site - تصميمات للمواقع والمشاريع",
+      "name_en": "02-Site - Site and Project Designs",
+      "slug": "site-projects",
+      "description_ar": "تصميمات شاملة للمواقع والمشاريع الكبيرة",
+      "description_en": "Comprehensive designs for sites and large projects",
+      "image": "images/new-villa-1.jpg",
+      "order": 2,
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "1757967902047",
+      "name_en": "Test Category",
+      "name_ar": "??? ??????",
+      "order": 10,
+      "description_en": "Test category description",
+      "slug": "test-category",
+      "description_ar": "??? ??? ??????",
+      "image": "test.jpg",
+      "active": true
+    },
+    {
+      "id": "1757968221855",
+      "name_en": "Interior Design",
+      "name_ar": "??????? ???????",
+      "order": 1,
+      "description_en": "Modern and classic interior designs for homes and offices",
+      "slug": "interior-design",
+      "description_ar": "??????? ?????? ????? ????????? ??????? ????????",
+      "image": "images/modern-apartment.jpg",
+      "active": true
+    },
+    {
+      "id": "1757968370799",
+      "name_ar": "ف",
+      "name_en": "g",
+      "slug": "يي",
+      "description_ar": "يي",
+      "description_en": "يي",
+      "image": "",
+      "active": true,
+      "order": 1
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "title_ar": "مطبخ خشبي كلاسيكي فاخر",
+      "title_en": "Luxury Classic Wooden Kitchen",
+      "description_ar": "مطبخ خشبي كلاسيكي فاخر مع تفاصيل نحتية دقيقة وألوان دافئة",
+      "description_en": "Luxury classic wooden kitchen with intricate carvings and warm colors",
+      "category_id": "1",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/new-kitchen-2.jpg",
+        "images/classic-kitchen.jpg"
+      ],
+      "tags": [
+        "كلاسيكي",
+        "فاخر",
+        "خشبي"
+      ],
+      "tags_en": [
+        "Classic",
+        "Luxury",
+        "Wooden"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2024-01-15T00:00:00Z",
+      "updated_at": "2025-08-07T02:51:31.899Z"
+    },
+    {
+      "id": "2",
+      "title_ar": "مطبخ خشبي معاصر",
+      "title_en": "Modern Wooden Kitchen",
+      "description_ar": "مطبخ خشبي معاصر بتصميم بسيط وأنيق مع خطوط مستقيمة",
+      "description_en": "Modern wooden kitchen with simple and elegant design with straight lines",
+      "category_id": "1",
+      "images": [
+        "images/new-villa-2.jpg",
+        "images/modern-kitchen.jpg",
+        "images/kitchen-design.jpg"
+      ],
+      "tags": [
+        "معاصر",
+        "بسيط",
+        "أنيق"
+      ],
+      "tags_en": [
+        "Modern",
+        "Simple",
+        "Elegant"
+      ],
+      "featured": false,
+      "order": 2,
+      "active": true,
+      "created_at": "2024-02-20T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "title_ar": "غرفة ملابس خشبية كلاسيكية 1",
+      "title_en": "Classic Wooden Dressing Room 1",
+      "description_ar": "غرفة ملابس خشبية كلاسيكية بتصميم فاخر ومساحات تخزين متنوعة",
+      "description_en": "Classic wooden dressing room with luxury design and diverse storage spaces",
+      "category_id": "2",
+      "images": [
+        "images/office-design.jpg"
+      ],
+      "tags": [
+        "كلاسيكي",
+        "فاخر"
+      ],
+      "tags_en": [
+        "Classic",
+        "Luxury"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2024-03-10T00:00:00Z",
+      "updated_at": "2025-08-07T03:13:37.864Z"
+    },
+    {
+      "id": "4",
+      "title_ar": "وحدة حمام خشبية فاخرة",
+      "title_en": "Luxury Wooden Bathroom Unit",
+      "description_ar": "وحدة حمام خشبية فاخرة مع مرآة مضاءة وخزائن منظمة",
+      "description_en": "Luxury wooden bathroom unit with lit mirror and organized cabinets",
+      "category_id": "3",
+      "images": [
+        "images/new-apartment-2.jpg",
+        "images/bathroom-unit.jpg",
+        "images/vanity-design.jpg"
+      ],
+      "tags": [
+        "فاخر",
+        "مضاء",
+        "منظم"
+      ],
+      "tags_en": [
+        "Luxury",
+        "Lit",
+        "Organized"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2024-04-05T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "title_ar": "غرفة غسيل خشبية عملية",
+      "title_en": "Practical Wooden Laundry Room",
+      "description_ar": "غرفة غسيل خشبية عملية مع مساحات تخزين ذكية",
+      "description_en": "Practical wooden laundry room with smart storage spaces",
+      "category_id": "4",
+      "images": [
+        "images/new-villa-2.jpg",
+        "images/laundry-room.jpg",
+        "images/storage-design.jpg"
+      ],
+      "tags": [
+        "عملي",
+        "ذكي",
+        "تخزين"
+      ],
+      "tags_en": [
+        "Practical",
+        "Smart",
+        "Storage"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2024-05-12T00:00:00Z"
+    },
+    {
+      "id": "6",
+      "title_ar": "مطبخ صغير خشبي مدمج 1",
+      "title_en": "Compact Built-in Wooden Kitchen 1",
+      "description_ar": "مطبخ صغير خشبي مدمج بالكامل مع حلول تخزين ذكية",
+      "description_en": "Fully built-in small wooden kitchen with smart storage solutions",
+      "category_id": "5",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/small-kitchen.jpg",
+        "images/compact-design.jpg"
+      ],
+      "tags": [
+        "مدمج",
+        "ذكي"
+      ],
+      "tags_en": [
+        "Built-in",
+        "Smart"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2024-06-18T00:00:00Z"
+    },
+    {
+      "id": "7",
+      "title_ar": "مطبخ خشبي عصري مفتوح",
+      "title_en": "Modern Open Wooden Kitchen",
+      "description_ar": "مطبخ خشبي عصري مفتوح على غرفة المعيشة بتصميم رائع",
+      "description_en": "Modern open wooden kitchen connected to living room with stunning design",
+      "category_id": "1",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/open-kitchen.jpg",
+        "images/modern-design.jpg"
+      ],
+      "tags": [
+        "عصري",
+        "مفتوح",
+        "رائع"
+      ],
+      "tags_en": [
+        "Modern",
+        "Open",
+        "Stunning"
+      ],
+      "featured": false,
+      "order": 3,
+      "active": true,
+      "created_at": "2024-03-15T00:00:00Z"
+    },
+    {
+      "id": "8",
+      "title_ar": "مطبخ خشبي فيلا فاخر",
+      "title_en": "Luxury Villa Wooden Kitchen",
+      "description_ar": "مطبخ خشبي فاخر للفيلات مع جزيرة وسطى ومساحات تخزين كبيرة",
+      "description_en": "Luxury wooden kitchen for villas with central island and large storage spaces",
+      "category_id": "1",
+      "images": [
+        "images/new-villa-2.jpg",
+        "images/villa-kitchen.jpg",
+        "images/luxury-kitchen.jpg"
+      ],
+      "tags": [
+        "فاخر",
+        "جزيرة",
+        "واسع"
+      ],
+      "tags_en": [
+        "Luxury",
+        "Island",
+        "Spacious"
+      ],
+      "featured": false,
+      "order": 4,
+      "active": true,
+      "created_at": "2024-04-10T00:00:00Z"
+    },
+    {
+      "id": "9",
+      "title_ar": "مطبخ خشبي ريفي تقليدي",
+      "title_en": "Traditional Rustic Wooden Kitchen",
+      "description_ar": "مطبخ خشبي ريفي تقليدي بلمسة كلاسيكية دافئة",
+      "description_en": "Traditional rustic wooden kitchen with warm classic touch",
+      "category_id": "1",
+      "images": [
+        "images/new-kitchen-2.jpg",
+        "images/rustic-kitchen.jpg",
+        "images/traditional-design.jpg"
+      ],
+      "tags": [
+        "ريفي",
+        "تقليدي",
+        "دافئ"
+      ],
+      "tags_en": [
+        "Rustic",
+        "Traditional",
+        "Warm"
+      ],
+      "featured": false,
+      "order": 5,
+      "active": true,
+      "created_at": "2024-05-05T00:00:00Z"
+    },
+    {
+      "id": "10",
+      "title_ar": "مطبخ خشبي أمريكي حديث",
+      "title_en": "Modern American Wooden Kitchen",
+      "description_ar": "مطبخ خشبي أمريكي حديث مع تقنيات متطورة وتصميم عملي",
+      "description_en": "Modern American wooden kitchen with advanced technology and practical design",
+      "category_id": "1",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/american-kitchen.jpg",
+        "images/tech-kitchen.jpg"
+      ],
+      "tags": [
+        "أمريكي",
+        "تقني",
+        "عملي"
+      ],
+      "tags_en": [
+        "American",
+        "Tech",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 6,
+      "active": true,
+      "created_at": "2024-06-01T00:00:00Z"
+    },
+    {
+      "id": "11",
+      "title_ar": "مطبخ خشبي إيطالي أنيق",
+      "title_en": "Elegant Italian Wooden Kitchen",
+      "description_ar": "مطبخ خشبي إيطالي أنيق بتفاصيل راقية ولمسات فنية",
+      "description_en": "Elegant Italian wooden kitchen with sophisticated details and artistic touches",
+      "category_id": "1",
+      "images": [
+        "images/new-villa-2.jpg",
+        "images/italian-kitchen.jpg",
+        "images/elegant-design.jpg"
+      ],
+      "tags": [
+        "إيطالي",
+        "أنيق",
+        "راقي"
+      ],
+      "tags_en": [
+        "Italian",
+        "Elegant",
+        "Sophisticated"
+      ],
+      "featured": false,
+      "order": 7,
+      "active": true,
+      "created_at": "2024-07-12T00:00:00Z"
+    },
+    {
+      "id": "12",
+      "title_ar": "مطبخ خشبي اسكندنافي بسيط",
+      "title_en": "Simple Scandinavian Wooden Kitchen",
+      "description_ar": "مطبخ خشبي اسكندنافي بسيط وعملي بألوان فاتحة",
+      "description_en": "Simple and practical Scandinavian wooden kitchen with light colors",
+      "category_id": "1",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/scandinavian-kitchen.jpg",
+        "images/simple-design.jpg"
+      ],
+      "tags": [
+        "اسكندنافي",
+        "بسيط",
+        "فاتح"
+      ],
+      "tags_en": [
+        "Scandinavian",
+        "Simple",
+        "Light"
+      ],
+      "featured": false,
+      "order": 8,
+      "active": true,
+      "created_at": "2024-08-01T00:00:00Z"
+    },
+    {
+      "id": "13",
+      "title_ar": "مطبخ خشبي عتيق متجدد",
+      "title_en": "Renovated Vintage Wooden Kitchen",
+      "description_ar": "مطبخ خشبي عتيق متجدد يجمع بين الأصالة والحداثة",
+      "description_en": "Renovated vintage wooden kitchen combining authenticity and modernity",
+      "category_id": "1",
+      "images": [
+        "images/new-kitchen-2.jpg",
+        "images/vintage-kitchen.jpg",
+        "images/renovated-design.jpg"
+      ],
+      "tags": [
+        "عتيق",
+        "متجدد",
+        "أصيل"
+      ],
+      "tags_en": [
+        "Vintage",
+        "Renovated",
+        "Authentic"
+      ],
+      "featured": false,
+      "order": 9,
+      "active": true,
+      "created_at": "2024-08-15T00:00:00Z"
+    },
+    {
+      "id": "14",
+      "title_ar": "مطبخ خشبي متوسطي دافئ",
+      "title_en": "Warm Mediterranean Wooden Kitchen",
+      "description_ar": "مطبخ خشبي متوسطي دافئ بلمسات طبيعية وألوان ترابية",
+      "description_en": "Warm Mediterranean wooden kitchen with natural touches and earthy colors",
+      "category_id": "1",
+      "images": [
+        "images/new-villa-2.jpg",
+        "images/mediterranean-kitchen.jpg",
+        "images/warm-design.jpg"
+      ],
+      "tags": [
+        "متوسطي",
+        "طبيعي",
+        "ترابي"
+      ],
+      "tags_en": [
+        "Mediterranean",
+        "Natural",
+        "Earthy"
+      ],
+      "featured": false,
+      "order": 10,
+      "active": true,
+      "created_at": "2024-09-01T00:00:00Z"
+    },
+    {
+      "id": "15",
+      "title_ar": "غرفة ملابس خشبية كلاسيكية",
+      "title_en": "Classic Wooden Dressing Room",
+      "description_ar": "غرفة ملابس خشبية كلاسيكية أنيقة مع تقسيمات منظمة",
+      "description_en": "Elegant classic wooden dressing room with organized compartments",
+      "category_id": "2",
+      "images": [
+        "images/office-design.jpg"
+      ],
+      "tags": [
+        "كلاسيكي",
+        "أنيق",
+        "منظم"
+      ],
+      "tags_en": [
+        "Classic",
+        "Elegant",
+        "Organized"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2024-01-10T00:00:00Z"
+    },
+    {
+      "id": "16",
+      "title_ar": "غرفة ملابس خشبية عصرية 2",
+      "title_en": "Modern Wooden Dressing Room 2",
+      "description_ar": "غرفة ملابس خشبية عصرية بخطوط نظيفة وتنظيم مثالي",
+      "description_en": "Modern wooden dressing room with clean lines and perfect organization",
+      "category_id": "2",
+      "images": [
+        "images/new-apartment-1.webp"
+      ],
+      "tags": [
+        "عصري",
+        "منظم"
+      ],
+      "tags_en": [
+        "Modern",
+        "Organized"
+      ],
+      "featured": false,
+      "order": 2,
+      "active": true,
+      "created_at": "2024-02-10T00:00:00Z",
+      "updated_at": "2025-08-07T03:13:37.874Z"
+    },
+    {
+      "id": "17",
+      "title_ar": "غرفة ملابس خشبية واسعة 3",
+      "title_en": "Spacious Wooden Dressing Room 3",
+      "description_ar": "غرفة ملابس خشبية واسعة مع جزيرة مركزية ومرايا كبيرة",
+      "description_en": "Spacious wooden dressing room with central island and large mirrors",
+      "category_id": "2",
+      "images": [
+        "images/new-villa-1.jpg"
+      ],
+      "tags": [
+        "واسع",
+        "جزيرة"
+      ],
+      "tags_en": [
+        "Spacious",
+        "Island"
+      ],
+      "featured": false,
+      "order": 4,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.923Z",
+      "updated_at": "2025-08-07T03:13:37.875Z"
+    },
+    {
+      "id": "18",
+      "title_ar": "غرفة ملابس خشبية مدمجة 4",
+      "title_en": "Built-in Wooden Dressing Room 4",
+      "description_ar": "غرفة ملابس خشبية مدمجة بالكامل مع الجدران لتوفير المساحة",
+      "description_en": "Fully built-in wooden dressing room with walls to save space",
+      "category_id": "2",
+      "images": [
+        "images/luxury-villa.jpg"
+      ],
+      "tags": [
+        "مدمج",
+        "موفر"
+      ],
+      "tags_en": [
+        "Built-in",
+        "Space-saving"
+      ],
+      "featured": false,
+      "order": 5,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z",
+      "updated_at": "2025-08-07T03:13:37.875Z"
+    },
+    {
+      "id": "19",
+      "title_ar": "غرفة ملابس خشبية مفتوحة 5",
+      "title_en": "Open Wooden Dressing Room 5",
+      "description_ar": "غرفة ملابس خشبية مفتوحة بتصميم عملي وسهولة في الوصول",
+      "description_en": "Open wooden dressing room with practical design and easy access",
+      "category_id": "2",
+      "images": [
+        "images/modern-apartment.jpg"
+      ],
+      "tags": [
+        "مفتوح",
+        "عملي"
+      ],
+      "tags_en": [
+        "Open",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 6,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z",
+      "updated_at": "2025-08-07T03:13:37.875Z"
+    },
+    {
+      "id": "20",
+      "title_ar": "غرفة ملابس خشبية بإضاءة 6",
+      "title_en": "Wooden Dressing Room with Lighting 6",
+      "description_ar": "غرفة ملابس خشبية مع نظام إضاءة متطور ومرايا مضيئة",
+      "description_en": "Wooden dressing room with advanced lighting system and illuminated mirrors",
+      "category_id": "2",
+      "images": [
+        "images/new-villa-2.jpg"
+      ],
+      "tags": [
+        "إضاءة",
+        "متطور"
+      ],
+      "tags_en": [
+        "Lighting",
+        "Advanced"
+      ],
+      "featured": false,
+      "order": 7,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z",
+      "updated_at": "2025-08-07T03:13:37.875Z"
+    },
+    {
+      "id": "21",
+      "title_ar": "غرفة ملابس خشبية صغيرة 7",
+      "title_en": "Small Wooden Dressing Room 7",
+      "description_ar": "غرفة ملابس خشبية صغيرة مع حلول تخزين ذكية للمساحات المحدودة",
+      "description_en": "Small wooden dressing room with smart storage solutions for limited spaces",
+      "category_id": "2",
+      "images": [
+        "images/new-apartment-2.jpg"
+      ],
+      "tags": [
+        "صغير",
+        "ذكي"
+      ],
+      "tags_en": [
+        "Small",
+        "Smart"
+      ],
+      "featured": false,
+      "order": 8,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z",
+      "updated_at": "2025-08-07T03:13:37.875Z"
+    },
+    {
+      "id": "22",
+      "title_ar": "غرفة ملابس خشبية للأطفال 8",
+      "title_en": "Children's Wooden Dressing Room 8",
+      "description_ar": "غرفة ملابس خشبية مصممة خصيصاً للأطفال بألوان مرحة",
+      "description_en": "Wooden dressing room specially designed for children with cheerful colors",
+      "category_id": "2",
+      "images": [
+        "images/modern-office.jpg"
+      ],
+      "tags": [
+        "أطفال",
+        "مرح"
+      ],
+      "tags_en": [
+        "Children",
+        "Cheerful"
+      ],
+      "featured": false,
+      "order": 9,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z",
+      "updated_at": "2025-08-07T03:13:37.875Z"
+    },
+    {
+      "id": "23",
+      "title_ar": "غرفة ملابس خشبية بزاوية 9",
+      "title_en": "Corner Wooden Dressing Room 9",
+      "description_ar": "غرفة ملابس خشبية مصممة للزوايا لاستغلال المساحة بذكاء",
+      "description_en": "Wooden dressing room designed for corners to utilize space smartly",
+      "category_id": "2",
+      "images": [
+        "images/new-kitchen-1.jpg"
+      ],
+      "tags": [
+        "زاوية",
+        "ذكي"
+      ],
+      "tags_en": [
+        "Corner",
+        "Smart"
+      ],
+      "featured": false,
+      "order": 10,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z",
+      "updated_at": "2025-08-07T03:13:37.875Z"
+    },
+    {
+      "id": "24",
+      "title_ar": "غرفة ملابس خشبية فاخرة 10",
+      "title_en": "Luxury Wooden Dressing Room 10",
+      "description_ar": "غرفة ملابس خشبية فاخرة مع تفاصيل راقية ومواد عالية الجودة",
+      "description_en": "Luxury wooden dressing room with elegant details and high-quality materials",
+      "category_id": "3",
+      "images": [
+        "images/office-design.jpg"
+      ],
+      "tags": [
+        "فاخر",
+        "راقي"
+      ],
+      "tags_en": [
+        "Luxury",
+        "Elegant"
+      ],
+      "featured": false,
+      "order": 2,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z",
+      "updated_at": "2025-08-07T03:13:37.876Z"
+    },
+    {
+      "id": "25",
+      "title_ar": "وحدة حمام خشبية كلاسيكية",
+      "title_en": "وحدة حمام خشبية كلاسيكية Design",
+      "description_ar": "وحدة حمام خشبية كلاسيكية بتصميم عصري وأنيق",
+      "description_en": "وحدة حمام خشبية كلاسيكية with modern and elegant design",
+      "category_id": "3",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 3,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z"
+    },
+    {
+      "id": "26",
+      "title_ar": "وحدة حمام خشبية مدمجة",
+      "title_en": "وحدة حمام خشبية مدمجة Design",
+      "description_ar": "وحدة حمام خشبية مدمجة بتصميم عصري وأنيق",
+      "description_en": "وحدة حمام خشبية مدمجة with modern and elegant design",
+      "category_id": "3",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 4,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z"
+    },
+    {
+      "id": "27",
+      "title_ar": "وحدة حمام خشبية مع مرآة",
+      "title_en": "وحدة حمام خشبية مع مرآة Design",
+      "description_ar": "وحدة حمام خشبية مع مرآة بتصميم عصري وأنيق",
+      "description_en": "وحدة حمام خشبية مع مرآة with modern and elegant design",
+      "category_id": "3",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 5,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z"
+    },
+    {
+      "id": "28",
+      "title_ar": "وحدة حمام خشبية عملية",
+      "title_en": "وحدة حمام خشبية عملية Design",
+      "description_ar": "وحدة حمام خشبية عملية بتصميم عصري وأنيق",
+      "description_en": "وحدة حمام خشبية عملية with modern and elegant design",
+      "category_id": "3",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 6,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z"
+    },
+    {
+      "id": "29",
+      "title_ar": "وحدة حمام خشبية أنيقة",
+      "title_en": "وحدة حمام خشبية أنيقة Design",
+      "description_ar": "وحدة حمام خشبية أنيقة بتصميم عصري وأنيق",
+      "description_en": "وحدة حمام خشبية أنيقة with modern and elegant design",
+      "category_id": "3",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 7,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.925Z"
+    },
+    {
+      "id": "30",
+      "title_ar": "وحدة حمام خشبية مضاءة",
+      "title_en": "وحدة حمام خشبية مضاءة Design",
+      "description_ar": "وحدة حمام خشبية مضاءة بتصميم عصري وأنيق",
+      "description_en": "وحدة حمام خشبية مضاءة with modern and elegant design",
+      "category_id": "3",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 8,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "31",
+      "title_ar": "وحدة حمام خشبية منظمة",
+      "title_en": "وحدة حمام خشبية منظمة Design",
+      "description_ar": "وحدة حمام خشبية منظمة بتصميم عصري وأنيق",
+      "description_en": "وحدة حمام خشبية منظمة with modern and elegant design",
+      "category_id": "3",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 9,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "32",
+      "title_ar": "وحدة حمام خشبية واسعة",
+      "title_en": "وحدة حمام خشبية واسعة Design",
+      "description_ar": "وحدة حمام خشبية واسعة بتصميم عصري وأنيق",
+      "description_en": "وحدة حمام خشبية واسعة with modern and elegant design",
+      "category_id": "3",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 10,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "33",
+      "title_ar": "غرفة غسيل خشبية حديثة",
+      "title_en": "غرفة غسيل خشبية حديثة Design",
+      "description_ar": "غرفة غسيل خشبية حديثة بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية حديثة with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 2,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "34",
+      "title_ar": "غرفة غسيل خشبية كلاسيكية",
+      "title_en": "غرفة غسيل خشبية كلاسيكية Design",
+      "description_ar": "غرفة غسيل خشبية كلاسيكية بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية كلاسيكية with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 3,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "35",
+      "title_ar": "غرفة غسيل خشبية مدمجة",
+      "title_en": "غرفة غسيل خشبية مدمجة Design",
+      "description_ar": "غرفة غسيل خشبية مدمجة بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية مدمجة with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 4,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "36",
+      "title_ar": "غرفة غسيل خشبية منظمة",
+      "title_en": "غرفة غسيل خشبية منظمة Design",
+      "description_ar": "غرفة غسيل خشبية منظمة بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية منظمة with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 5,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "37",
+      "title_ar": "غرفة غسيل خشبية عملية",
+      "title_en": "غرفة غسيل خشبية عملية Design",
+      "description_ar": "غرفة غسيل خشبية عملية بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية عملية with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 6,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "38",
+      "title_ar": "غرفة غسيل خشبية أنيقة",
+      "title_en": "غرفة غسيل خشبية أنيقة Design",
+      "description_ar": "غرفة غسيل خشبية أنيقة بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية أنيقة with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 7,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "39",
+      "title_ar": "غرفة غسيل خشبية واسعة",
+      "title_en": "غرفة غسيل خشبية واسعة Design",
+      "description_ar": "غرفة غسيل خشبية واسعة بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية واسعة with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 8,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "40",
+      "title_ar": "غرفة غسيل خشبية مع تخزين",
+      "title_en": "غرفة غسيل خشبية مع تخزين Design",
+      "description_ar": "غرفة غسيل خشبية مع تخزين بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية مع تخزين with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 9,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "41",
+      "title_ar": "غرفة غسيل خشبية ذكية",
+      "title_en": "غرفة غسيل خشبية ذكية Design",
+      "description_ar": "غرفة غسيل خشبية ذكية بتصميم عصري وأنيق",
+      "description_en": "غرفة غسيل خشبية ذكية with modern and elegant design",
+      "category_id": "4",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 10,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "42",
+      "title_ar": "مطبخ صغير خشبي عصري 2",
+      "title_en": "Modern Small Wooden Kitchen 2",
+      "description_ar": "مطبخ صغير خشبي عصري بخطوط نظيفة وتصميم مينيماليستي",
+      "description_en": "Modern small wooden kitchen with clean lines and minimalist design",
+      "category_id": "5",
+      "images": [
+        "images/modern-apartment.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 2,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "43",
+      "title_ar": "مطبخ صغير خشبي كلاسيكي",
+      "title_en": "مطبخ صغير خشبي كلاسيكي Design",
+      "description_ar": "مطبخ صغير خشبي كلاسيكي بتصميم عصري وأنيق",
+      "description_en": "مطبخ صغير خشبي كلاسيكي with modern and elegant design",
+      "category_id": "5",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 3,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "44",
+      "title_ar": "مطبخ صغير خشبي عملي",
+      "title_en": "مطبخ صغير خشبي عملي Design",
+      "description_ar": "مطبخ صغير خشبي عملي بتصميم عصري وأنيق",
+      "description_en": "مطبخ صغير خشبي عملي with modern and elegant design",
+      "category_id": "5",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 4,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "45",
+      "title_ar": "مطبخ صغير خشبي أنيق",
+      "title_en": "مطبخ صغير خشبي أنيق Design",
+      "description_ar": "مطبخ صغير خشبي أنيق بتصميم عصري وأنيق",
+      "description_en": "مطبخ صغير خشبي أنيق with modern and elegant design",
+      "category_id": "5",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 5,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "46",
+      "title_ar": "مطبخ صغير خشبي مع جزيرة",
+      "title_en": "مطبخ صغير خشبي مع جزيرة Design",
+      "description_ar": "مطبخ صغير خشبي مع جزيرة بتصميم عصري وأنيق",
+      "description_en": "مطبخ صغير خشبي مع جزيرة with modern and elegant design",
+      "category_id": "5",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 6,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "47",
+      "title_ar": "مطبخ صغير خشبي منظم",
+      "title_en": "مطبخ صغير خشبي منظم Design",
+      "description_ar": "مطبخ صغير خشبي منظم بتصميم عصري وأنيق",
+      "description_en": "مطبخ صغير خشبي منظم with modern and elegant design",
+      "category_id": "5",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 7,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "48",
+      "title_ar": "مطبخ صغير خشبي واسع",
+      "title_en": "مطبخ صغير خشبي واسع Design",
+      "description_ar": "مطبخ صغير خشبي واسع بتصميم عصري وأنيق",
+      "description_en": "مطبخ صغير خشبي واسع with modern and elegant design",
+      "category_id": "5",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 8,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "49",
+      "title_ar": "مطبخ صغير خشبي ذكي",
+      "title_en": "مطبخ صغير خشبي ذكي Design",
+      "description_ar": "مطبخ صغير خشبي ذكي بتصميم عصري وأنيق",
+      "description_en": "مطبخ صغير خشبي ذكي with modern and elegant design",
+      "category_id": "5",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 9,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "50",
+      "title_ar": "مطبخ صغير خشبي فاخر",
+      "title_en": "مطبخ صغير خشبي فاخر Design",
+      "description_ar": "مطبخ صغير خشبي فاخر بتصميم عصري وأنيق",
+      "description_en": "مطبخ صغير خشبي فاخر with modern and elegant design",
+      "category_id": "5",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 10,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "51",
+      "title_ar": "مكتبة خشبية كلاسيكية",
+      "title_en": "مكتبة خشبية كلاسيكية Design",
+      "description_ar": "مكتبة خشبية كلاسيكية بتصميم عصري وأنيق",
+      "description_en": "مكتبة خشبية كلاسيكية with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.926Z"
+    },
+    {
+      "id": "52",
+      "title_ar": "رفوف خشبية حديثة",
+      "title_en": "رفوف خشبية حديثة Design",
+      "description_ar": "رفوف خشبية حديثة بتصميم عصري وأنيق",
+      "description_en": "رفوف خشبية حديثة with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 2,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "53",
+      "title_ar": "خزانة خشبية مدمجة",
+      "title_en": "خزانة خشبية مدمجة Design",
+      "description_ar": "خزانة خشبية مدمجة بتصميم عصري وأنيق",
+      "description_en": "خزانة خشبية مدمجة with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 3,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "54",
+      "title_ar": "طاولة خشبية أنيقة",
+      "title_en": "طاولة خشبية أنيقة Design",
+      "description_ar": "طاولة خشبية أنيقة بتصميم عصري وأنيق",
+      "description_en": "طاولة خشبية أنيقة with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 4,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "55",
+      "title_ar": "كونتر خشبي عملي",
+      "title_en": "كونتر خشبي عملي Design",
+      "description_ar": "كونتر خشبي عملي بتصميم عصري وأنيق",
+      "description_en": "كونتر خشبي عملي with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 5,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "56",
+      "title_ar": "وحدة تلفزيون خشبية",
+      "title_en": "وحدة تلفزيون خشبية Design",
+      "description_ar": "وحدة تلفزيون خشبية بتصميم عصري وأنيق",
+      "description_en": "وحدة تلفزيون خشبية with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 6,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "57",
+      "title_ar": "درج خشبي منظم",
+      "title_en": "درج خشبي منظم Design",
+      "description_ar": "درج خشبي منظم بتصميم عصري وأنيق",
+      "description_en": "درج خشبي منظم with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 7,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "58",
+      "title_ar": "خزانة أحذية خشبية",
+      "title_en": "خزانة أحذية خشبية Design",
+      "description_ar": "خزانة أحذية خشبية بتصميم عصري وأنيق",
+      "description_en": "خزانة أحذية خشبية with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 8,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "59",
+      "title_ar": "وحدة تخزين خشبية",
+      "title_en": "وحدة تخزين خشبية Design",
+      "description_ar": "وحدة تخزين خشبية بتصميم عصري وأنيق",
+      "description_en": "وحدة تخزين خشبية with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 9,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "60",
+      "title_ar": "مدخل خشبي فاخر",
+      "title_en": "مدخل خشبي فاخر Design",
+      "description_ar": "مدخل خشبي فاخر بتصميم عصري وأنيق",
+      "description_en": "مدخل خشبي فاخر with modern and elegant design",
+      "category_id": "6",
+      "images": [
+        "images/new-kitchen-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 10,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "61",
+      "title_ar": "شقة عصرية أنيقة",
+      "title_en": "شقة عصرية أنيقة Design",
+      "description_ar": "شقة عصرية أنيقة بتصميم عصري وأنيق",
+      "description_en": "شقة عصرية أنيقة with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "62",
+      "title_ar": "شقة كلاسيكية فاخرة",
+      "title_en": "شقة كلاسيكية فاخرة Design",
+      "description_ar": "شقة كلاسيكية فاخرة بتصميم عصري وأنيق",
+      "description_en": "شقة كلاسيكية فاخرة with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 2,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "63",
+      "title_ar": "شقة حديثة مدمجة",
+      "title_en": "شقة حديثة مدمجة Design",
+      "description_ar": "شقة حديثة مدمجة بتصميم عصري وأنيق",
+      "description_en": "شقة حديثة مدمجة with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 3,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "64",
+      "title_ar": "شقة عائلية واسعة",
+      "title_en": "شقة عائلية واسعة Design",
+      "description_ar": "شقة عائلية واسعة بتصميم عصري وأنيق",
+      "description_en": "شقة عائلية واسعة with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 4,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "65",
+      "title_ar": "شقة عزاب عملية",
+      "title_en": "شقة عزاب عملية Design",
+      "description_ar": "شقة عزاب عملية بتصميم عصري وأنيق",
+      "description_en": "شقة عزاب عملية with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 5,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "66",
+      "title_ar": "شقة استوديو ذكية",
+      "title_en": "شقة استوديو ذكية Design",
+      "description_ar": "شقة استوديو ذكية بتصميم عصري وأنيق",
+      "description_en": "شقة استوديو ذكية with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 6,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "67",
+      "title_ar": "شقة دوبلكس فاخرة",
+      "title_en": "شقة دوبلكس فاخرة Design",
+      "description_ar": "شقة دوبلكس فاخرة بتصميم عصري وأنيق",
+      "description_en": "شقة دوبلكس فاخرة with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 7,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "68",
+      "title_ar": "شقة بإطلالة رائعة",
+      "title_en": "شقة بإطلالة رائعة Design",
+      "description_ar": "شقة بإطلالة رائعة بتصميم عصري وأنيق",
+      "description_en": "شقة بإطلالة رائعة with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 8,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "69",
+      "title_ar": "شقة مفروشة أنيقة",
+      "title_en": "شقة مفروشة أنيقة Design",
+      "description_ar": "شقة مفروشة أنيقة بتصميم عصري وأنيق",
+      "description_en": "شقة مفروشة أنيقة with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 9,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "70",
+      "title_ar": "شقة تصميم حديث",
+      "title_en": "شقة تصميم حديث Design",
+      "description_ar": "شقة تصميم حديث بتصميم عصري وأنيق",
+      "description_en": "شقة تصميم حديث with modern and elegant design",
+      "category_id": "7",
+      "images": [
+        "images/new-apartment-1.webp",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 10,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "71",
+      "title_ar": "فيلا عصرية فاخرة",
+      "title_en": "فيلا عصرية فاخرة Design",
+      "description_ar": "فيلا عصرية فاخرة بتصميم عصري وأنيق",
+      "description_en": "فيلا عصرية فاخرة with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 1,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "72",
+      "title_ar": "فيلا كلاسيكية أنيقة",
+      "title_en": "فيلا كلاسيكية أنيقة Design",
+      "description_ar": "فيلا كلاسيكية أنيقة بتصميم عصري وأنيق",
+      "description_en": "فيلا كلاسيكية أنيقة with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 2,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "73",
+      "title_ar": "فيلا حديثة واسعة",
+      "title_en": "فيلا حديثة واسعة Design",
+      "description_ar": "فيلا حديثة واسعة بتصميم عصري وأنيق",
+      "description_en": "فيلا حديثة واسعة with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 3,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "74",
+      "title_ar": "فيلا عائلية مريحة",
+      "title_en": "فيلا عائلية مريحة Design",
+      "description_ar": "فيلا عائلية مريحة بتصميم عصري وأنيق",
+      "description_en": "فيلا عائلية مريحة with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 4,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "75",
+      "title_ar": "فيلا بحديقة جميلة",
+      "title_en": "فيلا بحديقة جميلة Design",
+      "description_ar": "فيلا بحديقة جميلة بتصميم عصري وأنيق",
+      "description_en": "فيلا بحديقة جميلة with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 5,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "76",
+      "title_ar": "فيلا بمسبح خاص",
+      "title_en": "فيلا بمسبح خاص Design",
+      "description_ar": "فيلا بمسبح خاص بتصميم عصري وأنيق",
+      "description_en": "فيلا بمسبح خاص with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 6,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "77",
+      "title_ar": "فيلا دوبلكس فاخرة",
+      "title_en": "فيلا دوبلكس فاخرة Design",
+      "description_ar": "فيلا دوبلكس فاخرة بتصميم عصري وأنيق",
+      "description_en": "فيلا دوبلكس فاخرة with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 7,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "78",
+      "title_ar": "فيلا بإطلالة بحرية",
+      "title_en": "فيلا بإطلالة بحرية Design",
+      "description_ar": "فيلا بإطلالة بحرية بتصميم عصري وأنيق",
+      "description_en": "فيلا بإطلالة بحرية with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 8,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "79",
+      "title_ar": "فيلا تصميم معاصر",
+      "title_en": "فيلا تصميم معاصر Design",
+      "description_ar": "فيلا تصميم معاصر بتصميم عصري وأنيق",
+      "description_en": "فيلا تصميم معاصر with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 9,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "80",
+      "title_ar": "فيلا قصر ملكي",
+      "title_en": "فيلا قصر ملكي Design",
+      "description_ar": "فيلا قصر ملكي بتصميم عصري وأنيق",
+      "description_en": "فيلا قصر ملكي with modern and elegant design",
+      "category_id": "8",
+      "images": [
+        "images/new-villa-1.jpg",
+        "images/design-sample.jpg",
+        "images/project-view.jpg"
+      ],
+      "tags": [
+        "حديث",
+        "أنيق",
+        "عملي"
+      ],
+      "tags_en": [
+        "Modern",
+        "Elegant",
+        "Practical"
+      ],
+      "featured": false,
+      "order": 10,
+      "active": true,
+      "created_at": "2025-08-07T02:04:54.927Z"
+    },
+    {
+      "id": "1757967774259",
+      "title_ar": "????? ??????",
+      "active": true,
+      "category_id": "1",
+      "featured": false,
+      "images": [
+        "test1.jpg",
+        "test2.jpg"
+      ],
+      "description_ar": "??? ????? ?????? ?????? ?? ??? ??????",
+      "created_at": "2025-09-15T20:22:54.259Z"
+    },
+    {
+      "id": "1757968297358",
+      "title_ar": "????? ?????? ????",
+      "active": true,
+      "category_id": "1",
+      "featured": true,
+      "images": [
+        "test1.jpg",
+        "test2.jpg"
+      ],
+      "description_ar": "??? ????? ?????? ???? ?????? ?? ??? ??????",
+      "created_at": "2025-09-15T20:31:37.358Z"
+    }
+  ],
+  "consultations": [
+    {
+      "id": "1757967357248",
+      "email": "test@test.com",
+      "message": "????? ??????",
+      "name": "??????",
+      "service": "kitchen",
+      "phone": "01234567890",
+      "status": "pending",
+      "created_at": "2025-09-15T20:15:57.248Z"
+    },
+    {
+      "id": "1757967418065",
+      "name": "Hassan Elking",
+      "email": "HassanElking221100@gmail.com",
+      "phone": "01553448631",
+      "service": "kitchen",
+      "message": "25",
+      "created_at": "2025-09-15T20:16:58.065Z",
+      "status": "pending"
+    },
+    {
+      "id": "1757967464581",
+      "name": "Hassan Elking",
+      "email": "HassanElking221100@gmail.com",
+      "phone": "01553448631",
+      "service": "kitchen",
+      "message": "ddبىلايسالابالابالاسيابلاسانيلاباسيلاباتسيلاباسيلابايسلالبانتبسينبسانبلاتسلاباسيلابسلابانلابنالابانيلانابلاناسلااي",
+      "created_at": "2025-09-15T20:17:44.581Z",
+      "status": "completed",
+      "updated_at": "2025-09-15T20:26:46.875Z"
+    },
+    {
+      "id": "1757968328224",
+      "email": "test@comprehensive.com",
+      "message": "????? ?????? ????? ?????? ?? ??? ???? ??????? ?? ???? ?????? ???? ?????",
+      "name": "?????? ????",
+      "service": "kitchen",
+      "phone": "01234567890",
+      "status": "completed",
+      "created_at": "2025-09-15T20:32:08.224Z",
+      "updated_at": "2025-09-15T20:32:11.276Z"
+    }
+  ],
+  "stats": {
+    "projects": 80,
+    "categories": 8,
+    "consultations": 5
+  }
+}

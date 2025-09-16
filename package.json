@@ -1,0 +1,31 @@
+{
+  "name": "mg-designs-server",
+  "version": "1.0.0",
+  "description": "MG Designs - Interior Design Portfolio Server",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "interior-design",
+    "portfolio",
+    "express",
+    "nodejs"
+  ],
+  "author": "MG Designs",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "multer": "^1.4.5-lts.1",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

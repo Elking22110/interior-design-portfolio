@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - MG Designs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            direction: rtl;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-right: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: #f8f9fa;
+        }
+
+        .nav-item.active {
+            background: #e3f2fd;
+            border-right-color: #667eea;
+            color: #667eea;
+        }
+
+        .nav-item i {
+            margin-left: 10px;
+            width: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .close {
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Consultation Message Styles */
+        .message-preview {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .message-preview:hover {
+            color: #5a6fd8;
+        }
+
+        .consultation-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-right: 4px solid #667eea;
+        }
+
+        .consultation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .consultation-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .consultation-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .consultation-meta span {
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .consultation-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        /* Message Modal Styles */
+        .message-modal .modal-content {
+            max-width: 800px;
+        }
+
+        .message-content {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-right: 4px solid #667eea;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .consultation-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 6px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Buttons */
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1da851;
+        }
+
+        .btn-email {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .btn-email:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>لوحة التحكم - MG Designs</h1>
+        <div class="user-info">
+            <span id="userName">مرحباً</span>
+            <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="nav-item active" onclick="showSection('dashboard')">
+                <i>📊</i> لوحة المعلومات
+            </div>
+            <div class="nav-item" onclick="showSection('projects')">
+                <i>📁</i> إدارة المشاريع
+            </div>
+            <div class="nav-item" onclick="showSection('consultations')">
+                <i>💬</i> الاستشارات
+            </div>
+            <div class="nav-item" onclick="showSection('categories')">
+                <i>🏷️</i> الأقسام
+            </div>
+            <div class="nav-item" onclick="showSection('users')">
+                <i>👥</i> المستخدمين
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <div id="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <h3>إجمالي المشاريع</h3>
+                        <div class="stat-number" id="totalProjects">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>المشاريع المميزة</h3>
+                        <div class="stat-number" id="featuredProjects">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>الاستشارات</h3>
+                        <div class="stat-number" id="totalConsultations">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>الاستشارات المعلقة</h3>
+                        <div class="stat-number" id="pendingConsultations">0</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2>أحدث الاستشارات</h2>
+                        <button class="btn" onclick="showSection('consultations')">عرض الكل</button>
+                    </div>
+                    <div id="recentConsultations">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>جاري التحميل...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div id="projects-section" class="hidden">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2>إدارة المشاريع</h2>
+                        <button class="btn" onclick="showAddProjectModal()">إضافة مشروع</button>
+                    </div>
+                    <div id="projectsList">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>جاري التحميل...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consultations Section -->
+            <div id="consultations-section" class="hidden">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2>إدارة الاستشارات</h2>
+                    </div>
+                    <div id="consultationsList">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>جاري التحميل...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Section -->
+            <div id="categories-section" class="hidden">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2>إدارة الأقسام</h2>
+                        <button class="btn" onclick="showAddCategoryModal()">إضافة قسم</button>
+                    </div>
+                    <div id="categoriesList">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>جاري التحميل...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div id="users-section" class="hidden">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2>إدارة المستخدمين</h2>
+                        <button class="btn" onclick="showAddUserModal()">إضافة مستخدم</button>
+                    </div>
+                    <div id="usersList">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>جاري التحميل...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div id="addProjectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>إضافة مشروع جديد</h2>
+                <span class="close" onclick="closeModal('addProjectModal')">&times;</span>
+            </div>
+            <form id="addProjectForm">
+                <div class="form-group">
+                    <label for="projectTitle">عنوان المشروع:</label>
+                    <input type="text" id="projectTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">وصف المشروع:</label>
+                    <textarea id="projectDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="projectCategory">القسم:</label>
+                    <select id="projectCategory" required>
+                        <option value="">اختر القسم</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectImages">روابط الصور (مفصولة بفاصلة):</label>
+                    <textarea id="projectImages" placeholder="image1.jpg, image2.jpg, image3.jpg"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="projectFeatured"> مشروع مميز
+                    </label>
+                </div>
+                <button type="submit" class="btn">إضافة المشروع</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div id="addCategoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>إضافة قسم جديد</h2>
+                <span class="close" onclick="closeModal('addCategoryModal')">&times;</span>
+            </div>
+            <form id="addCategoryForm">
+                <div class="form-group">
+                    <label for="categoryNameAr">اسم القسم (عربي):</label>
+                    <input type="text" id="categoryNameAr" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoryNameEn">اسم القسم (إنجليزي):</label>
+                    <input type="text" id="categoryNameEn" required>
+                </div>
+                <div class="form-group">
+                    <label for="categorySlug">الرابط المختصر:</label>
+                    <input type="text" id="categorySlug" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoryDescriptionAr">الوصف (عربي):</label>
+                    <textarea id="categoryDescriptionAr"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="categoryDescriptionEn">الوصف (إنجليزي):</label>
+                    <textarea id="categoryDescriptionEn"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="categoryImage">رابط الصورة:</label>
+                    <input type="text" id="categoryImage">
+                </div>
+                <button type="submit" class="btn">إضافة القسم</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Message View Modal -->
+    <div id="messageModal" class="modal message-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تفاصيل الاستشارة</h2>
+                <span class="close" onclick="closeModal('messageModal')">&times;</span>
+            </div>
+            <div id="messageModalContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>إضافة مستخدم جديد</h2>
+                <span class="close" onclick="closeModal('addUserModal')">&times;</span>
+            </div>
+            <form id="addUserForm">
+                <div class="form-group">
+                    <label for="userName">الاسم الكامل:</label>
+                    <input type="text" id="userName" required>
+                </div>
+                <div class="form-group">
+                    <label for="userUsername">اسم المستخدم:</label>
+                    <input type="text" id="userUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">كلمة المرور:</label>
+                    <input type="password" id="userPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="userRole">الدور:</label>
+                    <select id="userRole" required>
+                        <option value="">اختر الدور</option>
+                        <option value="superadmin">مدير عام</option>
+                        <option value="admin">مدير</option>
+                        <option value="editor">محرر</option>
+                        <option value="viewer">مشاهد</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="userActive" checked> مستخدم نشط
+                    </label>
+                </div>
+                <button type="submit" class="btn">إضافة المستخدم</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let currentSection = 'dashboard';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            loadDashboard();
+        });
+
+        function checkAuth() {
+            const userData = sessionStorage.getItem('adminUser');
+            if (!userData) {
+                window.location.href = '/admin-login';
+                return;
+            }
+            
+            currentUser = JSON.parse(userData);
+            document.getElementById('userName').textContent = `مرحباً ${currentUser.name}`;
+        }
+
+        function logout() {
+            sessionStorage.removeItem('adminUser');
+            window.location.href = '/admin-login';
+        }
+
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('[id$="-section"]').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(section + '-section').classList.remove('hidden');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            currentSection = section;
+            
+            // Load section data
+            switch(section) {
+                case 'dashboard':
+                    loadDashboard();
+                    break;
+                case 'projects':
+                    loadProjects();
+                    break;
+                case 'consultations':
+                    loadConsultations();
+                    break;
+                case 'categories':
+                    loadCategories();
+                    break;
+                case 'users':
+                    loadUsers();
+                    break;
+            }
+        }
+
+        async function loadDashboard() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+                
+                document.getElementById('totalProjects').textContent = stats.projects.total;
+                document.getElementById('featuredProjects').textContent = stats.projects.featured;
+                document.getElementById('totalConsultations').textContent = stats.consultations.total;
+                document.getElementById('pendingConsultations').textContent = stats.consultations.pending;
+                
+                // Load recent consultations
+                const consultationsResponse = await fetch('/api/consultations');
+                const consultations = await consultationsResponse.json();
+                
+                const recentConsultations = consultations.slice(0, 5);
+                displayRecentConsultations(recentConsultations);
+                
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+
+        function displayRecentConsultations(consultations) {
+            const container = document.getElementById('recentConsultations');
+            
+            if (consultations.length === 0) {
+                container.innerHTML = '<p>لا توجد استشارات حديثة</p>';
+                return;
+            }
+            
+            const html = `
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>البريد الإلكتروني</th>
+                            <th>الهاتف</th>
+                            <th>الحالة</th>
+                            <th>التاريخ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${consultations.map(c => `
+                            <tr>
+                                <td>${c.name}</td>
+                                <td>${c.email}</td>
+                                <td>${c.phone}</td>
+                                <td><span class="status-badge status-${c.status}">${c.status === 'pending' ? 'معلق' : 'مكتمل'}</span></td>
+                                <td>${new Date(c.created_at).toLocaleDateString('ar-SA')}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        async function loadProjects() {
+            try {
+                const response = await fetch('/api/projects');
+                const projects = await response.json();
+                
+                const container = document.getElementById('projectsList');
+                
+                if (projects.length === 0) {
+                    container.innerHTML = '<p>لا توجد مشاريع</p>';
+                    return;
+                }
+                
+                // Sort projects by date (newest first)
+                projects.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                
+                const html = `
+                    <div style="margin-bottom: 1rem;">
+                        <strong>إجمالي المشاريع: ${projects.length}</strong> | 
+                        <strong>المميزة: ${projects.filter(p => p.featured).length}</strong> | 
+                        <strong>النشطة: ${projects.filter(p => p.active !== false).length}</strong>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>العنوان</th>
+                                <th>القسم</th>
+                                <th>الصور</th>
+                                <th>مميز</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${projects.map(p => `
+                                <tr>
+                                    <td>
+                                        <strong>${p.title_ar || p.title || 'بدون عنوان'}</strong>
+                                        ${p.description_ar ? `<br><small style="color: #666;">${p.description_ar.substring(0, 50)}${p.description_ar.length > 50 ? '...' : ''}</small>` : ''}
+                                    </td>
+                                    <td>${p.category_name || 'غير محدد'}</td>
+                                    <td>${p.images ? p.images.length : 0} صورة</td>
+                                    <td><span class="status-badge status-${p.featured ? 'completed' : 'pending'}">${p.featured ? 'نعم' : 'لا'}</span></td>
+                                    <td><span class="status-badge status-${p.active !== false ? 'completed' : 'pending'}">${p.active !== false ? 'نشط' : 'غير نشط'}</span></td>
+                                    <td>${new Date(p.created_at).toLocaleDateString('ar-SA')}</td>
+                                    <td>
+                                        <button class="btn btn-small btn-secondary" onclick="editProject(${p.id})">✏️ تعديل</button>
+                                        <button class="btn btn-small btn-danger" onclick="deleteProject(${p.id})">🗑️ حذف</button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+                
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                document.getElementById('projectsList').innerHTML = '<p>خطأ في تحميل المشاريع</p>';
+            }
+        }
+
+        async function loadConsultations() {
+            try {
+                const response = await fetch('/api/consultations');
+                const consultations = await response.json();
+                
+                const container = document.getElementById('consultationsList');
+                
+                if (consultations.length === 0) {
+                    container.innerHTML = '<p>لا توجد استشارات</p>';
+                    return;
+                }
+                
+                // Sort consultations by date (newest first)
+                consultations.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                
+                const html = consultations.map(c => `
+                    <div class="consultation-card">
+                        <div class="consultation-header">
+                            <div class="consultation-info">
+                                <h3 style="margin: 0; color: #333;">${c.name}</h3>
+                                <span style="color: #666; font-size: 0.9rem;">${c.email}</span>
+                            </div>
+                            <span class="status-badge status-${c.status}">${c.status === 'pending' ? 'معلق' : 'مكتمل'}</span>
+                        </div>
+                        
+                        <div class="consultation-meta">
+                            <span>📞 ${c.phone}</span>
+                            <span>📅 ${new Date(c.created_at).toLocaleDateString('ar-SA')}</span>
+                            <span>🕒 ${new Date(c.created_at).toLocaleTimeString('ar-SA', {hour: '2-digit', minute: '2-digit'})}</span>
+                            ${c.service ? `<span>🔧 ${c.service}</span>` : ''}
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <strong>الرسالة:</strong>
+                            <div class="message-preview" onclick="showMessageModal(${c.id})">
+                                ${c.message ? (c.message.length > 100 ? c.message.substring(0, 100) + '...' : c.message) : 'لا توجد رسالة'}
+                            </div>
+                        </div>
+                        
+                        <div class="consultation-actions">
+                            <button class="btn btn-small btn-secondary" onclick="showMessageModal(${c.id})">
+                                📋 عرض التفاصيل
+                            </button>
+                            <button class="btn btn-small ${c.status === 'pending' ? 'btn-secondary' : 'btn-secondary'}" onclick="updateConsultationStatus(${c.id}, '${c.status === 'pending' ? 'completed' : 'pending'}')">
+                                ${c.status === 'pending' ? '✅ تمييز كمكتمل' : '⏳ تمييز كمعلق'}
+                            </button>
+                            <button class="btn btn-small btn-danger" onclick="deleteConsultation(${c.id})">
+                                🗑️ حذف
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Error loading consultations:', error);
+                document.getElementById('consultationsList').innerHTML = '<p>خطأ في تحميل الاستشارات</p>';
+            }
+        }
+
+        async function loadCategories() {
+            try {
+                const response = await fetch('/api/categories');
+                const categories = await response.json();
+                
+                const container = document.getElementById('categoriesList');
+                
+                if (categories.length === 0) {
+                    container.innerHTML = '<p>لا توجد أقسام</p>';
+                    return;
+                }
+                
+                // Sort categories by order
+                categories.sort((a, b) => (a.order || 0) - (b.order || 0));
+                
+                // Get projects count for each category
+                const projectsResponse = await fetch('/api/projects');
+                const projects = await projectsResponse.json();
+                
+                const html = `
+                    <div style="margin-bottom: 1rem;">
+                        <strong>إجمالي الأقسام: ${categories.length}</strong> | 
+                        <strong>النشطة: ${categories.filter(c => c.active !== false).length}</strong> | 
+                        <strong>إجمالي المشاريع: ${projects.length}</strong>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>الاسم (عربي)</th>
+                                <th>الاسم (إنجليزي)</th>
+                                <th>الرابط المختصر</th>
+                                <th>المشاريع</th>
+                                <th>الترتيب</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${categories.map(c => {
+                                const projectsInCategory = projects.filter(p => p.category_id == c.id);
+                                return `
+                                    <tr>
+                                        <td>
+                                            <strong>${c.name_ar}</strong>
+                                            ${c.description_ar ? `<br><small style="color: #666;">${c.description_ar.substring(0, 50)}${c.description_ar.length > 50 ? '...' : ''}</small>` : ''}
+                                        </td>
+                                        <td>${c.name_en}</td>
+                                        <td><code>${c.slug}</code></td>
+                                        <td>
+                                            <span class="status-badge status-${projectsInCategory.length > 0 ? 'completed' : 'pending'}">
+                                                ${projectsInCategory.length} مشروع
+                                            </span>
+                                        </td>
+                                        <td>${c.order || 0}</td>
+                                        <td><span class="status-badge status-${c.active !== false ? 'completed' : 'pending'}">${c.active !== false ? 'نشط' : 'غير نشط'}</span></td>
+                                        <td>
+                                            <button class="btn btn-small btn-secondary" onclick="editCategory(${c.id})">✏️ تعديل</button>
+                                            <button class="btn btn-small btn-danger" onclick="deleteCategory(${c.id})">🗑️ حذف</button>
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                `;
+                
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Error loading categories:', error);
+                document.getElementById('categoriesList').innerHTML = '<p>خطأ في تحميل الأقسام</p>';
+            }
+        }
+
+        async function loadUsers() {
+            try {
+                const response = await fetch('/api/users');
+                const users = await response.json();
+                
+                const container = document.getElementById('usersList');
+                
+                if (users.length === 0) {
+                    container.innerHTML = '<p>لا توجد مستخدمين</p>';
+                    return;
+                }
+                
+                // Sort users by role and name
+                users.sort((a, b) => {
+                    const roleOrder = { 'superadmin': 0, 'admin': 1, 'editor': 2, 'viewer': 3 };
+                    if (roleOrder[a.role] !== roleOrder[b.role]) {
+                        return roleOrder[a.role] - roleOrder[b.role];
+                    }
+                    return a.name.localeCompare(b.name);
+                });
+                
+                const html = `
+                    <div style="margin-bottom: 1rem;">
+                        <strong>إجمالي المستخدمين: ${users.length}</strong> | 
+                        <strong>النشطين: ${users.filter(u => u.active !== false).length}</strong> | 
+                        <strong>المديرين: ${users.filter(u => u.role === 'superadmin' || u.role === 'admin').length}</strong>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>الاسم</th>
+                                <th>اسم المستخدم</th>
+                                <th>الدور</th>
+                                <th>الصلاحيات</th>
+                                <th>الحالة</th>
+                                <th>تاريخ الإنشاء</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${users.map(u => {
+                                const roleNames = {
+                                    'superadmin': 'مدير عام',
+                                    'admin': 'مدير',
+                                    'editor': 'محرر',
+                                    'viewer': 'مشاهد'
+                                };
+                                
+                                const roleColors = {
+                                    'superadmin': '#dc3545',
+                                    'admin': '#fd7e14',
+                                    'editor': '#20c997',
+                                    'viewer': '#6c757d'
+                                };
+                                
+                                return `
+                                    <tr>
+                                        <td><strong>${u.name}</strong></td>
+                                        <td><code>${u.username}</code></td>
+                                        <td>
+                                            <span class="status-badge" style="background: ${roleColors[u.role]}; color: white;">
+                                                ${roleNames[u.role] || u.role}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <small>${u.permissions ? u.permissions.length : 0} صلاحية</small>
+                                        </td>
+                                        <td><span class="status-badge status-${u.active !== false ? 'completed' : 'pending'}">${u.active !== false ? 'نشط' : 'غير نشط'}</span></td>
+                                        <td>${new Date(u.created_at).toLocaleDateString('ar-SA')}</td>
+                                        <td>
+                                            <button class="btn btn-small btn-secondary" onclick="editUser(${u.id})">✏️ تعديل</button>
+                                            <button class="btn btn-small btn-danger" onclick="deleteUser(${u.id})" ${u.role === 'superadmin' ? 'disabled title="لا يمكن حذف المدير العام"' : ''}>🗑️ حذف</button>
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                `;
+                
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Error loading users:', error);
+                document.getElementById('usersList').innerHTML = '<p>خطأ في تحميل المستخدمين</p>';
+            }
+        }
+
+        function showAddProjectModal() {
+            loadCategoriesForSelect();
+            document.getElementById('addProjectModal').style.display = 'block';
+        }
+
+        function showAddCategoryModal() {
+            document.getElementById('addCategoryModal').style.display = 'block';
+        }
+
+        function showAddUserModal() {
+            document.getElementById('addUserModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        async function loadCategoriesForSelect() {
+            try {
+                const response = await fetch('/api/categories');
+                const categories = await response.json();
+                
+                const select = document.getElementById('projectCategory');
+                select.innerHTML = '<option value="">اختر القسم</option>';
+                
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.textContent = category.name_ar;
+                    select.appendChild(option);
+                });
+                
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        // Form submissions
+        document.getElementById('addProjectForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validation
+            const title = document.getElementById('projectTitle').value.trim();
+            const description = document.getElementById('projectDescription').value.trim();
+            const categoryId = document.getElementById('projectCategory').value;
+            
+            if (!title) {
+                showAlert('يرجى إدخال عنوان المشروع', 'error');
+                return;
+            }
+            
+            if (!description) {
+                showAlert('يرجى إدخال وصف المشروع', 'error');
+                return;
+            }
+            
+            if (!categoryId) {
+                showAlert('يرجى اختيار قسم للمشروع', 'error');
+                return;
+            }
+            
+            const formData = {
+                title_ar: title,
+                description_ar: description,
+                category_id: categoryId,
+                images: document.getElementById('projectImages').value.split(',').map(img => img.trim()).filter(img => img),
+                featured: document.getElementById('projectFeatured').checked,
+                active: true
+            };
+            
+            try {
+                const editId = this.getAttribute('data-edit-id');
+                const isEdit = editId !== null;
+                
+                const url = isEdit ? `/api/projects/${editId}` : '/api/projects';
+                const method = isEdit ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    closeModal('addProjectModal');
+                    loadProjects();
+                    showAlert(isEdit ? 'تم تحديث المشروع بنجاح' : 'تم إضافة المشروع بنجاح', 'success');
+                    
+                    // Reset form and modal title
+                    this.reset();
+                    this.removeAttribute('data-edit-id');
+                    document.querySelector('#addProjectModal .modal-header h2').textContent = 'إضافة مشروع جديد';
+                } else {
+                    throw new Error(isEdit ? 'فشل في تحديث المشروع' : 'فشل في إضافة المشروع');
+                }
+                
+            } catch (error) {
+                showAlert('خطأ: ' + error.message, 'error');
+            }
+        });
+
+        document.getElementById('addCategoryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validation
+            const nameAr = document.getElementById('categoryNameAr').value.trim();
+            const nameEn = document.getElementById('categoryNameEn').value.trim();
+            const slug = document.getElementById('categorySlug').value.trim();
+            
+            if (!nameAr) {
+                showAlert('يرجى إدخال اسم القسم (عربي)', 'error');
+                return;
+            }
+            
+            if (!nameEn) {
+                showAlert('يرجى إدخال اسم القسم (إنجليزي)', 'error');
+                return;
+            }
+            
+            if (!slug) {
+                showAlert('يرجى إدخال الرابط المختصر', 'error');
+                return;
+            }
+            
+            const formData = {
+                name_ar: nameAr,
+                name_en: nameEn,
+                slug: slug,
+                description_ar: document.getElementById('categoryDescriptionAr').value.trim(),
+                description_en: document.getElementById('categoryDescriptionEn').value.trim(),
+                image: document.getElementById('categoryImage').value.trim(),
+                active: true,
+                order: 1
+            };
+            
+            try {
+                const editId = this.getAttribute('data-edit-id');
+                const isEdit = editId !== null;
+                
+                const url = isEdit ? `/api/categories/${editId}` : '/api/categories';
+                const method = isEdit ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    closeModal('addCategoryModal');
+                    loadCategories();
+                    loadCategoriesForSelect(); // Refresh project form
+                    showAlert(isEdit ? 'تم تحديث القسم بنجاح' : 'تم إضافة القسم بنجاح', 'success');
+                    
+                    // Reset form and modal title
+                    this.reset();
+                    this.removeAttribute('data-edit-id');
+                    document.querySelector('#addCategoryModal .modal-header h2').textContent = 'إضافة قسم جديد';
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || (isEdit ? 'فشل في تحديث القسم' : 'فشل في إضافة القسم'));
+                }
+                
+            } catch (error) {
+                showAlert('خطأ: ' + error.message, 'error');
+            }
+        });
+
+        document.getElementById('addUserForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validation
+            const name = document.getElementById('userName').value.trim();
+            const username = document.getElementById('userUsername').value.trim();
+            const password = document.getElementById('userPassword').value.trim();
+            const role = document.getElementById('userRole').value;
+            
+            if (!name) {
+                showAlert('يرجى إدخال الاسم الكامل', 'error');
+                return;
+            }
+            
+            if (!username) {
+                showAlert('يرجى إدخال اسم المستخدم', 'error');
+                return;
+            }
+            
+            if (!password) {
+                showAlert('يرجى إدخال كلمة المرور', 'error');
+                return;
+            }
+            
+            if (!role) {
+                showAlert('يرجى اختيار دور المستخدم', 'error');
+                return;
+            }
+            
+            const formData = {
+                name: name,
+                username: username,
+                password: password,
+                role: role,
+                active: document.getElementById('userActive').checked
+            };
+            
+            try {
+                const editId = this.getAttribute('data-edit-id');
+                const isEdit = editId !== null;
+                
+                const url = isEdit ? `/api/users/${editId}` : '/api/users';
+                const method = isEdit ? 'PATCH' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    closeModal('addUserModal');
+                    loadUsers();
+                    showAlert(isEdit ? 'تم تحديث المستخدم بنجاح' : 'تم إضافة المستخدم بنجاح', 'success');
+                    
+                    // Reset form and modal title
+                    this.reset();
+                    this.removeAttribute('data-edit-id');
+                    document.querySelector('#addUserModal .modal-header h2').textContent = 'إضافة مستخدم جديد';
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || (isEdit ? 'فشل في تحديث المستخدم' : 'فشل في إضافة المستخدم'));
+                }
+                
+            } catch (error) {
+                showAlert('خطأ: ' + error.message, 'error');
+            }
+        });
+
+        // Action functions
+        async function updateConsultationStatus(id, newStatus) {
+            try {
+                const response = await fetch(`/api/consultations/${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                
+                if (response.ok) {
+                    loadConsultations();
+                    showAlert('تم تحديث حالة الاستشارة', 'success');
+                } else {
+                    throw new Error('فشل في تحديث حالة الاستشارة');
+                }
+                
+            } catch (error) {
+                showAlert('خطأ في تحديث حالة الاستشارة: ' + error.message, 'error');
+            }
+        }
+
+        async function deleteConsultation(id) {
+            if (!confirm('هل أنت متأكد من حذف هذه الاستشارة؟')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/consultations/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    loadConsultations();
+                    loadDashboard(); // Refresh dashboard stats
+                    showAlert('تم حذف الاستشارة بنجاح', 'success');
+                } else {
+                    throw new Error('فشل في حذف الاستشارة');
+                }
+                
+            } catch (error) {
+                showAlert('خطأ في حذف الاستشارة: ' + error.message, 'error');
+            }
+        }
+
+        function showAlert(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            
+            document.querySelector('.main-content').insertBefore(alert, document.querySelector('.main-content').firstChild);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        async function showMessageModal(consultationId) {
+            try {
+                const response = await fetch('/api/consultations');
+                const consultations = await response.json();
+                const consultation = consultations.find(c => c.id == consultationId);
+                
+                if (!consultation) {
+                    showAlert('الاستشارة غير موجودة', 'error');
+                    return;
+                }
+                
+                const modalContent = document.getElementById('messageModalContent');
+                modalContent.innerHTML = `
+                    <div class="consultation-details">
+                        <div class="detail-item">
+                            <div class="detail-label">الاسم</div>
+                            <div class="detail-value">${consultation.name}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">البريد الإلكتروني</div>
+                            <div class="detail-value">${consultation.email}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">رقم الهاتف</div>
+                            <div class="detail-value">${consultation.phone}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">نوع الخدمة</div>
+                            <div class="detail-value">${consultation.service || 'غير محدد'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">الحالة</div>
+                            <div class="detail-value">
+                                <span class="status-badge status-${consultation.status}">
+                                    ${consultation.status === 'pending' ? 'معلق' : 'مكتمل'}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">تاريخ الإرسال</div>
+                            <div class="detail-value">${new Date(consultation.created_at).toLocaleString('ar-SA')}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="message-content">
+                        <strong>الرسالة:</strong><br><br>
+                        ${consultation.message || 'لا توجد رسالة'}
+                    </div>
+                    
+                    <div class="contact-buttons">
+                        <button class="btn-whatsapp" onclick="contactWhatsApp('${consultation.phone}', '${consultation.name}')">
+                            📱 WhatsApp
+                        </button>
+                        <button class="btn-email" onclick="contactEmail('${consultation.email}', '${consultation.name}')">
+                            📧 Email
+                        </button>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+                        <button class="btn btn-secondary" onclick="updateConsultationStatus(${consultation.id}, '${consultation.status === 'pending' ? 'completed' : 'pending'}')">
+                            ${consultation.status === 'pending' ? '✅ تمييز كمكتمل' : '⏳ تمييز كمعلق'}
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteConsultation(${consultation.id}); closeModal('messageModal');">
+                            🗑️ حذف الاستشارة
+                        </button>
+                    </div>
+                `;
+                
+                document.getElementById('messageModal').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading consultation details:', error);
+                showAlert('خطأ في تحميل تفاصيل الاستشارة', 'error');
+            }
+        }
+
+        // Contact Functions
+        function contactWhatsApp(phone, name) {
+            // Remove any non-digit characters and ensure it starts with country code
+            let cleanPhone = phone.replace(/\D/g, '');
+            
+            // If phone starts with 0, replace with 20 (Egypt country code)
+            if (cleanPhone.startsWith('0')) {
+                cleanPhone = '20' + cleanPhone.substring(1);
+            }
+            // If phone doesn't start with country code, add 20
+            else if (!cleanPhone.startsWith('20')) {
+                cleanPhone = '20' + cleanPhone;
+            }
+            
+            const message = `مرحباً ${name}، شكراً لاهتمامكم بخدمات MG Designs. كيف يمكننا مساعدتكم اليوم؟`;
+            const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function contactEmail(email, name) {
+            const subject = `رد على استشارتك - MG Designs`;
+            const body = `مرحباً ${name}،\n\nشكراً لاهتمامكم بخدمات MG Designs.\n\nكيف يمكننا مساعدتكم اليوم؟\n\nمع أطيب التحيات،\nفريق MG Designs`;
+            
+            const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            window.location.href = mailtoUrl;
+        }
+
+        // Category Management Functions
+        async function editCategory(categoryId) {
+            try {
+                const response = await fetch(`/api/categories`);
+                const categories = await response.json();
+                const category = categories.find(c => c.id == categoryId);
+                
+                if (!category) {
+                    showAlert('القسم غير موجود', 'error');
+                    return;
+                }
+                
+                // Populate form with existing data
+                document.getElementById('categoryNameAr').value = category.name_ar || '';
+                document.getElementById('categoryNameEn').value = category.name_en || '';
+                document.getElementById('categorySlug').value = category.slug || '';
+                document.getElementById('categoryDescriptionAr').value = category.description_ar || '';
+                document.getElementById('categoryDescriptionEn').value = category.description_en || '';
+                document.getElementById('categoryImage').value = category.image || '';
+                
+                // Change modal title and form action
+                document.querySelector('#addCategoryModal .modal-header h2').textContent = 'تعديل القسم';
+                document.getElementById('addCategoryForm').setAttribute('data-edit-id', categoryId);
+                
+                // Show modal
+                document.getElementById('addCategoryModal').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading category:', error);
+                showAlert('خطأ في تحميل بيانات القسم', 'error');
+            }
+        }
+
+        async function deleteCategory(categoryId) {
+            if (!confirm('هل أنت متأكد من حذف هذا القسم؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/categories/${categoryId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    loadCategories();
+                    loadCategoriesForSelect(); // Refresh project form
+                    showAlert('تم حذف القسم بنجاح', 'success');
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'فشل في حذف القسم');
+                }
+                
+            } catch (error) {
+                console.error('Error deleting category:', error);
+                showAlert('خطأ في حذف القسم: ' + error.message, 'error');
+            }
+        }
+
+        // User Management Functions
+        async function editUser(userId) {
+            try {
+                const response = await fetch(`/api/users/${userId}`);
+                const user = await response.json();
+                
+                if (!user) {
+                    showAlert('المستخدم غير موجود', 'error');
+                    return;
+                }
+                
+                // Populate form with existing data
+                document.getElementById('userName').value = user.name || '';
+                document.getElementById('userUsername').value = user.username || '';
+                document.getElementById('userPassword').value = ''; // Don't show existing password
+                document.getElementById('userRole').value = user.role || '';
+                document.getElementById('userActive').checked = user.active !== false;
+                
+                // Change modal title and form action
+                document.querySelector('#addUserModal .modal-header h2').textContent = 'تعديل المستخدم';
+                document.getElementById('addUserForm').setAttribute('data-edit-id', userId);
+                
+                // Show modal
+                document.getElementById('addUserModal').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading user:', error);
+                showAlert('خطأ في تحميل بيانات المستخدم', 'error');
+            }
+        }
+
+        async function deleteUser(userId) {
+            if (!confirm('هل أنت متأكد من حذف هذا المستخدم؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/users/${userId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    loadUsers();
+                    showAlert('تم حذف المستخدم بنجاح', 'success');
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'فشل في حذف المستخدم');
+                }
+                
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                showAlert('خطأ في حذف المستخدم: ' + error.message, 'error');
+            }
+        }
+
+        // Project Management Functions
+        async function editProject(projectId) {
+            try {
+                const response = await fetch(`/api/projects/${projectId}`);
+                const project = await response.json();
+                
+                if (!project) {
+                    showAlert('المشروع غير موجود', 'error');
+                    return;
+                }
+                
+                // Populate form with existing data
+                document.getElementById('projectTitle').value = project.title_ar || project.title || '';
+                document.getElementById('projectDescription').value = project.description_ar || project.description || '';
+                document.getElementById('projectCategory').value = project.category_id || '';
+                document.getElementById('projectImages').value = project.images ? project.images.join(', ') : '';
+                document.getElementById('projectFeatured').checked = project.featured || false;
+                
+                // Change modal title and form action
+                document.querySelector('#addProjectModal .modal-header h2').textContent = 'تعديل المشروع';
+                document.getElementById('addProjectForm').setAttribute('data-edit-id', projectId);
+                
+                // Show modal
+                document.getElementById('addProjectModal').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading project:', error);
+                showAlert('خطأ في تحميل بيانات المشروع', 'error');
+            }
+        }
+
+        async function deleteProject(projectId) {
+            if (!confirm('هل أنت متأكد من حذف هذا المشروع؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/projects/${projectId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    loadProjects();
+                    loadDashboard(); // Refresh dashboard stats
+                    showAlert('تم حذف المشروع بنجاح', 'success');
+                } else {
+                    throw new Error('فشل في حذف المشروع');
+                }
+                
+            } catch (error) {
+                console.error('Error deleting project:', error);
+                showAlert('خطأ في حذف المشروع: ' + error.message, 'error');
+            }
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
