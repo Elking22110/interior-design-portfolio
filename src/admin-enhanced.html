@@ -13,34 +13,122 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #f5576c 100%);
             direction: rtl;
             min-height: 100vh;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* خلفية متحركة مع جسيمات */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            animation: floating 20s ease-in-out infinite;
+            z-index: -2;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 120%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.3), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: sparkle 15s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+            33% { transform: translateY(-30px) rotateZ(2deg); }
+            66% { transform: translateY(-20px) rotateZ(-1deg); }
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-200px); }
         }
 
         .header {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             color: white;
             padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
             border-bottom: 1px solid rgba(255,255,255,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.1) 50%, 
+                transparent 100%);
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .header h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 
+                0 2px 4px rgba(0,0,0,0.3),
+                0 4px 8px rgba(0,0,0,0.2),
+                0 8px 16px rgba(0,0,0,0.1);
             margin: 0;
+            background: linear-gradient(45deg, #fff, #f0f8ff, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { 
+                filter: brightness(1) drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            }
+            to { 
+                filter: brightness(1.1) drop-shadow(0 0 20px rgba(255,255,255,0.5));
+            }
         }
 
         .user-info {
@@ -68,7 +156,7 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
         }
-        
+
         .logout-btn:hover {
             background: rgba(255,255,255,0.3);
             transform: translateY(-2px);
@@ -86,23 +174,54 @@
 
         .sidebar {
             width: 280px;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            border-radius: 20px;
+            background: linear-gradient(145deg, 
+                rgba(255,255,255,0.95) 0%, 
+                rgba(248,250,252,0.9) 50%, 
+                rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.6),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            border-radius: 25px;
             padding: 2rem 0;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 40%, 
+                rgba(255,255,255,0.1) 50%, 
+                transparent 60%);
+            animation: sidebarShine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sidebarShine {
+            0% { transform: rotate(0deg) translate(-100%, -100%); }
+            100% { transform: rotate(360deg) translate(-100%, -100%); }
         }
 
         .nav-item {
             padding: 15px 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border-radius: 15px;
             margin: 0.5rem 1rem;
             font-weight: 500;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
         
         .nav-item::before {
@@ -112,24 +231,69 @@
             left: 0;
             width: 0;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: -1;
+            border-radius: 15px;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+            opacity: 0;
         }
         
         .nav-item:hover::before {
             width: 100%;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
         
+        .nav-item:hover::after {
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+
         .nav-item:hover {
             color: white;
-            transform: translateX(-5px);
+            transform: translateX(-8px) scale(1.02);
+            box-shadow: 
+                0 10px 25px rgba(0,0,0,0.2),
+                0 0 20px rgba(102, 126, 234, 0.3);
         }
 
         .nav-item.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 
+                0 8px 25px rgba(102, 126, 234, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.3),
+                0 0 30px rgba(102, 126, 234, 0.5);
+            transform: translateX(-5px) scale(1.05);
+            animation: activeGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes activeGlow {
+            from { 
+                box-shadow: 
+                    0 8px 25px rgba(102, 126, 234, 0.4),
+                    inset 0 1px 0 rgba(255,255,255,0.3),
+                    0 0 30px rgba(102, 126, 234, 0.5);
+            }
+            to { 
+                box-shadow: 
+                    0 12px 35px rgba(102, 126, 234, 0.6),
+                    inset 0 1px 0 rgba(255,255,255,0.4),
+                    0 0 40px rgba(102, 126, 234, 0.7);
+            }
         }
 
         .nav-item i {
@@ -156,16 +320,24 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: linear-gradient(145deg, 
+                rgba(255,255,255,0.95) 0%, 
+                rgba(248,250,252,0.9) 30%,
+                rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.6),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
         
         .stat-card::before {
@@ -174,13 +346,43 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            border-radius: 25px 25px 0 0;
+        }
+        
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 40%, 
+                rgba(102, 126, 234, 0.1) 50%, 
+                transparent 60%);
+            animation: cardShine 3s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .stat-card:hover::after {
+            opacity: 1;
         }
         
         .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(0,0,0,0.2),
+                0 0 40px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+        
+        @keyframes cardShine {
+            0% { transform: rotate(0deg) translate(-100%, -100%); }
+            100% { transform: rotate(360deg) translate(-100%, -100%); }
         }
 
         .stat-card h3 {
@@ -191,13 +393,29 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.5rem;
+            text-shadow: 
+                0 2px 4px rgba(102, 126, 234, 0.3),
+                0 4px 8px rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+            display: inline-block;
+            animation: numberFloat 3s ease-in-out infinite;
+        }
+        
+        .stat-card:hover .stat-number {
+            transform: scale(1.1);
+            filter: brightness(1.2) drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+        
+        @keyframes numberFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .content-section {
@@ -233,20 +451,50 @@
         }
 
         .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 4px 15px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
         }
         
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.3), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+
         .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 8px 25px rgba(102, 126, 234, 0.4),
+                0 0 20px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px) scale(1.02);
         }
 
         .btn-secondary {
@@ -364,7 +612,7 @@
             padding: 4px 8px;
             border-radius: 4px;
         }
-        
+
         .close:hover {
             color: #333;
             background: #f8f9fa;
@@ -469,18 +717,57 @@
         }
 
         .consultation-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-right: 4px solid #667eea;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: linear-gradient(145deg, 
+                rgba(255,255,255,0.95) 0%, 
+                rgba(248,250,252,0.9) 50%, 
+                rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.6);
+            border-right: 6px solid transparent;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .consultation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 40%, 
+                rgba(102, 126, 234, 0.05) 50%, 
+                transparent 60%);
+            animation: consultationShine 4s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .consultation-card:hover::before {
+            opacity: 1;
         }
         
         .consultation-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 
+                0 15px 50px rgba(0,0,0,0.15),
+                0 0 30px rgba(102, 126, 234, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+        
+        @keyframes consultationShine {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(200%) skewX(-15deg); }
         }
 
         .consultation-header {
@@ -604,7 +891,7 @@
             gap: 8px;
             font-size: 0.9rem;
         }
-        
+
         .btn-whatsapp:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
@@ -625,7 +912,7 @@
             gap: 8px;
             font-size: 0.9rem;
         }
-        
+
         .btn-email:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
@@ -757,6 +1044,170 @@
         
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+        
+        /* تأثيرات إضافية متطورة */
+        @keyframes particleFloat {
+            0% {
+                opacity: 0.8;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
+            }
+        }
+        
+        .animate-in {
+            animation: bounceIn 0.6s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(50px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05) translateY(-10px);
+            }
+            70% {
+                transform: scale(0.9) translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* تأثير النبض للعناصر المهمة */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            }
+        }
+        
+        /* تأثير الموجة للخلفية */
+        @keyframes wave {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* تأثير التدرج المتحرك */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* تأثير الضوء المتحرك */
+        @keyframes lightSweep {
+            0% {
+                transform: translateX(-100%) skewX(-15deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(200%) skewX(-15deg);
+                opacity: 0;
+            }
+        }
+        
+        /* تأثير الانحناء الثلاثي الأبعاد */
+        .curved-element {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .curved-element:hover {
+            animation: curve3d 2s ease-in-out infinite;
+        }
+        
+        @keyframes curve3d {
+            0%, 100% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            }
+            25% {
+                transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+            }
+            50% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(10deg);
+            }
+            75% {
+                transform: perspective(1000px) rotateX(-5deg) rotateY(5deg);
+            }
+        }
+        
+        /* تأثير الهولوجرام */
+        .hologram-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hologram-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: hologramScan 3s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes hologramScan {
+            0% {
+                transform: translateX(-100%) skewX(-15deg);
+            }
+            100% {
+                transform: translateX(200%) skewX(-15deg);
+            }
+        }
+        
+        /* تأثير الطفو الدائري */
+        @keyframes floatCircular {
+            0% {
+                transform: rotate(0deg) translateX(5px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(5px) rotate(-360deg);
+            }
+        }
+        
+        /* تأثير التموج */
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -1024,6 +1475,9 @@
             checkAuth();
             loadDashboard();
             
+            // تأثيرات تفاعلية متطورة
+            initInteractiveEffects();
+            
             // Debug: Check if form elements exist
             setTimeout(() => {
                 console.log('Form elements check:', {
@@ -1036,6 +1490,39 @@
                 });
             }, 1000);
         });
+        
+        // تأثيرات تفاعلية متطورة
+        function initInteractiveEffects() {
+            // تأثير الجسيمات التفاعلية
+            createParticleEffect();
+            
+            // تأثير التمرير المتطور
+            initScrollEffects();
+        }
+        
+        // تأثير الجسيمات
+        function createParticleEffect() {
+            // تم إزالة تأثير الجسيمات التفاعلية مع الماوس
+            return;
+        }
+        
+        // تم إزالة دالة إنشاء الجسيمات
+        
+        // تأثيرات التمرير
+        function initScrollEffects() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.stat-card, .consultation-card, .content-section').forEach(el => {
+                observer.observe(el);
+            });
+        }
 
         function checkAuth() {
             const userData = sessionStorage.getItem('adminUser');
@@ -1616,10 +2103,10 @@
             
             console.log('addUserForm found, adding event listener');
             addUserForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
+            e.preventDefault();
                 console.log('Form submitted!');
             
-                // Validation
+            // Validation
                 const nameElement = document.getElementById('userName');
                 const usernameElement = document.getElementById('userUsername');
                 const passwordElement = document.getElementById('userPassword');
@@ -1640,8 +2127,8 @@
                         passwordElement: !!passwordElement,
                         roleElement: !!roleElement
                     });
-                    return;
-                }
+                return;
+            }
             
                 const name = nameElement.value ? nameElement.value.trim() : '';
                 const username = usernameElement.value ? usernameElement.value.trim() : '';
@@ -1650,9 +2137,9 @@
             
                 if (!name || name.length < 2) {
                     showAlert('يرجى إدخال الاسم الكامل (على الأقل حرفين)', 'error');
-                    return;
-                }
-                
+                return;
+            }
+            
                 if (!username || username.length < 3) {
                     showAlert('يرجى إدخال اسم المستخدم (على الأقل 3 أحرف)', 'error');
                     return;
@@ -1660,14 +2147,14 @@
                 
                 if (!password || password.length < 6) {
                     showAlert('يرجى إدخال كلمة مرور قوية (على الأقل 6 أحرف)', 'error');
-                    return;
-                }
-                
-                if (!role) {
-                    showAlert('يرجى اختيار دور المستخدم', 'error');
-                    return;
-                }
-                
+                return;
+            }
+            
+            if (!role) {
+                showAlert('يرجى اختيار دور المستخدم', 'error');
+                return;
+            }
+            
                 // Additional validation
                 if (username.includes(' ')) {
                     showAlert('اسم المستخدم لا يجب أن يحتوي على مسافات', 'error');
@@ -1675,56 +2162,56 @@
                 }
             
                 const activeElement = document.getElementById('userActive');
-                const formData = {
-                    name: name,
-                    username: username,
-                    password: password,
-                    role: role,
+            const formData = {
+                name: name,
+                username: username,
+                password: password,
+                role: role,
                     active: activeElement ? activeElement.checked : true
-                };
+            };
                 
                 console.log('Form data:', formData);
             
-                try {
-                    const editId = this.getAttribute('data-edit-id');
-                    const isEdit = editId !== null;
-                    
-                    const url = isEdit ? `/api/users/${editId}` : '/api/users';
-                    const method = isEdit ? 'PATCH' : 'POST';
-                    
+            try {
+                const editId = this.getAttribute('data-edit-id');
+                const isEdit = editId !== null;
+                
+                const url = isEdit ? `/api/users/${editId}` : '/api/users';
+                const method = isEdit ? 'PATCH' : 'POST';
+                
                     console.log('Sending request to:', url, 'with method:', method);
-                    const response = await fetch(url, {
-                        method: method,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
-                    });
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
                     
                     console.log('Response status:', response.status);
                 
-                    if (response.ok) {
+                if (response.ok) {
                         const result = await response.json();
-                        closeModal('addUserModal');
-                        loadUsers();
-                        showAlert(isEdit ? 'تم تحديث المستخدم بنجاح' : 'تم إضافة المستخدم بنجاح', 'success');
-                        
-                        // Reset form and modal title
-                        this.reset();
-                        this.removeAttribute('data-edit-id');
-                        document.querySelector('#addUserModal .modal-header h2').textContent = 'إضافة مستخدم جديد';
+                    closeModal('addUserModal');
+                    loadUsers();
+                    showAlert(isEdit ? 'تم تحديث المستخدم بنجاح' : 'تم إضافة المستخدم بنجاح', 'success');
+                    
+                    // Reset form and modal title
+                    this.reset();
+                    this.removeAttribute('data-edit-id');
+                    document.querySelector('#addUserModal .modal-header h2').textContent = 'إضافة مستخدم جديد';
                         
                         console.log(isEdit ? 'User updated:' : 'User created:', result);
-                    } else {
-                        const errorData = await response.json();
+                } else {
+                    const errorData = await response.json();
                         console.error('Error response:', errorData);
-                        throw new Error(errorData.error || (isEdit ? 'فشل في تحديث المستخدم' : 'فشل في إضافة المستخدم'));
-                    }
-                
-                } catch (error) {
-                    console.error('Full error:', error);
-                    showAlert('خطأ: ' + error.message, 'error');
+                    throw new Error(errorData.error || (isEdit ? 'فشل في تحديث المستخدم' : 'فشل في إضافة المستخدم'));
                 }
+                
+            } catch (error) {
+                    console.error('Full error:', error);
+                showAlert('خطأ: ' + error.message, 'error');
+            }
             });
         });
 
