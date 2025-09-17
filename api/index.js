@@ -71,9 +71,14 @@ try {
 // Save database function
 function saveDB() {
     try {
-        fs.writeFileSync(path.join(__dirname, '../src/db.json'), JSON.stringify(db, null, 2));
+        const dbPath = path.join(__dirname, '../src/db.json');
+        const dbData = JSON.stringify(db, null, 2);
+        fs.writeFileSync(dbPath, dbData, 'utf8');
+        console.log('Database saved successfully');
+        return true;
     } catch (error) {
         console.error('Error saving database:', error);
+        return false;
     }
 }
 
@@ -206,7 +211,11 @@ app.post('/api/projects', (req, res) => {
         };
         
         db.projects.push(project);
-        saveDB();
+        if (!saveDB()) {
+            // Remove project if save failed
+            db.projects.pop();
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.status(201).json(project);
     } catch (error) {
         console.error('Error creating project:', error);
@@ -240,6 +249,7 @@ app.put('/api/projects/:id', (req, res) => {
         }
         
         // Update project with validation
+        const originalProject = { ...db.projects[index] };
         const updatedProject = { ...db.projects[index] };
         
         if (title_ar !== undefined) updatedProject.title_ar = title_ar.trim();
@@ -253,7 +263,11 @@ app.put('/api/projects/:id', (req, res) => {
         updatedProject.updated_at = new Date().toISOString();
         
         db.projects[index] = updatedProject;
-        saveDB();
+        if (!saveDB()) {
+            // Restore original project if save failed
+            db.projects[index] = originalProject;
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.json(updatedProject);
     } catch (error) {
         console.error('Error updating project:', error);
@@ -267,8 +281,12 @@ app.delete('/api/projects/:id', (req, res) => {
         if (index === -1) {
             return res.status(404).json({ error: 'Project not found' });
         }
-        db.projects.splice(index, 1);
-        saveDB();
+        const deletedProject = db.projects.splice(index, 1)[0];
+        if (!saveDB()) {
+            // Restore project if save failed
+            db.projects.splice(index, 0, deletedProject);
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.json({ message: 'Project deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
@@ -293,7 +311,11 @@ app.post('/api/consultations', (req, res) => {
             created_at: new Date().toISOString()
         };
         db.consultations.push(consultation);
-        saveDB();
+        if (!saveDB()) {
+            // Remove consultation if save failed
+            db.consultations.pop();
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.status(201).json(consultation);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
@@ -306,8 +328,13 @@ app.put('/api/consultations/:id', (req, res) => {
         if (index === -1) {
             return res.status(404).json({ error: 'Consultation not found' });
         }
+        const originalConsultation = { ...db.consultations[index] };
         db.consultations[index] = { ...db.consultations[index], ...req.body, updated_at: new Date().toISOString() };
-        saveDB();
+        if (!saveDB()) {
+            // Restore original consultation if save failed
+            db.consultations[index] = originalConsultation;
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.json(db.consultations[index]);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
@@ -320,8 +347,13 @@ app.patch('/api/consultations/:id', (req, res) => {
         if (index === -1) {
             return res.status(404).json({ error: 'Consultation not found' });
         }
+        const originalConsultation = { ...db.consultations[index] };
         db.consultations[index] = { ...db.consultations[index], ...req.body, updated_at: new Date().toISOString() };
-        saveDB();
+        if (!saveDB()) {
+            // Restore original consultation if save failed
+            db.consultations[index] = originalConsultation;
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         console.log(`تم تحديث الاستشارة: ${db.consultations[index].id} - الحالة: ${db.consultations[index].status}`);
         res.json(db.consultations[index]);
     } catch (error) {
@@ -332,17 +364,32 @@ app.patch('/api/consultations/:id', (req, res) => {
 
 app.delete('/api/consultations/:id', (req, res) => {
     try {
-        const index = db.consultations.findIndex(c => c.id == req.params.id);
+        const consultationId = req.params.id;
+        const index = db.consultations.findIndex(c => c.id == consultationId);
+        
         if (index === -1) {
-            return res.status(404).json({ error: 'Consultation not found' });
+            return res.status(404).json({ error: 'الاستشارة غير موجودة' });
         }
+        
         const deletedConsultation = db.consultations.splice(index, 1)[0];
-        saveDB();
-        console.log(`تم حذف الاستشارة: ${deletedConsultation.id} - ${deletedConsultation.name}`);
-        res.json({ message: 'Consultation deleted successfully', deleted: deletedConsultation });
+        
+        // Ensure database is saved
+        try {
+            saveDB();
+            console.log(`تم حذف الاستشارة: ${deletedConsultation.id} - ${deletedConsultation.name || 'بدون اسم'}`);
+            res.json({ 
+                message: 'تم حذف الاستشارة بنجاح', 
+                deleted: deletedConsultation 
+            });
+        } catch (saveError) {
+            console.error('Error saving database after deletion:', saveError);
+            // Restore the consultation if save failed
+            db.consultations.splice(index, 0, deletedConsultation);
+            res.status(500).json({ error: 'فشل في حفظ التغييرات' });
+        }
     } catch (error) {
         console.error('Error deleting consultation:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'خطأ في حذف الاستشارة' });
     }
 });
 
@@ -372,16 +419,21 @@ app.post('/api/users', (req, res) => {
         // Validation
         const { name, username, password, role } = req.body;
         
-        if (!name || !name.trim()) {
-            return res.status(400).json({ error: 'اسم المستخدم مطلوب' });
+        if (!name || !name.trim() || name.trim().length < 2) {
+            return res.status(400).json({ error: 'اسم المستخدم مطلوب (على الأقل حرفين)' });
         }
         
-        if (!username || !username.trim()) {
-            return res.status(400).json({ error: 'اسم المستخدم للدخول مطلوب' });
+        if (!username || !username.trim() || username.trim().length < 3) {
+            return res.status(400).json({ error: 'اسم المستخدم للدخول مطلوب (على الأقل 3 أحرف)' });
         }
         
-        if (!password || !password.trim()) {
-            return res.status(400).json({ error: 'كلمة المرور مطلوبة' });
+        if (!password || !password.trim() || password.trim().length < 6) {
+            return res.status(400).json({ error: 'كلمة المرور مطلوبة (على الأقل 6 أحرف)' });
+        }
+        
+        // Additional validation
+        if (username.trim().includes(' ')) {
+            return res.status(400).json({ error: 'اسم المستخدم لا يجب أن يحتوي على مسافات' });
         }
         
         if (!role || !role.trim()) {
@@ -389,7 +441,7 @@ app.post('/api/users', (req, res) => {
         }
         
         // Check if username already exists
-        const existingUser = db.users.find(u => u.username === username.trim());
+        const existingUser = db.users.find(u => u.username.toLowerCase() === username.trim().toLowerCase());
         if (existingUser) {
             return res.status(400).json({ error: 'اسم المستخدم مستخدم بالفعل' });
         }
@@ -424,12 +476,16 @@ app.post('/api/users', (req, res) => {
             password: password.trim(), // In production, this should be hashed
             role: role,
             permissions: permissions,
-            active: true,
+            active: req.body.active !== false, // Use the active value from request
             created_at: new Date().toISOString()
         };
         
         db.users.push(user);
-        saveDB();
+        if (!saveDB()) {
+            // Remove user if save failed
+            db.users.pop();
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.status(201).json(user);
     } catch (error) {
         console.error('Error creating user:', error);
@@ -447,16 +503,21 @@ app.patch('/api/users/:id', (req, res) => {
         // Validation for updates
         const { name, username, password, role } = req.body;
         
-        if (name !== undefined && (!name || !name.trim())) {
-            return res.status(400).json({ error: 'اسم المستخدم مطلوب' });
+        if (name !== undefined && (!name || !name.trim() || name.trim().length < 2)) {
+            return res.status(400).json({ error: 'اسم المستخدم مطلوب (على الأقل حرفين)' });
         }
         
-        if (username !== undefined && (!username || !username.trim())) {
-            return res.status(400).json({ error: 'اسم المستخدم للدخول مطلوب' });
+        if (username !== undefined && (!username || !username.trim() || username.trim().length < 3)) {
+            return res.status(400).json({ error: 'اسم المستخدم للدخول مطلوب (على الأقل 3 أحرف)' });
         }
         
-        if (password !== undefined && (!password || !password.trim())) {
-            return res.status(400).json({ error: 'كلمة المرور مطلوبة' });
+        if (password !== undefined && (!password || !password.trim() || password.trim().length < 6)) {
+            return res.status(400).json({ error: 'كلمة المرور مطلوبة (على الأقل 6 أحرف)' });
+        }
+        
+        // Additional validation for username
+        if (username !== undefined && username.trim().includes(' ')) {
+            return res.status(400).json({ error: 'اسم المستخدم لا يجب أن يحتوي على مسافات' });
         }
         
         if (role !== undefined && (!role || !role.trim())) {
@@ -465,7 +526,7 @@ app.patch('/api/users/:id', (req, res) => {
         
         // Check if username already exists (excluding current user)
         if (username !== undefined) {
-            const existingUser = db.users.find(u => u.username === username.trim() && u.id != req.params.id);
+            const existingUser = db.users.find(u => u.username.toLowerCase() === username.trim().toLowerCase() && u.id != req.params.id);
             if (existingUser) {
                 return res.status(400).json({ error: 'اسم المستخدم مستخدم بالفعل' });
             }
@@ -480,6 +541,7 @@ app.patch('/api/users/:id', (req, res) => {
         }
         
         // Update user with validation
+        const originalUser = { ...db.users[index] };
         const updatedUser = { ...db.users[index] };
         
         if (name !== undefined) updatedUser.name = name.trim();
@@ -510,7 +572,11 @@ app.patch('/api/users/:id', (req, res) => {
         updatedUser.updated_at = new Date().toISOString();
         
         db.users[index] = updatedUser;
-        saveDB();
+        if (!saveDB()) {
+            // Restore original user if save failed
+            db.users[index] = originalUser;
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.json(updatedUser);
     } catch (error) {
         console.error('Error updating user:', error);
@@ -539,7 +605,11 @@ app.delete('/api/users/:id', (req, res) => {
         }
         
         const deletedUser = db.users.splice(index, 1)[0];
-        saveDB();
+        if (!saveDB()) {
+            // Restore user if save failed
+            db.users.splice(index, 0, deletedUser);
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.json({ message: 'تم حذف المستخدم بنجاح', deleted: deletedUser });
     } catch (error) {
         console.error('Error deleting user:', error);
@@ -593,7 +663,11 @@ app.post('/api/categories', (req, res) => {
         };
         
         db.categories.push(category);
-        saveDB();
+        if (!saveDB()) {
+            // Remove category if save failed
+            db.categories.pop();
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.status(201).json(category);
     } catch (error) {
         console.error('Error creating category:', error);
@@ -632,6 +706,7 @@ app.put('/api/categories/:id', (req, res) => {
         }
         
         // Update category with validation
+        const originalCategory = { ...db.categories[index] };
         const updatedCategory = { ...db.categories[index] };
         
         if (name_ar !== undefined) updatedCategory.name_ar = name_ar.trim();
@@ -646,7 +721,11 @@ app.put('/api/categories/:id', (req, res) => {
         updatedCategory.updated_at = new Date().toISOString();
         
         db.categories[index] = updatedCategory;
-        saveDB();
+        if (!saveDB()) {
+            // Restore original category if save failed
+            db.categories[index] = originalCategory;
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.json(updatedCategory);
     } catch (error) {
         console.error('Error updating category:', error);
@@ -670,7 +749,11 @@ app.delete('/api/categories/:id', (req, res) => {
         }
         
         const deletedCategory = db.categories.splice(index, 1)[0];
-        saveDB();
+        if (!saveDB()) {
+            // Restore category if save failed
+            db.categories.splice(index, 0, deletedCategory);
+            return res.status(500).json({ error: 'فشل في حفظ البيانات' });
+        }
         res.json({ message: 'تم حذف القسم بنجاح', deleted: deletedCategory });
     } catch (error) {
         console.error('Error deleting category:', error);

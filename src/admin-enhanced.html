@@ -1309,18 +1309,18 @@
             const password = document.getElementById('userPassword').value.trim();
             const role = document.getElementById('userRole').value;
             
-            if (!name) {
-                showAlert('يرجى إدخال الاسم الكامل', 'error');
+            if (!name || name.length < 2) {
+                showAlert('يرجى إدخال الاسم الكامل (على الأقل حرفين)', 'error');
                 return;
             }
             
-            if (!username) {
-                showAlert('يرجى إدخال اسم المستخدم', 'error');
+            if (!username || username.length < 3) {
+                showAlert('يرجى إدخال اسم المستخدم (على الأقل 3 أحرف)', 'error');
                 return;
             }
             
-            if (!password) {
-                showAlert('يرجى إدخال كلمة المرور', 'error');
+            if (!password || password.length < 6) {
+                showAlert('يرجى إدخال كلمة مرور قوية (على الأقل 6 أحرف)', 'error');
                 return;
             }
             
@@ -1329,12 +1329,18 @@
                 return;
             }
             
+            // Additional validation
+            if (username.includes(' ')) {
+                showAlert('اسم المستخدم لا يجب أن يحتوي على مسافات', 'error');
+                return;
+            }
+            
             const formData = {
                 name: name,
                 username: username,
                 password: password,
                 role: role,
-                active: document.getElementById('userActive').checked
+                active: document.getElementById('userActive') ? document.getElementById('userActive').checked : true
             };
             
             try {
@@ -1353,6 +1359,7 @@
                 });
                 
                 if (response.ok) {
+                    const result = await response.json();
                     closeModal('addUserModal');
                     loadUsers();
                     showAlert(isEdit ? 'تم تحديث المستخدم بنجاح' : 'تم إضافة المستخدم بنجاح', 'success');
@@ -1361,6 +1368,8 @@
                     this.reset();
                     this.removeAttribute('data-edit-id');
                     document.querySelector('#addUserModal .modal-header h2').textContent = 'إضافة مستخدم جديد';
+                    
+                    console.log(isEdit ? 'User updated:' : 'User created:', result);
                 } else {
                     const errorData = await response.json();
                     throw new Error(errorData.error || (isEdit ? 'فشل في تحديث المستخدم' : 'فشل في إضافة المستخدم'));
@@ -1395,24 +1404,35 @@
         }
 
         async function deleteConsultation(id) {
-            if (!confirm('هل أنت متأكد من حذف هذه الاستشارة؟')) {
+            if (!id) {
+                showAlert('معرف الاستشارة غير صحيح', 'error');
+                return;
+            }
+            
+            if (!confirm('هل أنت متأكد من حذف هذه الاستشارة؟ لا يمكن التراجع عن هذا الإجراء.')) {
                 return;
             }
             
             try {
                 const response = await fetch(`/api/consultations/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 });
                 
                 if (response.ok) {
+                    const result = await response.json();
                     loadConsultations();
                     loadDashboard(); // Refresh dashboard stats
-                    showAlert('تم حذف الاستشارة بنجاح', 'success');
+                    showAlert(result.message || 'تم حذف الاستشارة بنجاح', 'success');
                 } else {
-                    throw new Error('فشل في حذف الاستشارة');
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'فشل في حذف الاستشارة');
                 }
                 
             } catch (error) {
+                console.error('Error deleting consultation:', error);
                 showAlert('خطأ في حذف الاستشارة: ' + error.message, 'error');
             }
         }
