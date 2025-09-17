@@ -13,22 +13,34 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             direction: rtl;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            margin: 0;
         }
 
         .user-info {
@@ -36,48 +48,88 @@
             align-items: center;
             gap: 1rem;
         }
+        
+        .user-info span {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
 
         .logout-btn {
             background: rgba(255,255,255,0.2);
             border: 1px solid rgba(255,255,255,0.3);
             color: white;
-            padding: 8px 16px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
-
+        
         .logout-btn:hover {
             background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .container {
             display: flex;
             min-height: calc(100vh - 80px);
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .sidebar {
-            width: 250px;
-            background: white;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            padding: 1rem 0;
+            width: 280px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 2rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .nav-item {
-            padding: 12px 20px;
+            padding: 15px 25px;
             cursor: pointer;
-            transition: background 0.3s ease;
-            border-right: 3px solid transparent;
+            transition: all 0.3s ease;
+            border-radius: 15px;
+            margin: 0.5rem 1rem;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .nav-item:hover::before {
+            width: 100%;
+        }
+        
         .nav-item:hover {
-            background: #f8f9fa;
+            color: white;
+            transform: translateX(-5px);
         }
 
         .nav-item.active {
-            background: #e3f2fd;
-            border-right-color: #667eea;
-            color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .nav-item i {
@@ -88,86 +140,142 @@
         .main-content {
             flex: 1;
             padding: 2rem;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            overflow-y: auto;
         }
 
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
             text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
 
         .stat-card h3 {
             color: #333;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
         }
 
         .content-section {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
             border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .section-header h2 {
+            color: #333;
+            font-weight: 600;
+            margin: 0;
+            font-size: 1.5rem;
         }
 
         .btn {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
         }
-
+        
         .btn:hover {
-            background: #5a6fd8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
 
         .btn-secondary {
-            background: #6c757d;
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
         }
 
         .btn-secondary:hover {
-            background: #5a6268;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
         }
 
         .btn-danger {
-            background: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
         }
 
         .btn-danger:hover {
-            background: #c82333;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .table th,
@@ -178,20 +286,24 @@
         }
 
         .table th {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             font-weight: 600;
             color: #495057;
         }
 
         .table tr:hover {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transform: scale(1.01);
+            transition: all 0.2s ease;
         }
 
         .status-badge {
-            padding: 4px 8px;
-            border-radius: 12px;
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .status-pending {
@@ -219,20 +331,28 @@
             background: white;
             margin: 5% auto;
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 16px;
             width: 90%;
             max-width: 600px;
             max-height: 80vh;
             overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: none;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
             border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .modal-header h2 {
+            color: #333;
+            font-weight: 600;
+            margin: 0;
         }
 
         .close {
@@ -240,10 +360,14 @@
             font-weight: bold;
             cursor: pointer;
             color: #aaa;
+            transition: color 0.3s ease;
+            padding: 4px 8px;
+            border-radius: 4px;
         }
-
+        
         .close:hover {
-            color: #000;
+            color: #333;
+            background: #f8f9fa;
         }
 
         .form-group {
@@ -253,18 +377,30 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
             color: #333;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
             font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .form-group textarea {
@@ -297,21 +433,24 @@
         }
 
         .alert {
-            padding: 12px;
-            border-radius: 5px;
+            padding: 16px 24px;
+            border-radius: 8px;
             margin-bottom: 1rem;
+            font-weight: 500;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .alert-success {
-            background: #d4edda;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             color: #155724;
-            border: 1px solid #c3e6cb;
+            border: none;
         }
 
         .alert-error {
-            background: #f8d7da;
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
             color: #721c24;
-            border: 1px solid #f5c6cb;
+            border: none;
         }
 
         /* Consultation Message Styles */
@@ -331,11 +470,17 @@
 
         .consultation-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border-right: 4px solid #667eea;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .consultation-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
 
         .consultation-header {
@@ -375,50 +520,64 @@
         }
 
         .btn-small {
-            padding: 6px 12px;
+            padding: 8px 16px;
             font-size: 0.8rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-small:hover {
+            transform: translateY(-1px);
         }
 
         /* Message Modal Styles */
         .message-modal .modal-content {
             max-width: 800px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .message-content {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
             border-right: 4px solid #667eea;
             white-space: pre-wrap;
             line-height: 1.6;
             max-height: 400px;
             overflow-y: auto;
+            border: 1px solid #dee2e6;
         }
 
         .consultation-details {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .detail-item {
-            background: #f8f9fa;
-            padding: 0.8rem;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
         }
 
         .detail-label {
             font-weight: 600;
             color: #333;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
             font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .detail-value {
             color: #666;
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* Contact Buttons */
@@ -426,43 +585,178 @@
             display: flex;
             gap: 1rem;
             justify-content: center;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
 
         .btn-whatsapp {
-            background: #25D366;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
         }
-
+        
         .btn-whatsapp:hover {
-            background: #1da851;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
         }
 
         .btn-email {
-            background: #007bff;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
         }
-
+        
         .btn-email:hover {
-            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .sidebar {
+                width: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .sidebar {
+                width: 100%;
+                order: 2;
+                margin-top: 1rem;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+            
+            .stat-card {
+                padding: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .user-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-section {
+                padding: 1rem;
+            }
+            
+            .nav-item {
+                padding: 12px 20px;
+                margin: 0.25rem 0.5rem;
+            }
+        }
+        
+        /* Animation for page load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .main-content {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .sidebar {
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+        
+        .stat-card {
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+        
+        .content-section {
+            animation: fadeInUp 0.6s ease-out 0.6s both;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
         }
     </style>
 </head>
@@ -470,7 +764,7 @@
     <div class="header">
         <h1>لوحة التحكم - MG Designs</h1>
         <div class="user-info">
-            <span id="userName">مرحباً</span>
+            <span id="userGreeting">مرحباً</span>
             <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
         </div>
     </div>
@@ -729,6 +1023,18 @@
         document.addEventListener('DOMContentLoaded', function() {
             checkAuth();
             loadDashboard();
+            
+            // Debug: Check if form elements exist
+            setTimeout(() => {
+                console.log('Form elements check:', {
+                    addUserForm: !!document.getElementById('addUserForm'),
+                    userName: !!document.getElementById('userName'),
+                    userUsername: !!document.getElementById('userUsername'),
+                    userPassword: !!document.getElementById('userPassword'),
+                    userRole: !!document.getElementById('userRole'),
+                    userActive: !!document.getElementById('userActive')
+                });
+            }, 1000);
         });
 
         function checkAuth() {
@@ -739,7 +1045,7 @@
             }
             
             currentUser = JSON.parse(userData);
-            document.getElementById('userName').textContent = `مرحباً ${currentUser.name}`;
+            document.getElementById('userGreeting').textContent = `مرحباً ${currentUser.name}`;
         }
 
         function logout() {
@@ -1300,84 +1606,126 @@
             }
         });
 
-        document.getElementById('addUserForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Validation
-            const name = document.getElementById('userName').value.trim();
-            const username = document.getElementById('userUsername').value.trim();
-            const password = document.getElementById('userPassword').value.trim();
-            const role = document.getElementById('userRole').value;
-            
-            if (!name || name.length < 2) {
-                showAlert('يرجى إدخال الاسم الكامل (على الأقل حرفين)', 'error');
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const addUserForm = document.getElementById('addUserForm');
+            if (!addUserForm) {
+                console.error('addUserForm not found!');
                 return;
             }
             
-            if (!username || username.length < 3) {
-                showAlert('يرجى إدخال اسم المستخدم (على الأقل 3 أحرف)', 'error');
-                return;
-            }
+            console.log('addUserForm found, adding event listener');
+            addUserForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                console.log('Form submitted!');
             
-            if (!password || password.length < 6) {
-                showAlert('يرجى إدخال كلمة مرور قوية (على الأقل 6 أحرف)', 'error');
-                return;
-            }
-            
-            if (!role) {
-                showAlert('يرجى اختيار دور المستخدم', 'error');
-                return;
-            }
-            
-            // Additional validation
-            if (username.includes(' ')) {
-                showAlert('اسم المستخدم لا يجب أن يحتوي على مسافات', 'error');
-                return;
-            }
-            
-            const formData = {
-                name: name,
-                username: username,
-                password: password,
-                role: role,
-                active: document.getElementById('userActive') ? document.getElementById('userActive').checked : true
-            };
-            
-            try {
-                const editId = this.getAttribute('data-edit-id');
-                const isEdit = editId !== null;
+                // Validation
+                const nameElement = document.getElementById('userName');
+                const usernameElement = document.getElementById('userUsername');
+                const passwordElement = document.getElementById('userPassword');
+                const roleElement = document.getElementById('userRole');
                 
-                const url = isEdit ? `/api/users/${editId}` : '/api/users';
-                const method = isEdit ? 'PATCH' : 'POST';
-                
-                const response = await fetch(url, {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
+                console.log('Form elements:', {
+                    nameElement: !!nameElement,
+                    usernameElement: !!usernameElement,
+                    passwordElement: !!passwordElement,
+                    roleElement: !!roleElement
                 });
-                
-                if (response.ok) {
-                    const result = await response.json();
-                    closeModal('addUserModal');
-                    loadUsers();
-                    showAlert(isEdit ? 'تم تحديث المستخدم بنجاح' : 'تم إضافة المستخدم بنجاح', 'success');
-                    
-                    // Reset form and modal title
-                    this.reset();
-                    this.removeAttribute('data-edit-id');
-                    document.querySelector('#addUserModal .modal-header h2').textContent = 'إضافة مستخدم جديد';
-                    
-                    console.log(isEdit ? 'User updated:' : 'User created:', result);
-                } else {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || (isEdit ? 'فشل في تحديث المستخدم' : 'فشل في إضافة المستخدم'));
+            
+                if (!nameElement || !usernameElement || !passwordElement || !roleElement) {
+                    showAlert('خطأ في تحميل النموذج - تأكد من وجود جميع الحقول', 'error');
+                    console.error('Missing form elements:', {
+                        nameElement: !!nameElement,
+                        usernameElement: !!usernameElement,
+                        passwordElement: !!passwordElement,
+                        roleElement: !!roleElement
+                    });
+                    return;
+                }
+            
+                const name = nameElement.value ? nameElement.value.trim() : '';
+                const username = usernameElement.value ? usernameElement.value.trim() : '';
+                const password = passwordElement.value ? passwordElement.value.trim() : '';
+                const role = roleElement.value || '';
+            
+                if (!name || name.length < 2) {
+                    showAlert('يرجى إدخال الاسم الكامل (على الأقل حرفين)', 'error');
+                    return;
                 }
                 
-            } catch (error) {
-                showAlert('خطأ: ' + error.message, 'error');
-            }
+                if (!username || username.length < 3) {
+                    showAlert('يرجى إدخال اسم المستخدم (على الأقل 3 أحرف)', 'error');
+                    return;
+                }
+                
+                if (!password || password.length < 6) {
+                    showAlert('يرجى إدخال كلمة مرور قوية (على الأقل 6 أحرف)', 'error');
+                    return;
+                }
+                
+                if (!role) {
+                    showAlert('يرجى اختيار دور المستخدم', 'error');
+                    return;
+                }
+                
+                // Additional validation
+                if (username.includes(' ')) {
+                    showAlert('اسم المستخدم لا يجب أن يحتوي على مسافات', 'error');
+                    return;
+                }
+            
+                const activeElement = document.getElementById('userActive');
+                const formData = {
+                    name: name,
+                    username: username,
+                    password: password,
+                    role: role,
+                    active: activeElement ? activeElement.checked : true
+                };
+                
+                console.log('Form data:', formData);
+            
+                try {
+                    const editId = this.getAttribute('data-edit-id');
+                    const isEdit = editId !== null;
+                    
+                    const url = isEdit ? `/api/users/${editId}` : '/api/users';
+                    const method = isEdit ? 'PATCH' : 'POST';
+                    
+                    console.log('Sending request to:', url, 'with method:', method);
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    console.log('Response status:', response.status);
+                
+                    if (response.ok) {
+                        const result = await response.json();
+                        closeModal('addUserModal');
+                        loadUsers();
+                        showAlert(isEdit ? 'تم تحديث المستخدم بنجاح' : 'تم إضافة المستخدم بنجاح', 'success');
+                        
+                        // Reset form and modal title
+                        this.reset();
+                        this.removeAttribute('data-edit-id');
+                        document.querySelector('#addUserModal .modal-header h2').textContent = 'إضافة مستخدم جديد';
+                        
+                        console.log(isEdit ? 'User updated:' : 'User created:', result);
+                    } else {
+                        const errorData = await response.json();
+                        console.error('Error response:', errorData);
+                        throw new Error(errorData.error || (isEdit ? 'فشل في تحديث المستخدم' : 'فشل في إضافة المستخدم'));
+                    }
+                
+                } catch (error) {
+                    console.error('Full error:', error);
+                    showAlert('خطأ: ' + error.message, 'error');
+                }
+            });
         });
 
         // Action functions
@@ -1392,7 +1740,8 @@
                 });
                 
                 if (response.ok) {
-                    loadConsultations();
+                    await loadConsultations();
+                    await loadDashboard(); // Refresh dashboard stats
                     showAlert('تم تحديث حالة الاستشارة', 'success');
                 } else {
                     throw new Error('فشل في تحديث حالة الاستشارة');
@@ -1423,8 +1772,9 @@
                 
                 if (response.ok) {
                     const result = await response.json();
-                    loadConsultations();
-                    loadDashboard(); // Refresh dashboard stats
+                    // Force refresh consultations
+                    await loadConsultations();
+                    await loadDashboard(); // Refresh dashboard stats
                     showAlert(result.message || 'تم حذف الاستشارة بنجاح', 'success');
                 } else {
                     const errorData = await response.json();

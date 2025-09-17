@@ -21,6 +21,31 @@
         "settings",
         "users"
       ]
+    },
+    {
+      "id": "1758075382849",
+      "name": "Moataz",
+      "username": "MoatazGabr",
+      "password": "200396",
+      "role": "superadmin",
+      "permissions": [
+        "add_category",
+        "edit_category",
+        "delete_category",
+        "add_project",
+        "edit_project",
+        "delete_project",
+        "add_image",
+        "edit_image",
+        "delete_image",
+        "projects",
+        "consultations",
+        "settings",
+        "users"
+      ],
+      "active": true,
+      "created_at": "2025-09-17T02:16:22.849Z",
+      "updated_at": "2025-09-17T02:16:52.964Z"
     }
   ],
   "categories": [
@@ -2311,46 +2336,14 @@
   ],
   "consultations": [
     {
-      "id": "1757967357248",
-      "email": "test@test.com",
-      "message": "????? ??????",
-      "name": "??????",
-      "service": "kitchen",
-      "phone": "01234567890",
-      "status": "pending",
-      "created_at": "2025-09-15T20:15:57.248Z"
-    },
-    {
-      "id": "1757967418065",
+      "id": "1758075559323",
       "name": "Hassan Elking",
-      "email": "HassanElking221100@gmail.com",
+      "email": "HassanElking22100@gmail.com",
       "phone": "01553448631",
-      "service": "kitchen",
-      "message": "25",
-      "created_at": "2025-09-15T20:16:58.065Z",
+      "service": "villa",
+      "message": "hbv",
+      "created_at": "2025-09-17T02:19:19.323Z",
       "status": "pending"
-    },
-    {
-      "id": "1757967464581",
-      "name": "Hassan Elking",
-      "email": "HassanElking221100@gmail.com",
-      "phone": "01553448631",
-      "service": "kitchen",
-      "message": "ddبىلايسالابالابالاسيابلاسانيلاباسيلاباتسيلاباسيلابايسلالبانتبسينبسانبلاتسلاباسيلابسلابانلابنالابانيلانابلاناسلااي",
-      "created_at": "2025-09-15T20:17:44.581Z",
-      "status": "completed",
-      "updated_at": "2025-09-15T20:26:46.875Z"
-    },
-    {
-      "id": "1757968328224",
-      "email": "test@comprehensive.com",
-      "message": "????? ?????? ????? ?????? ?? ??? ???? ??????? ?? ???? ?????? ???? ?????",
-      "name": "?????? ????",
-      "service": "kitchen",
-      "phone": "01234567890",
-      "status": "completed",
-      "created_at": "2025-09-15T20:32:08.224Z",
-      "updated_at": "2025-09-15T20:32:11.276Z"
     }
   ],
   "stats": {
