@@ -2334,18 +2334,7 @@
       "created_at": "2025-09-15T20:31:37.358Z"
     }
   ],
-  "consultations": [
-    {
-      "id": "1758075559323",
-      "name": "Hassan Elking",
-      "email": "HassanElking22100@gmail.com",
-      "phone": "01553448631",
-      "service": "villa",
-      "message": "hbv",
-      "created_at": "2025-09-17T02:19:19.323Z",
-      "status": "pending"
-    }
-  ],
+  "consultations": [],
   "stats": {
     "projects": 80,
     "categories": 8,
