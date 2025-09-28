@@ -4,6 +4,7 @@ const fs = require('fs');
 const cors = require('cors');
 const multer = require('multer');
 const bodyParser = require('body-parser');
+const SupabaseService = require('./supabase-service');
 
 const app = express();
 const PORT = process.env.PORT || 3003;
@@ -31,69 +32,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Load database
-let db = {};
-try {
-    db = JSON.parse(fs.readFileSync(path.join(__dirname, 'db.json'), 'utf8'));
-    console.log('Database loaded successfully!');
-    console.log('Projects:', db.projects?.length || 0);
-    console.log('Categories:', db.categories?.length || 0);
-    console.log('Consultations:', db.consultations?.length || 0);
-} catch (error) {
-    console.log('Loading default database structure...');
-    db = {
-        users: [
-            {
-                "id": "1",
-                "name": "Hassan Elking",
-                "username": "Hassan Elking",
-                "password": "HassanElking221100",
-                "role": "superadmin",
-                "permissions": [
-                    "add_category",
-                    "edit_category",
-                    "delete_category",
-                    "add_project",
-                    "edit_project",
-                    "delete_project",
-                    "add_image",
-                    "edit_image",
-                    "delete_image",
-                    "projects",
-                    "consultations",
-                    "settings",
-                    "users"
-                ]
-            }
-        ],
-        categories: [
-            {
-                "id": "1",
-                "name_ar": "تصميمات مطابخ خشبية",
-                "name_en": "Wooden Kitchen Designs",
-                "slug": "wooden-kitchens",
-                "description_ar": "تصميمات مطابخ خشبية عصرية وأنيقة",
-                "description_en": "Modern and elegant wooden kitchen designs",
-                "image": "images/new-kitchen-1.jpg",
-                "order": 1,
-                "active": true,
-                "created_at": "2024-01-01T00:00:00Z"
-            }
-        ],
-        projects: [],
-        consultations: [],
-        stats: {
-            projects: 0,
-            categories: 1,
-            consultations: 0
-        }
-    };
-}
+// Initialize Supabase Service
+const dbService = new SupabaseService();
+console.log('Database service initialized:', dbService.isConfigured ? 'Supabase' : 'Local JSON');
 
-// Save database function
-function saveDB() {
-    fs.writeFileSync(path.join(__dirname, 'db.json'), JSON.stringify(db, null, 2));
-}
+// Database operations are now handled by SupabaseService
 
 // Routes
 
@@ -128,14 +71,14 @@ app.get('/project-details', (req, res) => {
 // API Routes
 
 // Projects API
-app.get('/api/projects', (req, res) => {
+app.get('/api/projects', async (req, res) => {
     try {
-        let projects = db.projects || [];
+        let projects = await dbService.getProjects();
         
         // Apply filters
         const { category_id, featured } = req.query;
         if (category_id && category_id !== 'all') {
-            projects = projects.filter(p => p.category_id === category_id);
+            projects = projects.filter(p => p.category_id == category_id);
         }
         if (featured === 'true') {
             projects = projects.filter(p => p.featured === true);
@@ -143,14 +86,15 @@ app.get('/api/projects', (req, res) => {
         
         res.json(projects);
     } catch (error) {
+        console.error('Error fetching projects:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.get('/api/projects/category/:categoryId', (req, res) => {
+app.get('/api/projects/category/:categoryId', async (req, res) => {
     try {
         const categoryId = req.params.categoryId;
-        let projects = db.projects.filter(p => p.category_id == categoryId) || [];
+        let projects = await dbService.getProjectsByCategory(categoryId);
         
         // Filter by active status if specified
         if (req.query.active !== undefined) {
@@ -188,7 +132,7 @@ app.get('/api/projects/:id', (req, res) => {
     }
 });
 
-app.post('/api/projects', (req, res) => {
+app.post('/api/projects', async (req, res) => {
     try {
         // Validation
         const { title_ar, description_ar, category_id } = req.body;
@@ -205,26 +149,21 @@ app.post('/api/projects', (req, res) => {
             return res.status(400).json({ error: 'قسم المشروع مطلوب' });
         }
         
-        // Check if category exists
-        const category = db.categories.find(c => c.id == category_id);
-        if (!category) {
-            return res.status(400).json({ error: 'القسم المحدد غير موجود' });
-        }
-        
-        const project = {
-            id: Date.now().toString(),
+        const projectData = {
             title_ar: title_ar.trim(),
+            title_en: req.body.title_en ? req.body.title_en.trim() : '',
             description_ar: description_ar.trim(),
+            description_en: req.body.description_en ? req.body.description_en.trim() : '',
             category_id: category_id,
             images: Array.isArray(req.body.images) ? req.body.images : [],
+            tags: Array.isArray(req.body.tags) ? req.body.tags : [],
+            tags_en: Array.isArray(req.body.tags_en) ? req.body.tags_en : [],
             featured: Boolean(req.body.featured),
             active: req.body.active !== false,
-            order: parseInt(req.body.order) || 0,
-            created_at: new Date().toISOString()
+            order: parseInt(req.body.order) || 0
         };
         
-        db.projects.push(project);
-        saveDB();
+        const project = await dbService.addProject(projectData);
         res.status(201).json(project);
     } catch (error) {
         console.error('Error creating project:', error);
@@ -232,13 +171,8 @@ app.post('/api/projects', (req, res) => {
     }
 });
 
-app.put('/api/projects/:id', (req, res) => {
+app.put('/api/projects/:id', async (req, res) => {
     try {
-        const index = db.projects.findIndex(p => p.id == req.params.id);
-        if (index === -1) {
-            return res.status(404).json({ error: 'المشروع غير موجود' });
-        }
-        
         // Validation for updates
         const { title_ar, description_ar, category_id } = req.body;
         
@@ -250,125 +184,119 @@ app.put('/api/projects/:id', (req, res) => {
             return res.status(400).json({ error: 'وصف المشروع مطلوب' });
         }
         
-        if (category_id !== undefined) {
-            const category = db.categories.find(c => c.id == category_id);
-            if (!category) {
-                return res.status(400).json({ error: 'القسم المحدد غير موجود' });
-            }
-        }
+        // Update project
+        const updateData = {};
+        if (title_ar !== undefined) updateData.title_ar = title_ar.trim();
+        if (description_ar !== undefined) updateData.description_ar = description_ar.trim();
+        if (req.body.title_en !== undefined) updateData.title_en = req.body.title_en.trim();
+        if (req.body.description_en !== undefined) updateData.description_en = req.body.description_en.trim();
+        if (category_id !== undefined) updateData.category_id = category_id;
+        if (req.body.images !== undefined) updateData.images = Array.isArray(req.body.images) ? req.body.images : [];
+        if (req.body.tags !== undefined) updateData.tags = Array.isArray(req.body.tags) ? req.body.tags : [];
+        if (req.body.tags_en !== undefined) updateData.tags_en = Array.isArray(req.body.tags_en) ? req.body.tags_en : [];
+        if (req.body.featured !== undefined) updateData.featured = Boolean(req.body.featured);
+        if (req.body.active !== undefined) updateData.active = req.body.active !== false;
+        if (req.body.order !== undefined) updateData.order = parseInt(req.body.order) || 0;
         
-        // Update project with validation
-        const updatedProject = { ...db.projects[index] };
-        
-        if (title_ar !== undefined) updatedProject.title_ar = title_ar.trim();
-        if (description_ar !== undefined) updatedProject.description_ar = description_ar.trim();
-        if (category_id !== undefined) updatedProject.category_id = category_id;
-        if (req.body.images !== undefined) updatedProject.images = Array.isArray(req.body.images) ? req.body.images : [];
-        if (req.body.featured !== undefined) updatedProject.featured = Boolean(req.body.featured);
-        if (req.body.active !== undefined) updatedProject.active = req.body.active !== false;
-        if (req.body.order !== undefined) updatedProject.order = parseInt(req.body.order) || 0;
-        
-        updatedProject.updated_at = new Date().toISOString();
-        
-        db.projects[index] = updatedProject;
-        saveDB();
+        const updatedProject = await dbService.updateProject(req.params.id, updateData);
         res.json(updatedProject);
     } catch (error) {
+        if (error.message === 'Project not found') {
+            return res.status(404).json({ error: 'المشروع غير موجود' });
+        }
         console.error('Error updating project:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.delete('/api/projects/:id', (req, res) => {
+app.delete('/api/projects/:id', async (req, res) => {
     try {
-        const index = db.projects.findIndex(p => p.id == req.params.id);
-        if (index === -1) {
-            return res.status(404).json({ error: 'Project not found' });
-        }
-        db.projects.splice(index, 1);
-        saveDB();
-        res.json({ message: 'Project deleted successfully' });
+        const deletedProject = await dbService.deleteProject(req.params.id);
+        res.json({ 
+            message: 'تم حذف المشروع بنجاح', 
+            deleted: deletedProject 
+        });
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        if (error.message === 'Project not found') {
+            return res.status(404).json({ error: 'المشروع غير موجود' });
+        }
+        console.error('Error deleting project:', error);
+        res.status(500).json({ error: 'خطأ في حذف المشروع' });
     }
 });
 
 // Consultations API
-app.get('/api/consultations', (req, res) => {
+app.get('/api/consultations', async (req, res) => {
     try {
-        res.json(db.consultations || []);
+        const consultations = await dbService.getConsultations();
+        res.json(consultations);
     } catch (error) {
+        console.error('Error fetching consultations:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.post('/api/consultations', (req, res) => {
+app.post('/api/consultations', async (req, res) => {
     try {
-        const consultation = {
-            id: Date.now().toString(),
-            ...req.body,
-            status: 'pending',
-            created_at: new Date().toISOString()
-        };
-        db.consultations.push(consultation);
-        saveDB();
+        const consultation = await dbService.addConsultation(req.body);
         res.status(201).json(consultation);
     } catch (error) {
+        console.error('Error creating consultation:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.put('/api/consultations/:id', (req, res) => {
+app.put('/api/consultations/:id', async (req, res) => {
     try {
-        const index = db.consultations.findIndex(c => c.id == req.params.id);
-        if (index === -1) {
-            return res.status(404).json({ error: 'Consultation not found' });
-        }
-        db.consultations[index] = { ...db.consultations[index], ...req.body, updated_at: new Date().toISOString() };
-        saveDB();
-        res.json(db.consultations[index]);
+        const updatedConsultation = await dbService.updateConsultation(req.params.id, req.body);
+        res.json(updatedConsultation);
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.patch('/api/consultations/:id', (req, res) => {
-    try {
-        const index = db.consultations.findIndex(c => c.id == req.params.id);
-        if (index === -1) {
-            return res.status(404).json({ error: 'Consultation not found' });
+        if (error.message === 'Consultation not found') {
+            return res.status(404).json({ error: 'الاستشارة غير موجودة' });
         }
-        db.consultations[index] = { ...db.consultations[index], ...req.body, updated_at: new Date().toISOString() };
-        saveDB();
-        console.log(`تم تحديث الاستشارة: ${db.consultations[index].id} - الحالة: ${db.consultations[index].status}`);
-        res.json(db.consultations[index]);
-    } catch (error) {
         console.error('Error updating consultation:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.delete('/api/consultations/:id', (req, res) => {
+app.patch('/api/consultations/:id', async (req, res) => {
     try {
-        const index = db.consultations.findIndex(c => c.id == req.params.id);
-        if (index === -1) {
-            return res.status(404).json({ error: 'Consultation not found' });
-        }
-        const deletedConsultation = db.consultations.splice(index, 1)[0];
-        saveDB();
-        console.log(`تم حذف الاستشارة: ${deletedConsultation.id} - ${deletedConsultation.name}`);
-        res.json({ message: 'Consultation deleted successfully', deleted: deletedConsultation });
+        const updatedConsultation = await dbService.updateConsultation(req.params.id, req.body);
+        console.log(`تم تحديث الاستشارة: ${updatedConsultation.id} - الحالة: ${updatedConsultation.status}`);
+        res.json(updatedConsultation);
     } catch (error) {
-        console.error('Error deleting consultation:', error);
+        if (error.message === 'Consultation not found') {
+            return res.status(404).json({ error: 'الاستشارة غير موجودة' });
+        }
+        console.error('Error updating consultation:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-// Users API
-app.get('/api/users', (req, res) => {
+app.delete('/api/consultations/:id', async (req, res) => {
     try {
-        res.json(db.users || []);
+        const deletedConsultation = await dbService.deleteConsultation(req.params.id);
+        console.log(`تم حذف الاستشارة: ${deletedConsultation.id} - ${deletedConsultation.name}`);
+        res.json({
+            message: 'تم حذف الاستشارة بنجاح',
+            deleted: deletedConsultation
+        });
     } catch (error) {
+        if (error.message === 'Consultation not found') {
+            return res.status(404).json({ error: 'الاستشارة غير موجودة' });
+        }
+        console.error('Error deleting consultation:', error);
+        res.status(500).json({ error: 'خطأ في حذف الاستشارة' });
+    }
+});
+
+// Users API
+app.get('/api/users', async (req, res) => {
+    try {
+        const users = await dbService.getUsers();
+        res.json(users);
+    } catch (error) {
+        console.error('Error fetching users:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
@@ -385,7 +313,7 @@ app.get('/api/users/:id', (req, res) => {
     }
 });
 
-app.post('/api/users', (req, res) => {
+app.post('/api/users', async (req, res) => {
     try {
         // Validation
         const { name, username, password, role } = req.body;
@@ -406,11 +334,7 @@ app.post('/api/users', (req, res) => {
             return res.status(400).json({ error: 'دور المستخدم مطلوب' });
         }
         
-        // Check if username already exists
-        const existingUser = db.users.find(u => u.username === username.trim());
-        if (existingUser) {
-            return res.status(400).json({ error: 'اسم المستخدم مستخدم بالفعل' });
-        }
+        // Username uniqueness will be checked by Supabase
         
         // Validate role
         const validRoles = ['superadmin', 'admin', 'editor', 'viewer'];
@@ -435,27 +359,27 @@ app.post('/api/users', (req, res) => {
                 break;
         }
         
-        const user = {
-            id: Date.now().toString(),
+        const userData = {
             name: name.trim(),
             username: username.trim(),
             password: password.trim(), // In production, this should be hashed
             role: role,
             permissions: permissions,
-            active: true,
-            created_at: new Date().toISOString()
+            active: true
         };
         
-        db.users.push(user);
-        saveDB();
+        const user = await dbService.addUser(userData);
         res.status(201).json(user);
     } catch (error) {
+        if (error.message.includes('duplicate key') || error.message.includes('unique')) {
+            return res.status(400).json({ error: 'اسم المستخدم مستخدم بالفعل' });
+        }
         console.error('Error creating user:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.patch('/api/users/:id', (req, res) => {
+app.patch('/api/users/:id', async (req, res) => {
     try {
         const index = db.users.findIndex(u => u.id == req.params.id);
         if (index === -1) {
@@ -481,13 +405,7 @@ app.patch('/api/users/:id', (req, res) => {
             return res.status(400).json({ error: 'دور المستخدم مطلوب' });
         }
         
-        // Check if username already exists (excluding current user)
-        if (username !== undefined) {
-            const existingUser = db.users.find(u => u.username === username.trim() && u.id != req.params.id);
-            if (existingUser) {
-                return res.status(400).json({ error: 'اسم المستخدم مستخدم بالفعل' });
-            }
-        }
+        // Username uniqueness will be checked by Supabase
         
         // Validate role
         if (role !== undefined) {
@@ -497,14 +415,13 @@ app.patch('/api/users/:id', (req, res) => {
             }
         }
         
-        // Update user with validation
-        const updatedUser = { ...db.users[index] };
-        
-        if (name !== undefined) updatedUser.name = name.trim();
-        if (username !== undefined) updatedUser.username = username.trim();
-        if (password !== undefined) updatedUser.password = password.trim();
+        // Update user
+        const updateData = {};
+        if (name !== undefined) updateData.name = name.trim();
+        if (username !== undefined) updateData.username = username.trim();
+        if (password !== undefined) updateData.password = password.trim();
         if (role !== undefined) {
-            updatedUser.role = role;
+            updateData.role = role;
             // Update permissions based on new role
             let permissions = [];
             switch (role) {
@@ -521,29 +438,33 @@ app.patch('/api/users/:id', (req, res) => {
                     permissions = ['projects', 'consultations'];
                     break;
             }
-            updatedUser.permissions = permissions;
+            updateData.permissions = permissions;
         }
-        if (req.body.active !== undefined) updatedUser.active = req.body.active !== false;
+        if (req.body.active !== undefined) updateData.active = req.body.active !== false;
         
-        updatedUser.updated_at = new Date().toISOString();
-        
-        db.users[index] = updatedUser;
-        saveDB();
+        const updatedUser = await dbService.updateUser(req.params.id, updateData);
         res.json(updatedUser);
     } catch (error) {
+        if (error.message === 'User not found') {
+            return res.status(404).json({ error: 'المستخدم غير موجود' });
+        }
+        if (error.message.includes('duplicate key') || error.message.includes('unique')) {
+            return res.status(400).json({ error: 'اسم المستخدم مستخدم بالفعل' });
+        }
         console.error('Error updating user:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.delete('/api/users/:id', (req, res) => {
+app.delete('/api/users/:id', async (req, res) => {
     try {
-        const index = db.users.findIndex(u => u.id == req.params.id);
-        if (index === -1) {
+        // Get user to check permissions
+        const users = await dbService.getUsers();
+        const userToDelete = users.find(u => u.id == req.params.id);
+        
+        if (!userToDelete) {
             return res.status(404).json({ error: 'المستخدم غير موجود' });
         }
-        
-        const userToDelete = db.users[index];
         
         // Prevent deletion of superadmin users
         if (userToDelete.role === 'superadmin') {
@@ -551,30 +472,34 @@ app.delete('/api/users/:id', (req, res) => {
         }
         
         // Check if this is the only admin user
-        const adminUsers = db.users.filter(u => u.role === 'admin' || u.role === 'superadmin');
+        const adminUsers = users.filter(u => u.role === 'admin' || u.role === 'superadmin');
         if (adminUsers.length === 1 && userToDelete.role === 'admin') {
             return res.status(400).json({ error: 'لا يمكن حذف آخر مستخدم إداري في النظام' });
         }
         
-        const deletedUser = db.users.splice(index, 1)[0];
-        saveDB();
+        const deletedUser = await dbService.deleteUser(req.params.id);
         res.json({ message: 'تم حذف المستخدم بنجاح', deleted: deletedUser });
     } catch (error) {
+        if (error.message === 'User not found') {
+            return res.status(404).json({ error: 'المستخدم غير موجود' });
+        }
         console.error('Error deleting user:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'خطأ في حذف المستخدم' });
     }
 });
 
 // Categories API
-app.get('/api/categories', (req, res) => {
+app.get('/api/categories', async (req, res) => {
     try {
-        res.json(db.categories || []);
+        const categories = await dbService.getCategories();
+        res.json(categories);
     } catch (error) {
+        console.error('Error fetching categories:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.post('/api/categories', (req, res) => {
+app.post('/api/categories', async (req, res) => {
     try {
         // Validation
         const { name_ar, name_en, slug } = req.body;
@@ -591,14 +516,7 @@ app.post('/api/categories', (req, res) => {
             return res.status(400).json({ error: 'الرابط المختصر مطلوب' });
         }
         
-        // Check if slug already exists
-        const existingCategory = db.categories.find(c => c.slug === slug.trim());
-        if (existingCategory) {
-            return res.status(400).json({ error: 'الرابط المختصر مستخدم بالفعل' });
-        }
-        
-        const category = {
-            id: Date.now().toString(),
+        const categoryData = {
             name_ar: name_ar.trim(),
             name_en: name_en.trim(),
             slug: slug.trim(),
@@ -606,26 +524,22 @@ app.post('/api/categories', (req, res) => {
             description_en: req.body.description_en ? req.body.description_en.trim() : '',
             image: req.body.image || '',
             order: parseInt(req.body.order) || 0,
-            active: req.body.active !== false,
-            created_at: new Date().toISOString()
+            active: req.body.active !== false
         };
         
-        db.categories.push(category);
-        saveDB();
+        const category = await dbService.addCategory(categoryData);
         res.status(201).json(category);
     } catch (error) {
+        if (error.message.includes('duplicate key') || error.message.includes('unique')) {
+            return res.status(400).json({ error: 'الرابط المختصر مستخدم بالفعل' });
+        }
         console.error('Error creating category:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.put('/api/categories/:id', (req, res) => {
+app.put('/api/categories/:id', async (req, res) => {
     try {
-        const index = db.categories.findIndex(c => c.id == req.params.id);
-        if (index === -1) {
-            return res.status(404).json({ error: 'القسم غير موجود' });
-        }
-        
         // Validation for updates
         const { name_ar, name_en, slug } = req.body;
         
@@ -641,78 +555,59 @@ app.put('/api/categories/:id', (req, res) => {
             return res.status(400).json({ error: 'الرابط المختصر مطلوب' });
         }
         
-        // Check if slug already exists (excluding current category)
-        if (slug !== undefined) {
-            const existingCategory = db.categories.find(c => c.slug === slug.trim() && c.id != req.params.id);
-            if (existingCategory) {
-                return res.status(400).json({ error: 'الرابط المختصر مستخدم بالفعل' });
-            }
-        }
+        // Update category
+        const updateData = {};
+        if (name_ar !== undefined) updateData.name_ar = name_ar.trim();
+        if (name_en !== undefined) updateData.name_en = name_en.trim();
+        if (slug !== undefined) updateData.slug = slug.trim();
+        if (req.body.description_ar !== undefined) updateData.description_ar = req.body.description_ar.trim();
+        if (req.body.description_en !== undefined) updateData.description_en = req.body.description_en.trim();
+        if (req.body.image !== undefined) updateData.image = req.body.image;
+        if (req.body.order !== undefined) updateData.order = parseInt(req.body.order) || 0;
+        if (req.body.active !== undefined) updateData.active = req.body.active !== false;
         
-        // Update category with validation
-        const updatedCategory = { ...db.categories[index] };
-        
-        if (name_ar !== undefined) updatedCategory.name_ar = name_ar.trim();
-        if (name_en !== undefined) updatedCategory.name_en = name_en.trim();
-        if (slug !== undefined) updatedCategory.slug = slug.trim();
-        if (req.body.description_ar !== undefined) updatedCategory.description_ar = req.body.description_ar.trim();
-        if (req.body.description_en !== undefined) updatedCategory.description_en = req.body.description_en.trim();
-        if (req.body.image !== undefined) updatedCategory.image = req.body.image;
-        if (req.body.order !== undefined) updatedCategory.order = parseInt(req.body.order) || 0;
-        if (req.body.active !== undefined) updatedCategory.active = req.body.active !== false;
-        
-        updatedCategory.updated_at = new Date().toISOString();
-        
-        db.categories[index] = updatedCategory;
-        saveDB();
+        const updatedCategory = await dbService.updateCategory(req.params.id, updateData);
         res.json(updatedCategory);
     } catch (error) {
+        if (error.message === 'Category not found') {
+            return res.status(404).json({ error: 'القسم غير موجود' });
+        }
+        if (error.message.includes('duplicate key') || error.message.includes('unique')) {
+            return res.status(400).json({ error: 'الرابط المختصر مستخدم بالفعل' });
+        }
         console.error('Error updating category:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.delete('/api/categories/:id', (req, res) => {
+app.delete('/api/categories/:id', async (req, res) => {
     try {
-        const index = db.categories.findIndex(c => c.id == req.params.id);
-        if (index === -1) {
-            return res.status(404).json({ error: 'القسم غير موجود' });
-        }
-        
         // Check if category has projects
-        const projectsInCategory = db.projects.filter(p => p.category_id == req.params.id);
+        const projectsInCategory = await dbService.getProjectsByCategory(req.params.id);
         if (projectsInCategory.length > 0) {
             return res.status(400).json({ 
                 error: `لا يمكن حذف هذا القسم لأنه يحتوي على ${projectsInCategory.length} مشروع. يرجى نقل المشاريع إلى قسم آخر أولاً.` 
             });
         }
         
-        const deletedCategory = db.categories.splice(index, 1)[0];
-        saveDB();
+        const deletedCategory = await dbService.deleteCategory(req.params.id);
         res.json({ message: 'تم حذف القسم بنجاح', deleted: deletedCategory });
     } catch (error) {
+        if (error.message === 'Category not found') {
+            return res.status(404).json({ error: 'القسم غير موجود' });
+        }
         console.error('Error deleting category:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'خطأ في حذف القسم' });
     }
 });
 
 // Stats API
-app.get('/api/stats', (req, res) => {
+app.get('/api/stats', async (req, res) => {
     try {
-        const stats = {
-            projects: {
-                total: db.projects.length,
-                featured: db.projects.filter(p => p.featured).length
-            },
-            categories: db.categories.length,
-            consultations: {
-                total: db.consultations.length,
-                pending: db.consultations.filter(c => c.status === 'pending').length,
-                completed: db.consultations.filter(c => c.status === 'completed').length
-            }
-        };
+        const stats = await dbService.getStats();
         res.json(stats);
     } catch (error) {
+        console.error('Error fetching stats:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
