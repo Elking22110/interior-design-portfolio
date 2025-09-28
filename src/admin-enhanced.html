@@ -1209,6 +1209,536 @@
                 opacity: 0;
             }
         }
+
+        /* تصميم جديد للأقسام والمشاريع */
+        
+        /* بطاقات الإحصائيات */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        /* شبكة الأقسام */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-card.inactive {
+            opacity: 0.6;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .category-info {
+            flex: 1;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .category-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .category-status {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .category-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-description {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .category-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            font-weight: 500;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .meta-value {
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .meta-value code {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+        }
+
+        .projects-count.has-projects {
+            color: #28a745;
+            font-weight: 500;
+        }
+
+        .projects-count.no-projects {
+            color: #dc3545;
+        }
+
+        .category-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        /* شبكة المشاريع */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card.inactive {
+            opacity: 0.6;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .project-card.featured {
+            border: 2px solid #ffd700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .project-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .no-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            font-size: 3rem;
+            color: #6c757d;
+        }
+
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .featured-badge {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin: 0 0 0.5rem 0;
+            line-height: 1.3;
+        }
+
+        .project-description {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .project-actions {
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.02);
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        /* حالات فارغة وخطأ */
+        .empty-state, .error-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .empty-icon, .error-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3, .error-state h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p, .error-state p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        /* تحسين الأزرار */
+        .btn-icon {
+            margin-left: 0.25rem;
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-header, .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .category-actions, .project-actions {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+        }
+
+        /* تصميم النماذج المحسنة */
+        .enhanced-modal {
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .enhanced-form {
+            padding: 0;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: "📋";
+            font-size: 1.2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        .form-group input:invalid {
+            border-color: #dc3545;
+        }
+
+        .form-group input:valid {
+            border-color: #28a745;
+        }
+
+        .field-help {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 0 0 12px 12px;
+            margin: 0 -1.5rem -1.5rem -1.5rem;
+        }
+
+        .form-actions .btn {
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* تحسين النماذج للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .enhanced-modal {
+                max-width: 95vw;
+                margin: 1rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions .btn {
+                width: 100%;
+            }
+        }
+
+        /* تحسين الأقسام المختلفة */
+        .form-section:nth-child(1) .section-title::before { content: "📝"; }
+        .form-section:nth-child(2) .section-title::before { content: "🏷️"; }
+        .form-section:nth-child(3) .section-title::before { content: "🖼️"; }
+        .form-section:nth-child(4) .section-title::before { content: "⚙️"; }
     </style>
 </head>
 <body>
@@ -1342,73 +1872,183 @@
 
     <!-- Add Project Modal -->
     <div id="addProjectModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content enhanced-modal">
             <div class="modal-header">
                 <h2>إضافة مشروع جديد</h2>
                 <span class="close" onclick="closeModal('addProjectModal')">&times;</span>
             </div>
-            <form id="addProjectForm">
-                <div class="form-group">
-                    <label for="projectTitle">عنوان المشروع:</label>
-                    <input type="text" id="projectTitle" required>
+            <form id="addProjectForm" class="enhanced-form">
+                <div class="form-section">
+                    <h3 class="section-title">معلومات المشروع الأساسية</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectTitle">عنوان المشروع (عربي) *</label>
+                            <input type="text" id="projectTitle" required placeholder="أدخل عنوان المشروع باللغة العربية">
+                            <div class="field-help">العنوان الذي سيظهر في الموقع</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectTitleEn">عنوان المشروع (إنجليزي)</label>
+                            <input type="text" id="projectTitleEn" placeholder="Enter project title in English">
+                            <div class="field-help">العنوان باللغة الإنجليزية (اختياري)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectDescription">وصف المشروع (عربي) *</label>
+                        <textarea id="projectDescription" required placeholder="أدخل وصفاً مفصلاً للمشروع" rows="4"></textarea>
+                        <div class="field-help">وصف شامل للمشروع يوضح التفاصيل والمميزات</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectDescriptionEn">وصف المشروع (إنجليزي)</label>
+                        <textarea id="projectDescriptionEn" placeholder="Enter detailed project description in English" rows="4"></textarea>
+                        <div class="field-help">الوصف باللغة الإنجليزية (اختياري)</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="projectDescription">وصف المشروع:</label>
-                    <textarea id="projectDescription" required></textarea>
+                
+                <div class="form-section">
+                    <h3 class="section-title">تصنيف المشروع</h3>
+                    
+                    <div class="form-group">
+                        <label for="projectCategory">القسم *</label>
+                        <select id="projectCategory" required>
+                            <option value="">اختر القسم المناسب</option>
+                        </select>
+                        <div class="field-help">اختر القسم الذي ينتمي إليه المشروع</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="projectCategory">القسم:</label>
-                    <select id="projectCategory" required>
-                        <option value="">اختر القسم</option>
-                    </select>
+                
+                <div class="form-section">
+                    <h3 class="section-title">صور المشروع</h3>
+                    
+                    <div class="form-group">
+                        <label for="projectImages">روابط الصور</label>
+                        <textarea id="projectImages" placeholder="image1.jpg, image2.jpg, image3.jpg" rows="3"></textarea>
+                        <div class="field-help">أدخل روابط الصور مفصولة بفاصلة. يمكنك رفع الصور لاحقاً</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="projectImages">روابط الصور (مفصولة بفاصلة):</label>
-                    <textarea id="projectImages" placeholder="image1.jpg, image2.jpg, image3.jpg"></textarea>
+                
+                <div class="form-section">
+                    <h3 class="section-title">إعدادات المشروع</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="projectFeatured">
+                                <span class="checkmark"></span>
+                                مشروع مميز
+                            </label>
+                            <div class="field-help">المشاريع المميزة تظهر في المقدمة</div>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="projectActive" checked>
+                                <span class="checkmark"></span>
+                                مشروع نشط
+                            </label>
+                            <div class="field-help">المشاريع النشطة تظهر في الموقع</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="projectFeatured"> مشروع مميز
-                    </label>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addProjectModal')">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-icon">➕</span>
+                        إضافة المشروع
+                    </button>
                 </div>
-                <button type="submit" class="btn">إضافة المشروع</button>
             </form>
         </div>
     </div>
 
     <!-- Add Category Modal -->
     <div id="addCategoryModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content enhanced-modal">
             <div class="modal-header">
                 <h2>إضافة قسم جديد</h2>
                 <span class="close" onclick="closeModal('addCategoryModal')">&times;</span>
             </div>
-            <form id="addCategoryForm">
-                <div class="form-group">
-                    <label for="categoryNameAr">اسم القسم (عربي):</label>
-                    <input type="text" id="categoryNameAr" required>
+            <form id="addCategoryForm" class="enhanced-form">
+                <div class="form-section">
+                    <h3 class="section-title">معلومات القسم الأساسية</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="categoryNameAr">اسم القسم (عربي) *</label>
+                            <input type="text" id="categoryNameAr" required placeholder="أدخل اسم القسم باللغة العربية">
+                            <div class="field-help">الاسم الذي سيظهر في الموقع</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryNameEn">اسم القسم (إنجليزي) *</label>
+                            <input type="text" id="categoryNameEn" required placeholder="Enter category name in English">
+                            <div class="field-help">الاسم باللغة الإنجليزية</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categorySlug">الرابط المختصر *</label>
+                        <input type="text" id="categorySlug" required placeholder="category-slug" pattern="[a-z0-9-]+">
+                        <div class="field-help">رابط فريد للقسم (أحرف صغيرة، أرقام، وشرطات فقط)</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="categoryNameEn">اسم القسم (إنجليزي):</label>
-                    <input type="text" id="categoryNameEn" required>
+                
+                <div class="form-section">
+                    <h3 class="section-title">وصف القسم</h3>
+                    
+                    <div class="form-group">
+                        <label for="categoryDescriptionAr">الوصف (عربي)</label>
+                        <textarea id="categoryDescriptionAr" placeholder="أدخل وصفاً للقسم" rows="3"></textarea>
+                        <div class="field-help">وصف مختصر يوضح محتوى القسم</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categoryDescriptionEn">الوصف (إنجليزي)</label>
+                        <textarea id="categoryDescriptionEn" placeholder="Enter category description in English" rows="3"></textarea>
+                        <div class="field-help">الوصف باللغة الإنجليزية</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="categorySlug">الرابط المختصر:</label>
-                    <input type="text" id="categorySlug" required>
+                
+                <div class="form-section">
+                    <h3 class="section-title">صورة القسم</h3>
+                    
+                    <div class="form-group">
+                        <label for="categoryImage">رابط الصورة</label>
+                        <input type="text" id="categoryImage" placeholder="images/category-image.jpg">
+                        <div class="field-help">رابط صورة تمثل القسم (اختياري)</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="categoryDescriptionAr">الوصف (عربي):</label>
-                    <textarea id="categoryDescriptionAr"></textarea>
+                
+                <div class="form-section">
+                    <h3 class="section-title">إعدادات القسم</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="categoryOrder">ترتيب العرض</label>
+                            <input type="number" id="categoryOrder" min="0" value="0" placeholder="0">
+                            <div class="field-help">رقم الترتيب (الأصغر يظهر أولاً)</div>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="categoryActive" checked>
+                                <span class="checkmark"></span>
+                                قسم نشط
+                            </label>
+                            <div class="field-help">الأقسام النشطة تظهر في الموقع</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="categoryDescriptionEn">الوصف (إنجليزي):</label>
-                    <textarea id="categoryDescriptionEn"></textarea>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addCategoryModal')">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-icon">➕</span>
+                        إضافة القسم
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="categoryImage">رابط الصورة:</label>
-                    <input type="text" id="categoryImage">
-                </div>
-                <button type="submit" class="btn">إضافة القسم</button>
             </form>
         </div>
     </div>
@@ -1643,58 +2283,118 @@
                 const container = document.getElementById('projectsList');
                 
                 if (projects.length === 0) {
-                    container.innerHTML = '<p>لا توجد مشاريع</p>';
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">🎨</div>
+                            <h3>لا توجد مشاريع</h3>
+                            <p>ابدأ بإضافة مشروع جديد لعرض أعمالك</p>
+                            <button class="btn btn-primary" onclick="showAddProjectModal()">إضافة مشروع جديد</button>
+                        </div>
+                    `;
                     return;
                 }
                 
                 // Sort projects by date (newest first)
                 projects.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                 
+                // Get categories for display
+                const categoriesResponse = await fetch('/api/categories');
+                const categories = await categoriesResponse.json();
+                
                 const html = `
-                    <div style="margin-bottom: 1rem;">
-                        <strong>إجمالي المشاريع: ${projects.length}</strong> | 
-                        <strong>المميزة: ${projects.filter(p => p.featured).length}</strong> | 
-                        <strong>النشطة: ${projects.filter(p => p.active !== false).length}</strong>
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon">🎨</div>
+                            <div class="stat-content">
+                                <div class="stat-number">${projects.length}</div>
+                                <div class="stat-label">إجمالي المشاريع</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-content">
+                                <div class="stat-number">${projects.filter(p => p.featured).length}</div>
+                                <div class="stat-label">مشاريع مميزة</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <div class="stat-number">${projects.filter(p => p.active !== false).length}</div>
+                                <div class="stat-label">مشاريع نشطة</div>
+                            </div>
+                        </div>
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>العنوان</th>
-                                <th>القسم</th>
-                                <th>الصور</th>
-                                <th>مميز</th>
-                                <th>الحالة</th>
-                                <th>التاريخ</th>
-                                <th>الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${projects.map(p => `
-                                <tr>
-                                    <td>
-                                        <strong>${p.title_ar || p.title || 'بدون عنوان'}</strong>
-                                        ${p.description_ar ? `<br><small style="color: #666;">${p.description_ar.substring(0, 50)}${p.description_ar.length > 50 ? '...' : ''}</small>` : ''}
-                                    </td>
-                                    <td>${p.category_name || 'غير محدد'}</td>
-                                    <td>${p.images ? p.images.length : 0} صورة</td>
-                                    <td><span class="status-badge status-${p.featured ? 'completed' : 'pending'}">${p.featured ? 'نعم' : 'لا'}</span></td>
-                                    <td><span class="status-badge status-${p.active !== false ? 'completed' : 'pending'}">${p.active !== false ? 'نشط' : 'غير نشط'}</span></td>
-                                    <td>${new Date(p.created_at).toLocaleDateString('ar-SA')}</td>
-                                    <td>
-                                        <button class="btn btn-small btn-secondary" onclick="editProject(${p.id})">✏️ تعديل</button>
-                                        <button class="btn btn-small btn-danger" onclick="deleteProject(${p.id})">🗑️ حذف</button>
-                                    </td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                    
+                    <div class="projects-grid">
+                        ${projects.map(p => {
+                            const category = categories.find(c => c.id == p.category_id);
+                            const projectImages = p.images || [];
+                            return `
+                                <div class="project-card ${p.active === false ? 'inactive' : ''} ${p.featured ? 'featured' : ''}">
+                                    <div class="project-header">
+                                        <div class="project-image">
+                                            ${projectImages.length > 0 ? 
+                                                `<img src="${projectImages[0]}" alt="${p.title_ar || p.title}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+🎨</dGV4dD48L3N2Zz4='">` :
+                                                `<div class="no-image">🎨</div>`
+                                            }
+                                        </div>
+                                        <div class="project-status">
+                                            ${p.featured ? '<span class="featured-badge">⭐ مميز</span>' : ''}
+                                            <span class="status-badge status-${p.active !== false ? 'completed' : 'pending'}">
+                                                ${p.active !== false ? 'نشط' : 'غير نشط'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-content">
+                                        <h3 class="project-title">${p.title_ar || p.title || 'بدون عنوان'}</h3>
+                                        ${p.description_ar ? `<p class="project-description">${p.description_ar}</p>` : ''}
+                                        
+                                        <div class="project-meta">
+                                            <div class="meta-item">
+                                                <span class="meta-label">القسم:</span>
+                                                <span class="meta-value">${category ? category.name_ar : 'غير محدد'}</span>
+                                            </div>
+                                            <div class="meta-item">
+                                                <span class="meta-label">الصور:</span>
+                                                <span class="meta-value">${projectImages.length} صورة</span>
+                                            </div>
+                                            <div class="meta-item">
+                                                <span class="meta-label">التاريخ:</span>
+                                                <span class="meta-value">${new Date(p.created_at).toLocaleDateString('ar-SA')}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-actions">
+                                        <button class="btn btn-small btn-secondary" onclick="editProject(${p.id})" title="تعديل المشروع">
+                                            <span class="btn-icon">✏️</span>
+                                            تعديل
+                                        </button>
+                                        <button class="btn btn-small btn-danger" onclick="deleteProject(${p.id})" title="حذف المشروع">
+                                            <span class="btn-icon">🗑️</span>
+                                            حذف
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
                 `;
                 
                 container.innerHTML = html;
                 
             } catch (error) {
                 console.error('Error loading projects:', error);
-                document.getElementById('projectsList').innerHTML = '<p>خطأ في تحميل المشاريع</p>';
+                document.getElementById('projectsList').innerHTML = `
+                    <div class="error-state">
+                        <div class="error-icon">⚠️</div>
+                        <h3>خطأ في تحميل المشاريع</h3>
+                        <p>حدث خطأ أثناء تحميل المشاريع. يرجى المحاولة مرة أخرى.</p>
+                        <button class="btn btn-primary" onclick="loadProjects()">إعادة المحاولة</button>
+                    </div>
+                `;
             }
         }
 
@@ -1767,7 +2467,14 @@
                 const container = document.getElementById('categoriesList');
                 
                 if (categories.length === 0) {
-                    container.innerHTML = '<p>لا توجد أقسام</p>';
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">📁</div>
+                            <h3>لا توجد أقسام</h3>
+                            <p>ابدأ بإضافة قسم جديد لتنظيم مشاريعك</p>
+                            <button class="btn btn-primary" onclick="showAddCategoryModal()">إضافة قسم جديد</button>
+                        </div>
+                    `;
                     return;
                 }
                 
@@ -1779,57 +2486,95 @@
                 const projects = await projectsResponse.json();
                 
                 const html = `
-                    <div style="margin-bottom: 1rem;">
-                        <strong>إجمالي الأقسام: ${categories.length}</strong> | 
-                        <strong>النشطة: ${categories.filter(c => c.active !== false).length}</strong> | 
-                        <strong>إجمالي المشاريع: ${projects.length}</strong>
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon">📁</div>
+                            <div class="stat-content">
+                                <div class="stat-number">${categories.length}</div>
+                                <div class="stat-label">إجمالي الأقسام</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <div class="stat-number">${categories.filter(c => c.active !== false).length}</div>
+                                <div class="stat-label">أقسام نشطة</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-content">
+                                <div class="stat-number">${projects.length}</div>
+                                <div class="stat-label">إجمالي المشاريع</div>
+                            </div>
+                        </div>
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>الاسم (عربي)</th>
-                                <th>الاسم (إنجليزي)</th>
-                                <th>الرابط المختصر</th>
-                                <th>المشاريع</th>
-                                <th>الترتيب</th>
-                                <th>الحالة</th>
-                                <th>الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${categories.map(c => {
-                                const projectsInCategory = projects.filter(p => p.category_id == c.id);
-                                return `
-                                    <tr>
-                                        <td>
-                                            <strong>${c.name_ar}</strong>
-                                            ${c.description_ar ? `<br><small style="color: #666;">${c.description_ar.substring(0, 50)}${c.description_ar.length > 50 ? '...' : ''}</small>` : ''}
-                                        </td>
-                                        <td>${c.name_en}</td>
-                                        <td><code>${c.slug}</code></td>
-                                        <td>
-                                            <span class="status-badge status-${projectsInCategory.length > 0 ? 'completed' : 'pending'}">
-                                                ${projectsInCategory.length} مشروع
+                    
+                    <div class="categories-grid">
+                        ${categories.map(c => {
+                            const projectsInCategory = projects.filter(p => p.category_id == c.id);
+                            return `
+                                <div class="category-card ${c.active === false ? 'inactive' : ''}">
+                                    <div class="category-header">
+                                        <div class="category-info">
+                                            <h3 class="category-title">${c.name_ar}</h3>
+                                            <p class="category-subtitle">${c.name_en}</p>
+                                        </div>
+                                        <div class="category-status">
+                                            <span class="status-badge status-${c.active !== false ? 'completed' : 'pending'}">
+                                                ${c.active !== false ? 'نشط' : 'غير نشط'}
                                             </span>
-                                        </td>
-                                        <td>${c.order || 0}</td>
-                                        <td><span class="status-badge status-${c.active !== false ? 'completed' : 'pending'}">${c.active !== false ? 'نشط' : 'غير نشط'}</span></td>
-                                        <td>
-                                            <button class="btn btn-small btn-secondary" onclick="editCategory(${c.id})">✏️ تعديل</button>
-                                            <button class="btn btn-small btn-danger" onclick="deleteCategory(${c.id})">🗑️ حذف</button>
-                                        </td>
-                                    </tr>
-                                `;
-                            }).join('')}
-                        </tbody>
-                    </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="category-content">
+                                        ${c.description_ar ? `<p class="category-description">${c.description_ar}</p>` : ''}
+                                        <div class="category-meta">
+                                            <div class="meta-item">
+                                                <span class="meta-label">الرابط:</span>
+                                                <code class="meta-value">${c.slug}</code>
+                                            </div>
+                                            <div class="meta-item">
+                                                <span class="meta-label">الترتيب:</span>
+                                                <span class="meta-value">${c.order || 0}</span>
+                                            </div>
+                                            <div class="meta-item">
+                                                <span class="meta-label">المشاريع:</span>
+                                                <span class="meta-value projects-count ${projectsInCategory.length > 0 ? 'has-projects' : 'no-projects'}">
+                                                    ${projectsInCategory.length} مشروع
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="category-actions">
+                                        <button class="btn btn-small btn-secondary" onclick="editCategory(${c.id})" title="تعديل القسم">
+                                            <span class="btn-icon">✏️</span>
+                                            تعديل
+                                        </button>
+                                        <button class="btn btn-small btn-danger" onclick="deleteCategory(${c.id})" title="حذف القسم">
+                                            <span class="btn-icon">🗑️</span>
+                                            حذف
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
                 `;
                 
                 container.innerHTML = html;
                 
             } catch (error) {
                 console.error('Error loading categories:', error);
-                document.getElementById('categoriesList').innerHTML = '<p>خطأ في تحميل الأقسام</p>';
+                document.getElementById('categoriesList').innerHTML = `
+                    <div class="error-state">
+                        <div class="error-icon">⚠️</div>
+                        <h3>خطأ في تحميل الأقسام</h3>
+                        <p>حدث خطأ أثناء تحميل الأقسام. يرجى المحاولة مرة أخرى.</p>
+                        <button class="btn btn-primary" onclick="loadCategories()">إعادة المحاولة</button>
+                    </div>
+                `;
             }
         }
 
@@ -1962,33 +2707,67 @@
         document.getElementById('addProjectForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Validation
+            // Enhanced Validation
             const title = document.getElementById('projectTitle').value.trim();
+            const titleEn = document.getElementById('projectTitleEn').value.trim();
             const description = document.getElementById('projectDescription').value.trim();
+            const descriptionEn = document.getElementById('projectDescriptionEn').value.trim();
             const categoryId = document.getElementById('projectCategory').value;
+            const images = document.getElementById('projectImages').value.trim();
+            const featured = document.getElementById('projectFeatured').checked;
+            const active = document.getElementById('projectActive').checked;
             
+            // Clear previous validation errors
+            clearValidationErrors();
+            
+            let hasErrors = false;
+            
+            // Validate required fields
             if (!title) {
-                showAlert('يرجى إدخال عنوان المشروع', 'error');
-                return;
+                showFieldError('projectTitle', 'عنوان المشروع مطلوب');
+                hasErrors = true;
+            } else if (title.length < 3) {
+                showFieldError('projectTitle', 'عنوان المشروع يجب أن يكون 3 أحرف على الأقل');
+                hasErrors = true;
             }
             
             if (!description) {
-                showAlert('يرجى إدخال وصف المشروع', 'error');
-                return;
+                showFieldError('projectDescription', 'وصف المشروع مطلوب');
+                hasErrors = true;
+            } else if (description.length < 10) {
+                showFieldError('projectDescription', 'وصف المشروع يجب أن يكون 10 أحرف على الأقل');
+                hasErrors = true;
             }
             
             if (!categoryId) {
-                showAlert('يرجى اختيار قسم للمشروع', 'error');
+                showFieldError('projectCategory', 'يرجى اختيار قسم للمشروع');
+                hasErrors = true;
+            }
+            
+            // Validate images if provided
+            if (images) {
+                const imageUrls = images.split(',').map(img => img.trim()).filter(img => img);
+                const invalidUrls = imageUrls.filter(url => !isValidUrl(url));
+                if (invalidUrls.length > 0) {
+                    showFieldError('projectImages', 'بعض روابط الصور غير صحيحة');
+                    hasErrors = true;
+                }
+            }
+            
+            if (hasErrors) {
+                showAlert('يرجى تصحيح الأخطاء في النموذج', 'error');
                 return;
             }
             
             const formData = {
                 title_ar: title,
+                title_en: titleEn,
                 description_ar: description,
+                description_en: descriptionEn,
                 category_id: categoryId,
-                images: document.getElementById('projectImages').value.split(',').map(img => img.trim()).filter(img => img),
-                featured: document.getElementById('projectFeatured').checked,
-                active: true
+                images: images ? images.split(',').map(img => img.trim()).filter(img => img) : [],
+                featured: featured,
+                active: active
             };
             
             try {
@@ -2027,23 +2806,63 @@
         document.getElementById('addCategoryForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Validation
+            // Enhanced Validation
             const nameAr = document.getElementById('categoryNameAr').value.trim();
             const nameEn = document.getElementById('categoryNameEn').value.trim();
             const slug = document.getElementById('categorySlug').value.trim();
+            const descriptionAr = document.getElementById('categoryDescriptionAr').value.trim();
+            const descriptionEn = document.getElementById('categoryDescriptionEn').value.trim();
+            const image = document.getElementById('categoryImage').value.trim();
+            const order = document.getElementById('categoryOrder').value;
+            const active = document.getElementById('categoryActive').checked;
             
+            // Clear previous validation errors
+            clearValidationErrors();
+            
+            let hasErrors = false;
+            
+            // Validate required fields
             if (!nameAr) {
-                showAlert('يرجى إدخال اسم القسم (عربي)', 'error');
-                return;
+                showFieldError('categoryNameAr', 'اسم القسم (عربي) مطلوب');
+                hasErrors = true;
+            } else if (nameAr.length < 2) {
+                showFieldError('categoryNameAr', 'اسم القسم يجب أن يكون حرفين على الأقل');
+                hasErrors = true;
             }
             
             if (!nameEn) {
-                showAlert('يرجى إدخال اسم القسم (إنجليزي)', 'error');
-                return;
+                showFieldError('categoryNameEn', 'اسم القسم (إنجليزي) مطلوب');
+                hasErrors = true;
+            } else if (nameEn.length < 2) {
+                showFieldError('categoryNameEn', 'اسم القسم يجب أن يكون حرفين على الأقل');
+                hasErrors = true;
             }
             
             if (!slug) {
-                showAlert('يرجى إدخال الرابط المختصر', 'error');
+                showFieldError('categorySlug', 'الرابط المختصر مطلوب');
+                hasErrors = true;
+            } else if (!/^[a-z0-9-]+$/.test(slug)) {
+                showFieldError('categorySlug', 'الرابط المختصر يجب أن يحتوي على أحرف صغيرة وأرقام وشرطات فقط');
+                hasErrors = true;
+            } else if (slug.length < 2) {
+                showFieldError('categorySlug', 'الرابط المختصر يجب أن يكون حرفين على الأقل');
+                hasErrors = true;
+            }
+            
+            // Validate image URL if provided
+            if (image && !isValidUrl(image)) {
+                showFieldError('categoryImage', 'رابط الصورة غير صحيح');
+                hasErrors = true;
+            }
+            
+            // Validate order
+            if (order && (isNaN(order) || order < 0)) {
+                showFieldError('categoryOrder', 'ترتيب العرض يجب أن يكون رقم موجب');
+                hasErrors = true;
+            }
+            
+            if (hasErrors) {
+                showAlert('يرجى تصحيح الأخطاء في النموذج', 'error');
                 return;
             }
             
@@ -2051,11 +2870,11 @@
                 name_ar: nameAr,
                 name_en: nameEn,
                 slug: slug,
-                description_ar: document.getElementById('categoryDescriptionAr').value.trim(),
-                description_en: document.getElementById('categoryDescriptionEn').value.trim(),
-                image: document.getElementById('categoryImage').value.trim(),
-                active: true,
-                order: 1
+                description_ar: descriptionAr,
+                description_en: descriptionEn,
+                image: image,
+                active: active,
+                order: parseInt(order) || 0
             };
             
             try {
@@ -2568,6 +3387,86 @@
                 }
             });
         }
+
+        // Enhanced Validation Functions
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                // Check if it's a relative path
+                return /^[a-zA-Z0-9\/\-_\.]+\.(jpg|jpeg|png|gif|webp|svg)$/i.test(string);
+            }
+        }
+
+        function showFieldError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            if (!field) return;
+            
+            // Remove existing error
+            const existingError = field.parentNode.querySelector('.field-error');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Add error styling
+            field.style.borderColor = '#dc3545';
+            field.style.backgroundColor = '#fff5f5';
+            
+            // Add error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'field-error';
+            errorDiv.style.color = '#dc3545';
+            errorDiv.style.fontSize = '0.8rem';
+            errorDiv.style.marginTop = '0.25rem';
+            errorDiv.textContent = message;
+            
+            field.parentNode.appendChild(errorDiv);
+        }
+
+        function clearValidationErrors() {
+            // Clear all field errors
+            const errorElements = document.querySelectorAll('.field-error');
+            errorElements.forEach(error => error.remove());
+            
+            // Reset field styles
+            const fields = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+            fields.forEach(field => {
+                field.style.borderColor = '';
+                field.style.backgroundColor = '';
+            });
+        }
+
+        // Real-time validation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add real-time validation for slug field
+            const slugField = document.getElementById('categorySlug');
+            if (slugField) {
+                slugField.addEventListener('input', function() {
+                    const value = this.value;
+                    if (value && !/^[a-z0-9-]+$/.test(value)) {
+                        this.style.borderColor = '#dc3545';
+                    } else {
+                        this.style.borderColor = '';
+                    }
+                });
+            }
+
+            // Add real-time validation for URL fields
+            const urlFields = document.querySelectorAll('input[type="text"]');
+            urlFields.forEach(field => {
+                if (field.id.includes('Image') || field.id.includes('image')) {
+                    field.addEventListener('blur', function() {
+                        const value = this.value.trim();
+                        if (value && !isValidUrl(value)) {
+                            this.style.borderColor = '#dc3545';
+                        } else {
+                            this.style.borderColor = '';
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
